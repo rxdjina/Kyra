@@ -6,6 +6,10 @@
 //
 
 #import "ViewController.h"
+#import "Parse/Parse.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "SceneDelegate.h"
 
 @interface ViewController ()
 
@@ -15,8 +19,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
+- (IBAction)pressedLogOut:(id)sender {
+    SceneDelegate *appDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+
+    appDelegate.window.rootViewController = loginViewController;
+
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+    }];
+    
+    NSLog(@"User logged out sucessfully");
+}
 
 @end

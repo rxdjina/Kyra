@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
+${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
+${BUILT_PRODUCTS_DIR}/Parse/Parse.framework
+${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework

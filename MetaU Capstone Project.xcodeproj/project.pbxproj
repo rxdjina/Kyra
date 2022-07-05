@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5059F3D7797087ECD05F496D /* Pods_MetaU_Capstone_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978B6D4601BDC3D2F8D456FD /* Pods_MetaU_Capstone_Project.framework */; };
+		B1F5ABAFD7461B31CB356948 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E327FA3DB2F61B46BD6C107 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework */; };
 		C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243332874A2A2003EAE4C /* AppDelegate.m */; };
 		C2B243372874A2A2003EAE4C /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243362874A2A2003EAE4C /* SceneDelegate.m */; };
 		C2B2433A2874A2A2003EAE4C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243392874A2A2003EAE4C /* ViewController.m */; };
@@ -17,6 +19,8 @@
 		C2B2434F2874A2A3003EAE4C /* MetaU_Capstone_ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2434E2874A2A3003EAE4C /* MetaU_Capstone_ProjectTests.m */; };
 		C2B243592874A2A3003EAE4C /* MetaU_Capstone_ProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243582874A2A3003EAE4C /* MetaU_Capstone_ProjectUITests.m */; };
 		C2B2435B2874A2A3003EAE4C /* MetaU_Capstone_ProjectUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2435A2874A2A3003EAE4C /* MetaU_Capstone_ProjectUITestsLaunchTests.m */; };
+		C2B243692874BA67003EAE4C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243682874BA67003EAE4C /* LoginViewController.m */; };
+		FA585D863BA3B9FA19CFB1A9 /* Pods_MetaU_Capstone_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +41,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08927C9A4DCA64703241E035 /* Pods-MetaU Capstone Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project.debug.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project.debug.xcconfig"; sourceTree = "<group>"; };
+		74F5B150EDB2C431717E204D /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		75CAEEB9A7C0811FCB63B16D /* Pods-MetaU Capstone ProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone ProjectTests.release.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone ProjectTests/Pods-MetaU Capstone ProjectTests.release.xcconfig"; sourceTree = "<group>"; };
+		7E5F13FC0CBEDCDE9B5C4A69 /* Pods-MetaU Capstone ProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone ProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone ProjectTests/Pods-MetaU Capstone ProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8E327FA3DB2F61B46BD6C107 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		978B6D4601BDC3D2F8D456FD /* Pods_MetaU_Capstone_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A023F2F79E0474FEBED14117 /* Pods-MetaU Capstone Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project.release.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project.release.xcconfig"; sourceTree = "<group>"; };
+		A08F39BB63D7A64BA1FDEF7B /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C2B2432F2874A2A2003EAE4C /* MetaU Capstone Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MetaU Capstone Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B243322874A2A2003EAE4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C2B243332874A2A2003EAE4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,6 +66,9 @@
 		C2B243542874A2A3003EAE4C /* MetaU Capstone ProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MetaU Capstone ProjectUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B243582874A2A3003EAE4C /* MetaU_Capstone_ProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetaU_Capstone_ProjectUITests.m; sourceTree = "<group>"; };
 		C2B2435A2874A2A3003EAE4C /* MetaU_Capstone_ProjectUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetaU_Capstone_ProjectUITestsLaunchTests.m; sourceTree = "<group>"; };
+		C2B243672874BA67003EAE4C /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		C2B243682874BA67003EAE4C /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_ProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5059F3D7797087ECD05F496D /* Pods_MetaU_Capstone_Project.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA585D863BA3B9FA19CFB1A9 /* Pods_MetaU_Capstone_ProjectTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,12 +92,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1F5ABAFD7461B31CB356948 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53CDFCB88E0F24F8CD870D21 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				08927C9A4DCA64703241E035 /* Pods-MetaU Capstone Project.debug.xcconfig */,
+				A023F2F79E0474FEBED14117 /* Pods-MetaU Capstone Project.release.xcconfig */,
+				74F5B150EDB2C431717E204D /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig */,
+				A08F39BB63D7A64BA1FDEF7B /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig */,
+				7E5F13FC0CBEDCDE9B5C4A69 /* Pods-MetaU Capstone ProjectTests.debug.xcconfig */,
+				75CAEEB9A7C0811FCB63B16D /* Pods-MetaU Capstone ProjectTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		5D540B8620FD7E04434D3257 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				978B6D4601BDC3D2F8D456FD /* Pods_MetaU_Capstone_Project.framework */,
+				8E327FA3DB2F61B46BD6C107 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework */,
+				ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C2B243262874A2A2003EAE4C = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +129,8 @@
 				C2B2434D2874A2A3003EAE4C /* MetaU Capstone ProjectTests */,
 				C2B243572874A2A3003EAE4C /* MetaU Capstone ProjectUITests */,
 				C2B243302874A2A2003EAE4C /* Products */,
+				53CDFCB88E0F24F8CD870D21 /* Pods */,
+				5D540B8620FD7E04434D3257 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +147,7 @@
 		C2B243312874A2A2003EAE4C /* MetaU Capstone Project */ = {
 			isa = PBXGroup;
 			children = (
+				C2B2436A2874BA6E003EAE4C /* View Controllers */,
 				C2B243322874A2A2003EAE4C /* AppDelegate.h */,
 				C2B243332874A2A2003EAE4C /* AppDelegate.m */,
 				C2B243352874A2A2003EAE4C /* SceneDelegate.h */,
@@ -136,6 +180,15 @@
 			path = "MetaU Capstone ProjectUITests";
 			sourceTree = "<group>";
 		};
+		C2B2436A2874BA6E003EAE4C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C2B243682874BA67003EAE4C /* LoginViewController.m */,
+				C2B243672874BA67003EAE4C /* LoginViewController.h */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,9 +196,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2B2435E2874A2A3003EAE4C /* Build configuration list for PBXNativeTarget "MetaU Capstone Project" */;
 			buildPhases = (
+				6F521FF80AF203CA7C521CBF /* [CP] Check Pods Manifest.lock */,
 				C2B2432B2874A2A2003EAE4C /* Sources */,
 				C2B2432C2874A2A2003EAE4C /* Frameworks */,
 				C2B2432D2874A2A2003EAE4C /* Resources */,
+				DC7A3CE2014F55D0238EDC07 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -160,6 +215,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2B243612874A2A3003EAE4C /* Build configuration list for PBXNativeTarget "MetaU Capstone ProjectTests" */;
 			buildPhases = (
+				007E0179D48BAFC966117534 /* [CP] Check Pods Manifest.lock */,
 				C2B243462874A2A3003EAE4C /* Sources */,
 				C2B243472874A2A3003EAE4C /* Frameworks */,
 				C2B243482874A2A3003EAE4C /* Resources */,
@@ -178,9 +234,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2B243642874A2A3003EAE4C /* Build configuration list for PBXNativeTarget "MetaU Capstone ProjectUITests" */;
 			buildPhases = (
+				1D1B027F37BF10D898C732D9 /* [CP] Check Pods Manifest.lock */,
 				C2B243502874A2A3003EAE4C /* Sources */,
 				C2B243512874A2A3003EAE4C /* Frameworks */,
 				C2B243522874A2A3003EAE4C /* Resources */,
+				A4E7F394E3B135AD8C945E93 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -261,6 +319,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		007E0179D48BAFC966117534 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MetaU Capstone ProjectTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1D1B027F37BF10D898C732D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F521FF80AF203CA7C521CBF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MetaU Capstone Project-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4E7F394E3B135AD8C945E93 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC7A3CE2014F55D0238EDC07 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C2B2432B2874A2A2003EAE4C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -270,6 +431,7 @@
 				C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */,
 				C2B243452874A2A3003EAE4C /* main.m in Sources */,
 				C2B243372874A2A2003EAE4C /* SceneDelegate.m in Sources */,
+				C2B243692874BA67003EAE4C /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +599,7 @@
 		};
 		C2B2435F2874A2A3003EAE4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08927C9A4DCA64703241E035 /* Pods-MetaU Capstone Project.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -464,6 +627,7 @@
 		};
 		C2B243602874A2A3003EAE4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A023F2F79E0474FEBED14117 /* Pods-MetaU Capstone Project.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -491,6 +655,7 @@
 		};
 		C2B243622874A2A3003EAE4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E5F13FC0CBEDCDE9B5C4A69 /* Pods-MetaU Capstone ProjectTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -509,6 +674,7 @@
 		};
 		C2B243632874A2A3003EAE4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75CAEEB9A7C0811FCB63B16D /* Pods-MetaU Capstone ProjectTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -527,6 +693,7 @@
 		};
 		C2B243652874A2A3003EAE4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74F5B150EDB2C431717E204D /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -543,6 +710,7 @@
 		};
 		C2B243662874A2A3003EAE4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A08F39BB63D7A64BA1FDEF7B /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
