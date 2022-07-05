@@ -1,0 +1,602 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243332874A2A2003EAE4C /* AppDelegate.m */; };
+		C2B243372874A2A2003EAE4C /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243362874A2A2003EAE4C /* SceneDelegate.m */; };
+		C2B2433A2874A2A2003EAE4C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243392874A2A2003EAE4C /* ViewController.m */; };
+		C2B2433D2874A2A2003EAE4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B2433B2874A2A2003EAE4C /* Main.storyboard */; };
+		C2B2433F2874A2A3003EAE4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B2433E2874A2A3003EAE4C /* Assets.xcassets */; };
+		C2B243422874A2A3003EAE4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B243402874A2A3003EAE4C /* LaunchScreen.storyboard */; };
+		C2B243452874A2A3003EAE4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243442874A2A3003EAE4C /* main.m */; };
+		C2B2434F2874A2A3003EAE4C /* MetaU_Capstone_ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2434E2874A2A3003EAE4C /* MetaU_Capstone_ProjectTests.m */; };
+		C2B243592874A2A3003EAE4C /* MetaU_Capstone_ProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243582874A2A3003EAE4C /* MetaU_Capstone_ProjectUITests.m */; };
+		C2B2435B2874A2A3003EAE4C /* MetaU_Capstone_ProjectUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2435A2874A2A3003EAE4C /* MetaU_Capstone_ProjectUITestsLaunchTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C2B2434B2874A2A3003EAE4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2B243272874A2A2003EAE4C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2B2432E2874A2A2003EAE4C;
+			remoteInfo = "MetaU Capstone Project";
+		};
+		C2B243552874A2A3003EAE4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2B243272874A2A2003EAE4C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2B2432E2874A2A2003EAE4C;
+			remoteInfo = "MetaU Capstone Project";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C2B2432F2874A2A2003EAE4C /* MetaU Capstone Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MetaU Capstone Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2B243322874A2A2003EAE4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C2B243332874A2A2003EAE4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C2B243352874A2A2003EAE4C /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		C2B243362874A2A2003EAE4C /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		C2B243382874A2A2003EAE4C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C2B243392874A2A2003EAE4C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C2B2433C2874A2A2003EAE4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C2B2433E2874A2A3003EAE4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C2B243412874A2A3003EAE4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C2B243432874A2A3003EAE4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2B243442874A2A3003EAE4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C2B2434A2874A2A3003EAE4C /* MetaU Capstone ProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MetaU Capstone ProjectTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2B2434E2874A2A3003EAE4C /* MetaU_Capstone_ProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetaU_Capstone_ProjectTests.m; sourceTree = "<group>"; };
+		C2B243542874A2A3003EAE4C /* MetaU Capstone ProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MetaU Capstone ProjectUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2B243582874A2A3003EAE4C /* MetaU_Capstone_ProjectUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetaU_Capstone_ProjectUITests.m; sourceTree = "<group>"; };
+		C2B2435A2874A2A3003EAE4C /* MetaU_Capstone_ProjectUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetaU_Capstone_ProjectUITestsLaunchTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C2B2432C2874A2A2003EAE4C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2B243472874A2A3003EAE4C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2B243512874A2A3003EAE4C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C2B243262874A2A2003EAE4C = {
+			isa = PBXGroup;
+			children = (
+				C2B243312874A2A2003EAE4C /* MetaU Capstone Project */,
+				C2B2434D2874A2A3003EAE4C /* MetaU Capstone ProjectTests */,
+				C2B243572874A2A3003EAE4C /* MetaU Capstone ProjectUITests */,
+				C2B243302874A2A2003EAE4C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C2B243302874A2A2003EAE4C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C2B2432F2874A2A2003EAE4C /* MetaU Capstone Project.app */,
+				C2B2434A2874A2A3003EAE4C /* MetaU Capstone ProjectTests.xctest */,
+				C2B243542874A2A3003EAE4C /* MetaU Capstone ProjectUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C2B243312874A2A2003EAE4C /* MetaU Capstone Project */ = {
+			isa = PBXGroup;
+			children = (
+				C2B243322874A2A2003EAE4C /* AppDelegate.h */,
+				C2B243332874A2A2003EAE4C /* AppDelegate.m */,
+				C2B243352874A2A2003EAE4C /* SceneDelegate.h */,
+				C2B243362874A2A2003EAE4C /* SceneDelegate.m */,
+				C2B243382874A2A2003EAE4C /* ViewController.h */,
+				C2B243392874A2A2003EAE4C /* ViewController.m */,
+				C2B2433B2874A2A2003EAE4C /* Main.storyboard */,
+				C2B2433E2874A2A3003EAE4C /* Assets.xcassets */,
+				C2B243402874A2A3003EAE4C /* LaunchScreen.storyboard */,
+				C2B243432874A2A3003EAE4C /* Info.plist */,
+				C2B243442874A2A3003EAE4C /* main.m */,
+			);
+			path = "MetaU Capstone Project";
+			sourceTree = "<group>";
+		};
+		C2B2434D2874A2A3003EAE4C /* MetaU Capstone ProjectTests */ = {
+			isa = PBXGroup;
+			children = (
+				C2B2434E2874A2A3003EAE4C /* MetaU_Capstone_ProjectTests.m */,
+			);
+			path = "MetaU Capstone ProjectTests";
+			sourceTree = "<group>";
+		};
+		C2B243572874A2A3003EAE4C /* MetaU Capstone ProjectUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C2B243582874A2A3003EAE4C /* MetaU_Capstone_ProjectUITests.m */,
+				C2B2435A2874A2A3003EAE4C /* MetaU_Capstone_ProjectUITestsLaunchTests.m */,
+			);
+			path = "MetaU Capstone ProjectUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C2B2432E2874A2A2003EAE4C /* MetaU Capstone Project */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2B2435E2874A2A3003EAE4C /* Build configuration list for PBXNativeTarget "MetaU Capstone Project" */;
+			buildPhases = (
+				C2B2432B2874A2A2003EAE4C /* Sources */,
+				C2B2432C2874A2A2003EAE4C /* Frameworks */,
+				C2B2432D2874A2A2003EAE4C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MetaU Capstone Project";
+			productName = "MetaU Capstone Project";
+			productReference = C2B2432F2874A2A2003EAE4C /* MetaU Capstone Project.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C2B243492874A2A3003EAE4C /* MetaU Capstone ProjectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2B243612874A2A3003EAE4C /* Build configuration list for PBXNativeTarget "MetaU Capstone ProjectTests" */;
+			buildPhases = (
+				C2B243462874A2A3003EAE4C /* Sources */,
+				C2B243472874A2A3003EAE4C /* Frameworks */,
+				C2B243482874A2A3003EAE4C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C2B2434C2874A2A3003EAE4C /* PBXTargetDependency */,
+			);
+			name = "MetaU Capstone ProjectTests";
+			productName = "MetaU Capstone ProjectTests";
+			productReference = C2B2434A2874A2A3003EAE4C /* MetaU Capstone ProjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C2B243532874A2A3003EAE4C /* MetaU Capstone ProjectUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2B243642874A2A3003EAE4C /* Build configuration list for PBXNativeTarget "MetaU Capstone ProjectUITests" */;
+			buildPhases = (
+				C2B243502874A2A3003EAE4C /* Sources */,
+				C2B243512874A2A3003EAE4C /* Frameworks */,
+				C2B243522874A2A3003EAE4C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C2B243562874A2A3003EAE4C /* PBXTargetDependency */,
+			);
+			name = "MetaU Capstone ProjectUITests";
+			productName = "MetaU Capstone ProjectUITests";
+			productReference = C2B243542874A2A3003EAE4C /* MetaU Capstone ProjectUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C2B243272874A2A2003EAE4C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					C2B2432E2874A2A2003EAE4C = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					C2B243492874A2A3003EAE4C = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = C2B2432E2874A2A2003EAE4C;
+					};
+					C2B243532874A2A3003EAE4C = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = C2B2432E2874A2A2003EAE4C;
+					};
+				};
+			};
+			buildConfigurationList = C2B2432A2874A2A2003EAE4C /* Build configuration list for PBXProject "MetaU Capstone Project" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C2B243262874A2A2003EAE4C;
+			productRefGroup = C2B243302874A2A2003EAE4C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C2B2432E2874A2A2003EAE4C /* MetaU Capstone Project */,
+				C2B243492874A2A3003EAE4C /* MetaU Capstone ProjectTests */,
+				C2B243532874A2A3003EAE4C /* MetaU Capstone ProjectUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C2B2432D2874A2A2003EAE4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2B243422874A2A3003EAE4C /* LaunchScreen.storyboard in Resources */,
+				C2B2433F2874A2A3003EAE4C /* Assets.xcassets in Resources */,
+				C2B2433D2874A2A2003EAE4C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2B243482874A2A3003EAE4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2B243522874A2A3003EAE4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C2B2432B2874A2A2003EAE4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2B2433A2874A2A2003EAE4C /* ViewController.m in Sources */,
+				C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */,
+				C2B243452874A2A3003EAE4C /* main.m in Sources */,
+				C2B243372874A2A2003EAE4C /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2B243462874A2A3003EAE4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2B2434F2874A2A3003EAE4C /* MetaU_Capstone_ProjectTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2B243502874A2A3003EAE4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2B2435B2874A2A3003EAE4C /* MetaU_Capstone_ProjectUITestsLaunchTests.m in Sources */,
+				C2B243592874A2A3003EAE4C /* MetaU_Capstone_ProjectUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C2B2434C2874A2A3003EAE4C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2B2432E2874A2A2003EAE4C /* MetaU Capstone Project */;
+			targetProxy = C2B2434B2874A2A3003EAE4C /* PBXContainerItemProxy */;
+		};
+		C2B243562874A2A3003EAE4C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2B2432E2874A2A2003EAE4C /* MetaU Capstone Project */;
+			targetProxy = C2B243552874A2A3003EAE4C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C2B2433B2874A2A2003EAE4C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2B2433C2874A2A2003EAE4C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C2B243402874A2A3003EAE4C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2B243412874A2A3003EAE4C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C2B2435C2874A2A3003EAE4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C2B2435D2874A2A3003EAE4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C2B2435F2874A2A3003EAE4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y442UHJ5VP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MetaU Capstone Project/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.MetaU-Capstone-Project";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C2B243602874A2A3003EAE4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y442UHJ5VP;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MetaU Capstone Project/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.MetaU-Capstone-Project";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C2B243622874A2A3003EAE4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y442UHJ5VP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.MetaU-Capstone-ProjectTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MetaU Capstone Project.app/MetaU Capstone Project";
+			};
+			name = Debug;
+		};
+		C2B243632874A2A3003EAE4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y442UHJ5VP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.MetaU-Capstone-ProjectTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MetaU Capstone Project.app/MetaU Capstone Project";
+			};
+			name = Release;
+		};
+		C2B243652874A2A3003EAE4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y442UHJ5VP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.MetaU-Capstone-ProjectUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "MetaU Capstone Project";
+			};
+			name = Debug;
+		};
+		C2B243662874A2A3003EAE4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y442UHJ5VP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.MetaU-Capstone-ProjectUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "MetaU Capstone Project";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C2B2432A2874A2A2003EAE4C /* Build configuration list for PBXProject "MetaU Capstone Project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2B2435C2874A2A3003EAE4C /* Debug */,
+				C2B2435D2874A2A3003EAE4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2B2435E2874A2A3003EAE4C /* Build configuration list for PBXNativeTarget "MetaU Capstone Project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2B2435F2874A2A3003EAE4C /* Debug */,
+				C2B243602874A2A3003EAE4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2B243612874A2A3003EAE4C /* Build configuration list for PBXNativeTarget "MetaU Capstone ProjectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2B243622874A2A3003EAE4C /* Debug */,
+				C2B243632874A2A3003EAE4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2B243642874A2A3003EAE4C /* Build configuration list for PBXNativeTarget "MetaU Capstone ProjectUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2B243652874A2A3003EAE4C /* Debug */,
+				C2B243662874A2A3003EAE4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C2B243272874A2A2003EAE4C /* Project object */;
+}
