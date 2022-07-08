@@ -20,6 +20,10 @@
 		C2B243592874A2A3003EAE4C /* MetaU_Capstone_ProjectUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243582874A2A3003EAE4C /* MetaU_Capstone_ProjectUITests.m */; };
 		C2B2435B2874A2A3003EAE4C /* MetaU_Capstone_ProjectUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2435A2874A2A3003EAE4C /* MetaU_Capstone_ProjectUITestsLaunchTests.m */; };
 		C2B243692874BA67003EAE4C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243682874BA67003EAE4C /* LoginViewController.m */; };
+		C2B2436D2874DB2A003EAE4C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2436C2874DB2A003EAE4C /* HomeViewController.m */; };
+		C2B243872878A65B003EAE4C /* CreateSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243862878A65A003EAE4C /* CreateSessionViewController.m */; };
+		C2B2438A2878A9C2003EAE4C /* MusicSession.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243892878A9C2003EAE4C /* MusicSession.m */; };
+		C2B2438D2878C358003EAE4C /* MusicSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2438C2878C358003EAE4C /* MusicSessionViewController.m */; };
 		FA585D863BA3B9FA19CFB1A9 /* Pods_MetaU_Capstone_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +72,14 @@
 		C2B2435A2874A2A3003EAE4C /* MetaU_Capstone_ProjectUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetaU_Capstone_ProjectUITestsLaunchTests.m; sourceTree = "<group>"; };
 		C2B243672874BA67003EAE4C /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C2B243682874BA67003EAE4C /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		C2B2436B2874DB2A003EAE4C /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		C2B2436C2874DB2A003EAE4C /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		C2B243852878A65A003EAE4C /* CreateSessionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateSessionViewController.h; sourceTree = "<group>"; };
+		C2B243862878A65A003EAE4C /* CreateSessionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateSessionViewController.m; sourceTree = "<group>"; };
+		C2B243882878A9C2003EAE4C /* MusicSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicSession.h; sourceTree = "<group>"; };
+		C2B243892878A9C2003EAE4C /* MusicSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicSession.m; sourceTree = "<group>"; };
+		C2B2438B2878C358003EAE4C /* MusicSessionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicSessionViewController.h; sourceTree = "<group>"; };
+		C2B2438C2878C358003EAE4C /* MusicSessionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicSessionViewController.m; sourceTree = "<group>"; };
 		ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_ProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -155,6 +167,10 @@
 				C2B243382874A2A2003EAE4C /* ViewController.h */,
 				C2B243392874A2A2003EAE4C /* ViewController.m */,
 				C2B2433B2874A2A2003EAE4C /* Main.storyboard */,
+				C2B243852878A65A003EAE4C /* CreateSessionViewController.h */,
+				C2B243862878A65A003EAE4C /* CreateSessionViewController.m */,
+				C2B243882878A9C2003EAE4C /* MusicSession.h */,
+				C2B243892878A9C2003EAE4C /* MusicSession.m */,
 				C2B2433E2874A2A3003EAE4C /* Assets.xcassets */,
 				C2B243402874A2A3003EAE4C /* LaunchScreen.storyboard */,
 				C2B243432874A2A3003EAE4C /* Info.plist */,
@@ -183,6 +199,10 @@
 		C2B2436A2874BA6E003EAE4C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C2B2438C2878C358003EAE4C /* MusicSessionViewController.m */,
+				C2B2438B2878C358003EAE4C /* MusicSessionViewController.h */,
+				C2B2436C2874DB2A003EAE4C /* HomeViewController.m */,
+				C2B2436B2874DB2A003EAE4C /* HomeViewController.h */,
 				C2B243682874BA67003EAE4C /* LoginViewController.m */,
 				C2B243672874BA67003EAE4C /* LoginViewController.h */,
 			);
@@ -427,11 +447,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2B2438A2878A9C2003EAE4C /* MusicSession.m in Sources */,
 				C2B2433A2874A2A2003EAE4C /* ViewController.m in Sources */,
 				C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */,
+				C2B243872878A65B003EAE4C /* CreateSessionViewController.m in Sources */,
 				C2B243452874A2A3003EAE4C /* main.m in Sources */,
+				C2B2438D2878C358003EAE4C /* MusicSessionViewController.m in Sources */,
 				C2B243372874A2A2003EAE4C /* SceneDelegate.m in Sources */,
 				C2B243692874BA67003EAE4C /* LoginViewController.m in Sources */,
+				C2B2436D2874DB2A003EAE4C /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

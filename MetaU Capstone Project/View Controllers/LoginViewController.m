@@ -6,6 +6,7 @@
 //
 
 #import "LoginViewController.h"
+#import "HomeViewController.h"
 #import "Parse/Parse.h"
 
 @interface LoginViewController ()
@@ -16,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
 }
 
@@ -80,5 +82,19 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+////    if ([segue.identifier  isEqual: @"composeTweetSegue"]) {
+////       UINavigationController *navigationController = [segue destinationViewController];
+////       ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+////       composeController.delegate = self;
+////    }
+////    if ([segue.identifier  isEqual: @"loginSegue"]) {
+////        NSDictionary *dataToPass = self.obje;
+////        HomeViewController *homeVC = [segue destinationViewController];
+////        detailVC.detailTweet = dataToPass;
+////        
+////    }
+//}
 
 @end
