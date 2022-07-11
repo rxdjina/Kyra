@@ -31,10 +31,12 @@
     
     // Set Properties
     newUser.username = [self.usernameField.text lowercaseString];
-    newUser.password = self.passwordField.text;
     newUser.email = [self.emailField.text lowercaseString];
-
     
+    if ((self.passwordRentryField.text > 0) && ([self.passwordRentryField.text isEqualToString:self.passwordRentryField.text])) {
+        newUser.password = self.passwordField.text;
+    }
+
     newUser[@"firstName"] = [firstName capitalizedString];
     newUser[@"lastName"] =  [lastName capitalizedString];
 

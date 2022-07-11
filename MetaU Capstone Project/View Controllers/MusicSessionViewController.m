@@ -15,14 +15,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    MusicSession *session = self.musicSession[0];
-    
-//    NSLog(@"%@", session);
-//    self.sessionNameLabel.text = session.sessionName;
-//    self.sessionIDLabel.text = session.sessionCode;
-    
+
     self.sessionNameLabel.text = self.musicSession.sessionName;
     self.sessionIDLabel.text = self.musicSession.sessionCode;
+    
+    
 }
 
 /*
