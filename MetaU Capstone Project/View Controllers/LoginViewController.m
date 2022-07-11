@@ -33,7 +33,7 @@
     newUser.username = [self.usernameField.text lowercaseString];
     newUser.email = [self.emailField.text lowercaseString];
     
-    if ((self.passwordRentryField.text > 0) && ([self.passwordRentryField.text isEqualToString:self.passwordRentryField.text])) {
+    if ((self.passwordRentryField.text.length > 0) && ([self.passwordRentryField.text isEqualToString:self.passwordRentryField.text])) {
         newUser.password = self.passwordField.text;
     }
 
