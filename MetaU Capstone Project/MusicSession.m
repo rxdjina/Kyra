@@ -18,7 +18,7 @@
 @dynamic allowExplicit;
 @dynamic sessionName;
 
-static const NSInteger lengthID = 6;
+static const NSUInteger LENGTH_ID = 6;
 
 + (nonnull NSString *)parseClassName {
     return @"MusicSession";
@@ -33,23 +33,14 @@ static const NSInteger lengthID = 6;
 
     [newSession saveInBackgroundWithBlock: completion];
     
-    NSLog(@"%@", newSession.sessionCode);
-    
-    // Return
-//    PFQuery *query = [PFQuery queryWithClassName:@"MusicSession"];
-//
-//    [query getObjectInBackgroundWithId:newSession.sessionID block:^(PFObject *parseObject, NSError *error) {
-//        NSLog(@"%@", parseObject);
-//    }];
-    
     return newSession;
 }
 
 + (NSString *)createSessionId {
     NSString *characters = @"123456789ABCDEFGHIJKLMNOPQRSTUVWYZ";
-    NSMutableString *randomCode = [NSMutableString stringWithCapacity:lengthID];
+    NSMutableString *randomCode = [NSMutableString stringWithCapacity:LENGTH_ID];
         
-    for (int i = 0; i < lengthID; i++) {
+    for (int i = 0; i < LENGTH_ID; i++) {
         [randomCode appendFormat:@"%C", [characters characterAtIndex:(arc4random() % characters.length)]];
     }
         

@@ -45,18 +45,27 @@
     self.arrayMusicSession = [MusicSession createSession:self.sessionNameTextField.text withCompletion:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);
+            
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                       message:@"An error occured while creating your session."
+                                       preferredStyle:UIAlertControllerStyleAlert];
+
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction * action) {}];
+
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
         } else {
             NSLog(@"Sucessfully created session!");
             [self performSegueWithIdentifier:@"createSessionSegue" sender:sender];
         }
     }];
-//    NSLog(@"%@", self.arrayMusicSession.sessionCode);
 }
 
 - (IBAction)pressedJoinSession:(id)sender {
     [self getSession];
 }
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier  isEqual: @"joinSessionSegue"]) {
@@ -73,6 +82,5 @@
         destinationVC.musicSession = dataToPass;
     }
 }
-
 
 @end
