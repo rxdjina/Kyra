@@ -30,6 +30,13 @@
                                 <color key="textColor" systemColor="systemGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsv-DE-les">
+                                <rect key="frame" x="28" y="20" width="356" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="By signing Sign up, you agree to our Terms, Data Policy and Cookies Policy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQy-sb-j7I">
                                 <rect key="frame" x="29" y="654" width="356" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -113,16 +120,18 @@
                     <navigationItem key="navigationItem" id="0HK-qL-VtP"/>
                     <connections>
                         <outlet property="emailField" destination="qlB-SQ-GVl" id="GZ8-jd-8D4"/>
+                        <outlet property="errorMessageLabel" destination="bsv-DE-les" id="0G0-FQ-bpc"/>
                         <outlet property="nameField" destination="PHv-vl-iaM" id="aIZ-GZ-wOT"/>
                         <outlet property="passwordField" destination="pJz-gC-njV" id="d3f-Uj-Vt6"/>
                         <outlet property="passwordRentryField" destination="ML4-bJ-wYP" id="QDm-t7-RNl"/>
+                        <outlet property="signUpButton" destination="bYb-SQ-hAX" id="V7G-9b-kcz"/>
                         <outlet property="usernameField" destination="dVb-kY-Fqj" id="Qta-4u-Azi"/>
                         <segue destination="6Fg-or-GGj" kind="presentation" identifier="signUpSegue" id="KVg-a4-diy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGg-0F-htc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2039" y="702"/>
+            <point key="canvasLocation" x="-2039.1304347826087" y="701.78571428571422"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="SCg-vi-hmW">
@@ -237,6 +246,13 @@
                                     <segue destination="JRy-Is-nIt" kind="show" identifier="" id="JLe-IH-GtC"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LOGO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7B-Ea-lU0">
+                                <rect key="frame" x="61" y="217" width="300" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jy9-Ij-Cgz">
                                 <rect key="frame" x="33" y="491" width="356" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -244,7 +260,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HJf-ZJ-DXB">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Username or email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HJf-ZJ-DXB">
                                 <rect key="frame" x="33" y="393" width="356" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.98039215800000001" green="0.98039215800000001" blue="0.98039215800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -275,11 +291,11 @@
                                     <action selector="loginButton:" destination="7Y0-sa-KHE" eventType="touchUpInside" id="oac-lI-2dm"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LOGO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7B-Ea-lU0">
-                                <rect key="frame" x="61" y="217" width="300" height="64"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Error message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGB-Aj-DFd">
+                                <rect key="frame" x="33" y="335" width="356" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -288,6 +304,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="IOq-5l-ctS"/>
                     <connections>
+                        <outlet property="errorMessageLabel" destination="NGB-Aj-DFd" id="ZgB-HH-dMu"/>
                         <outlet property="passwordField" destination="Jy9-Ij-Cgz" id="eey-rN-lZ0"/>
                         <outlet property="usernameField" destination="HJf-ZJ-DXB" id="xru-5n-SPY"/>
                         <segue destination="ltS-O6-yoh" kind="presentation" identifier="loginSegue" id="kHX-Kz-zMX"/>
@@ -1006,6 +1023,9 @@
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
