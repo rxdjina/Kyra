@@ -14,31 +14,44 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - Bolts-Swift (1.5.0)
   - Bolts/Tasks (1.9.1)
   - Parse (1.19.3):
     - Parse/Core (= 1.19.3)
   - Parse/Core (1.19.3):
     - Bolts/Tasks (= 1.9.1)
+  - ParseLiveQuery (2.8.1):
+    - Bolts-Swift (~> 1.5.0)
+    - Parse (~> 1.19.0)
+    - Starscream (~> 4.0.4)
   - ReachabilitySwift (5.0.0)
+  - Starscream (4.0.4)
 
 DEPENDENCIES:
   - AFNetworking
   - Parse
+  - ParseLiveQuery
   - ReachabilitySwift
 
 SPEC REPOS:
   trunk:
     - AFNetworking
     - Bolts
+    - Bolts-Swift
     - Parse
+    - ParseLiveQuery
     - ReachabilitySwift
+    - Starscream
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  Bolts-Swift: afbbaf8c8186e7f769be4afa656949c14087ba44
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
+  ParseLiveQuery: 7bc437c3b986880ffe5f241a9921e37f45df0677
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
 
-PODFILE CHECKSUM: 9a44a899200f381cf0eca20f41961acb08e23caf
+PODFILE CHECKSUM: 352868806d7b9d107545daf0a289a22a9b2af0b2
 
 COCOAPODS: 1.11.3

@@ -24,6 +24,8 @@
 		C2B243872878A65B003EAE4C /* CreateSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243862878A65A003EAE4C /* CreateSessionViewController.m */; };
 		C2B2438A2878A9C2003EAE4C /* MusicSession.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243892878A9C2003EAE4C /* MusicSession.m */; };
 		C2B2438D2878C358003EAE4C /* MusicSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2438C2878C358003EAE4C /* MusicSessionViewController.m */; };
+		C2B24390287FB821003EAE4C /* MusicSessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */; };
+		C2B24392287FE847003EAE4C /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2B24391287FE847003EAE4C /* SpotifyiOS.framework */; };
 		FA585D863BA3B9FA19CFB1A9 /* Pods_MetaU_Capstone_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +82,9 @@
 		C2B243892878A9C2003EAE4C /* MusicSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicSession.m; sourceTree = "<group>"; };
 		C2B2438B2878C358003EAE4C /* MusicSessionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicSessionViewController.h; sourceTree = "<group>"; };
 		C2B2438C2878C358003EAE4C /* MusicSessionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicSessionViewController.m; sourceTree = "<group>"; };
+		C2B2438E287FB821003EAE4C /* MusicSessionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicSessionHandler.h; sourceTree = "<group>"; };
+		C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicSessionHandler.m; sourceTree = "<group>"; };
+		C2B24391287FE847003EAE4C /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_ProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -89,6 +94,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5059F3D7797087ECD05F496D /* Pods_MetaU_Capstone_Project.framework in Frameworks */,
+				C2B24392287FE847003EAE4C /* SpotifyiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +133,7 @@
 		5D540B8620FD7E04434D3257 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2B24391287FE847003EAE4C /* SpotifyiOS.framework */,
 				978B6D4601BDC3D2F8D456FD /* Pods_MetaU_Capstone_Project.framework */,
 				8E327FA3DB2F61B46BD6C107 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework */,
 				ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */,
@@ -137,6 +144,8 @@
 		C2B243262874A2A2003EAE4C = {
 			isa = PBXGroup;
 			children = (
+				C2B2438E287FB821003EAE4C /* MusicSessionHandler.h */,
+				C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */,
 				C2B243312874A2A2003EAE4C /* MetaU Capstone Project */,
 				C2B2434D2874A2A3003EAE4C /* MetaU Capstone ProjectTests */,
 				C2B243572874A2A3003EAE4C /* MetaU Capstone ProjectUITests */,
@@ -448,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2B2438A2878A9C2003EAE4C /* MusicSession.m in Sources */,
+				C2B24390287FB821003EAE4C /* MusicSessionHandler.m in Sources */,
 				C2B2433A2874A2A2003EAE4C /* ViewController.m in Sources */,
 				C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */,
 				C2B243872878A65B003EAE4C /* CreateSessionViewController.m in Sources */,
@@ -630,6 +640,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y442UHJ5VP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MetaU Capstone Project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -658,6 +672,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y442UHJ5VP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MetaU Capstone Project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

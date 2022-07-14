@@ -9,6 +9,7 @@ target 'MetaU Capstone Project' do
   # Pods for MetaU Capstone Project
   pod 'Parse'
   pod 'AFNetworking'
+  pod 'ParseLiveQuery'
 
   target 'MetaU Capstone ProjectTests' do
     inherit! :search_paths
