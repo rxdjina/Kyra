@@ -8,6 +8,8 @@
 #import "AppDelegate.h"
 #import "Parse/Parse.h"
 #import "MusicSessionHandler.h"
+#import "SpotifyiOS/SpotifyiOS.h"
+#import "SpotifyiOS/SpotifyAppRemote.h"
 
 @import Parse;
 @import ParseLiveQuery;
@@ -44,13 +46,38 @@
     self.subscription = [self.client subscribeToQuery:query withHandler:self.handler];
 
     
-    [self.subscription addCreateHandler:^(PFQuery * query, PFObject * message) {
-        NSLog(@"LQ!!");
-    }];
+//    [self.subscription addCreateHandler:^(PFQuery * query, PFObject * message) {
+//        NSLog(@"LQ!!");
+//    }];
     
 //    [self.subscription addCreateHandler:^(PFQuery * _Nonnull query, PFObject * message) {
 ////        NSLog(@"LQ!!");
 //    }];
+    
+    // SPOTIFY
+        NSString *spotifyClientID = @"d45f5e4964984bc49dfb5b2280b8d28c";
+        NSURL *spotifyRedirectURL = [NSURL URLWithString:@"spotify-ios-quick-start://spotify-login-callback"];
+
+        self.configuration  = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
+        
+        // Setup Token Swap
+        NSURL *tokenSwapURL = [NSURL URLWithString:@"https://https://git.heroku.com/metau-capstone.git/api/token"];
+        NSURL *tokenRefreshURL = [NSURL URLWithString:@"https://https://git.heroku.com/metau-capstone.git/api/refresh_token"];
+
+        self.configuration.tokenSwapURL = tokenSwapURL;
+        self.configuration.tokenRefreshURL = tokenRefreshURL;
+        self.configuration.playURI = @""; // Empty Value -> Resume Playback User Last Track
+    //    self.configuration.playURI = "spotify:track:20I6sIOMTCkB6w7ryavxtO"; -> Resume Example Track
+
+        self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
+
+        // Invoke Auth Modal
+        SPTScope requestedScope = SPTAppRemoteControlScope;
+        [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
+        
+        // Initialize App Remote
+    self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelDebug];
+    self.appRemote.delegate = self;
     
     return YES;
 }
@@ -62,6 +89,76 @@
 }
 
 - (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
+}
+
+#pragma mark - SPTSessionManagerDelegate
+
+- (void)sessionManager:(SPTSessionManager *)manager didInitiateSession:(SPTSession *)session
+{
+    NSLog(@"success: %@", session);
+    self.appRemote.connectionParameters.accessToken = session.accessToken;
+    [self.appRemote connect];
+}
+
+- (void)sessionManager:(SPTSessionManager *)manager didFailWithError:(NSError *)error
+{
+  NSLog(@"fail: %@", error);
+}
+
+- (void)sessionManager:(SPTSessionManager *)manager didRenewSession:(SPTSession *)session
+{
+  NSLog(@"renewed: %@", session);
+}
+
+// Configure Auth Callback
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+    [self.sessionManager application:app openURL:url options:options];
+    return true;
+}
+
+#pragma mark - SPTAppRemoteDelegate
+
+- (void)appRemoteDidEstablishConnection:(SPTAppRemote *)appRemote
+{
+  NSLog(@"connected");
+    // Connection was successful, you can begin issuing commands
+    self.appRemote.playerAPI.delegate = self;
+    [self.appRemote.playerAPI subscribeToPlayerState:^(id _Nullable result, NSError * _Nullable error) {
+        if (error) {
+          NSLog(@"error: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)appRemote:(SPTAppRemote *)appRemote didDisconnectWithError:(NSError *)error
+{
+  NSLog(@"disconnected");
+}
+
+- (void)appRemote:(SPTAppRemote *)appRemote didFailConnectionAttemptWithError:(NSError *)error
+{
+  NSLog(@"failed");
+}
+
+- (void)playerStateDidChange:(id<SPTAppRemotePlayerState>)playerState
+{
+    NSLog(@"player state changed");
+    NSLog(@"Track name: %@", playerState.track.name);
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+  if (self.appRemote.isConnected) {
+    [self.appRemote disconnect];
+  }
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+  if (self.appRemote.connectionParameters.accessToken) {
+    [self.appRemote connect];
+  }
 }
 
 @end

@@ -5,6 +5,7 @@ target 'MetaU Capstone Project' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'ReachabilitySwift'
+  pod 'Parse/UI'
 
   # Pods for MetaU Capstone Project
   pod 'Parse'

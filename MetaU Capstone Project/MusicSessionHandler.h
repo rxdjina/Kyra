@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@import Parse;
+//@import Parse;
 @import ParseLiveQuery;
 
 NS_ASSUME_NONNULL_BEGIN
