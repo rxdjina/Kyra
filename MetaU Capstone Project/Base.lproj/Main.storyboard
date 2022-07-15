@@ -947,12 +947,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0A-wG-ie8">
+                                <rect key="frame" x="151" y="469" width="89" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="PLAY"/>
+                                <connections>
+                                    <action selector="pressedPlay:" destination="yGU-2u-mu3" eventType="touchUpInside" id="EOe-zH-DcT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xfB-A2-3KO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="OW2-y9-aL3"/>
                     <connections>
+                        <outlet property="playButton" destination="g0A-wG-ie8" id="oh0-Na-tpV"/>
                         <outlet property="sessionIDLabel" destination="kpf-IC-ff9" id="jZ7-2v-LoD"/>
                         <outlet property="sessionNameLabel" destination="Dac-6z-ABc" id="Kiv-WR-41K"/>
                     </connections>

@@ -10,6 +10,9 @@
 #import "Parse/Parse.h"
 #import "MusicSession.h"
 
+@import Parse;
+@import ParseLiveQuery;
+
 @interface CreateSessionViewController ()
 
 @property (strong, nonatomic) IBOutlet UITextField *codeTextField;
@@ -21,6 +24,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    let liveQueryClient = ParseLiveQuery.Client(server: "...", applicationId: ..., clientKey: ..)
+
+    
+//    self.pfclient = [[PFLiveQueryClient alloc] init];
+//    PFQuery* query = [PFQuery queryWithClassName:@"MusicSession"];
+//    PFLiveQueryClient *liveQueryClient = [liveQueryClient initWithServer:<#(NSString * _Nonnull)#> applicationId:<#(NSString * _Nullable)#> clientKey:<#(NSString * _Nullable)#>];
+//
+//    NSString *objectID = @"C48b7Dzzlp";
+//    [query whereKey:@"objectId" equalTo:objectID];
+//
+//    self.subscription = [self.pfclient subscribeToQuery:query];
+//
+//    PFQuery *query = [[MusicSession query] subscribe];
+    
 }
 
 - (void)getSession{
@@ -65,6 +82,7 @@
 
 - (IBAction)pressedJoinSession:(id)sender {
     [self getSession];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

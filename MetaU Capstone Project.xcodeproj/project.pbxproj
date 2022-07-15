@@ -144,8 +144,6 @@
 		C2B243262874A2A2003EAE4C = {
 			isa = PBXGroup;
 			children = (
-				C2B2438E287FB821003EAE4C /* MusicSessionHandler.h */,
-				C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */,
 				C2B243312874A2A2003EAE4C /* MetaU Capstone Project */,
 				C2B2434D2874A2A3003EAE4C /* MetaU Capstone ProjectTests */,
 				C2B243572874A2A3003EAE4C /* MetaU Capstone ProjectUITests */,
@@ -176,10 +174,10 @@
 				C2B243382874A2A2003EAE4C /* ViewController.h */,
 				C2B243392874A2A2003EAE4C /* ViewController.m */,
 				C2B2433B2874A2A2003EAE4C /* Main.storyboard */,
-				C2B243852878A65A003EAE4C /* CreateSessionViewController.h */,
-				C2B243862878A65A003EAE4C /* CreateSessionViewController.m */,
+				C2B2438E287FB821003EAE4C /* MusicSessionHandler.h */,
 				C2B243882878A9C2003EAE4C /* MusicSession.h */,
 				C2B243892878A9C2003EAE4C /* MusicSession.m */,
+				C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */,
 				C2B2433E2874A2A3003EAE4C /* Assets.xcassets */,
 				C2B243402874A2A3003EAE4C /* LaunchScreen.storyboard */,
 				C2B243432874A2A3003EAE4C /* Info.plist */,
@@ -208,6 +206,8 @@
 		C2B2436A2874BA6E003EAE4C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C2B243862878A65A003EAE4C /* CreateSessionViewController.m */,
+				C2B243852878A65A003EAE4C /* CreateSessionViewController.h */,
 				C2B2438C2878C358003EAE4C /* MusicSessionViewController.m */,
 				C2B2438B2878C358003EAE4C /* MusicSessionViewController.h */,
 				C2B2436C2874DB2A003EAE4C /* HomeViewController.m */,
@@ -640,6 +640,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y442UHJ5VP;
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -656,6 +657,48 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"BoltsSwift\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"ParseLiveQuery\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Reachability\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"Starscream\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"Social\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.MetaU-Capstone-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -672,6 +715,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y442UHJ5VP;
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -688,6 +732,48 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"AudioToolbox\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"BoltsSwift\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"ParseLiveQuery\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Reachability\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"Starscream\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-weak_framework",
+					"\"Accounts\"",
+					"-weak_framework",
+					"\"Social\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.MetaU-Capstone-Project";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

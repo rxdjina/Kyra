@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) IBOutlet UILabel *sessionNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *sessionIDLabel;
+@property (strong, nonatomic) IBOutlet UIButton *playButton;
 
 @property (nonatomic, strong) MusicSession *musicSession;
 
