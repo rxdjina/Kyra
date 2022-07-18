@@ -32,12 +32,13 @@ Application allows users to join music sessions with friends.
 * User can create collaborative playlist of songs from finished sessions
 * User is able to export playlist to other music platforms
 * Ability to remove a user from session
+* Synchronized on-screen lyrics
 
 **Optional Nice-to-have Stories**
 
 * Implement public sessions based on genre
 * Karaoke Mode
-   * Implement audio visualizer & in sync lyrics
+* Audio Visualizer
 * Ability to edit session settings (e.g., banning explicit songs)
 * Chat Feature
 * Email validation
