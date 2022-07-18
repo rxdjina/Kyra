@@ -45,29 +45,22 @@
     self.handler = [[MusicSessionHandler alloc] init];
     self.subscription = [self.client subscribeToQuery:query withHandler:self.handler];
 
-    
-//    [self.subscription addCreateHandler:^(PFQuery * query, PFObject * message) {
-//        NSLog(@"LQ!!");
-//    }];
-    
-//    [self.subscription addCreateHandler:^(PFQuery * _Nonnull query, PFObject * message) {
-////        NSLog(@"LQ!!");
-//    }];
-    
     // SPOTIFY
         NSString *spotifyClientID = @"d45f5e4964984bc49dfb5b2280b8d28c";
         NSURL *spotifyRedirectURL = [NSURL URLWithString:@"spotify-ios-quick-start://spotify-login-callback"];
 
         self.configuration  = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
-        
+
         // Setup Token Swap
         NSURL *tokenSwapURL = [NSURL URLWithString:@"https://https://git.heroku.com/metau-capstone.git/api/token"];
         NSURL *tokenRefreshURL = [NSURL URLWithString:@"https://https://git.heroku.com/metau-capstone.git/api/refresh_token"];
 
         self.configuration.tokenSwapURL = tokenSwapURL;
         self.configuration.tokenRefreshURL = tokenRefreshURL;
-        self.configuration.playURI = @""; // Empty Value -> Resume Playback User Last Track
-    //    self.configuration.playURI = "spotify:track:20I6sIOMTCkB6w7ryavxtO"; -> Resume Example Track
+    
+        // Empty Value [@""] -> Resume Playback User Last Track
+        // @"spotify:track:20I6sIOMTCkB6w7ryavxtO" -> Resume Example Track
+        self.configuration.playURI = @"";
 
         self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
 
@@ -122,7 +115,7 @@
 - (void)appRemoteDidEstablishConnection:(SPTAppRemote *)appRemote
 {
   NSLog(@"connected");
-    // Connection was successful, you can begin issuing commands
+    // Sucessful Connection, Can begin issuing commands
     self.appRemote.playerAPI.delegate = self;
     [self.appRemote.playerAPI subscribeToPlayerState:^(id _Nullable result, NSError * _Nullable error) {
         if (error) {

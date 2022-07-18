@@ -6,13 +6,6 @@
 //
 
 #import "MusicSessionViewController.h"
-#import "Parse/Parse.h"
-#import <AudioToolbox/AudioToolbox.h>
-#import <AVFoundation/AVFoundation.h>
-#import "SpotifyiOS/SpotifyiOS.h"
-
-@import Parse;
-@import ParseLiveQuery;
 
 @interface MusicSessionViewController ()
 
@@ -25,13 +18,6 @@
 
     self.sessionNameLabel.text = self.musicSession.sessionName;
     self.sessionIDLabel.text = self.musicSession.sessionCode;
-
-    
 }
-
-- (IBAction)pressedPlay:(id)sender {
-    
-}
-
 
 @end

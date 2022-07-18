@@ -20,8 +20,6 @@ PODS:
     - Parse/Core (= 1.19.3)
   - Parse/Core (1.19.3):
     - Bolts/Tasks (= 1.9.1)
-  - Parse/UI (1.19.3):
-    - Parse/Core
   - ParseLiveQuery (2.8.1):
     - Bolts-Swift (~> 1.5.0)
     - Parse (~> 1.19.0)
@@ -32,7 +30,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - Parse
-  - Parse/UI
   - ParseLiveQuery
   - ReachabilitySwift
 
@@ -55,6 +52,6 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
 
-PODFILE CHECKSUM: 2718ed354843495601fb755dfd505d7f03968863
+PODFILE CHECKSUM: 352868806d7b9d107545daf0a289a22a9b2af0b2
 
 COCOAPODS: 1.11.3

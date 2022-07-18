@@ -47,6 +47,4 @@ static const NSUInteger LENGTH_ID = 6;
     return randomCode;
 }
 
-
-
 @end

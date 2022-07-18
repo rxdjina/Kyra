@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0EF3B3BA2DBCC7D21CB85926 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 867BB3952FCAD4C9824A8344 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework */; };
-		593BA95860C803E0906B98AD /* Pods_MetaU_Capstone_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CAA14767BB964237DA827F7 /* Pods_MetaU_Capstone_ProjectTests.framework */; };
-		8692FF44E8C37B3666035902 /* Pods_MetaU_Capstone_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F33591E57CBB7ACFCBF1D74E /* Pods_MetaU_Capstone_Project.framework */; };
+		5059F3D7797087ECD05F496D /* Pods_MetaU_Capstone_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978B6D4601BDC3D2F8D456FD /* Pods_MetaU_Capstone_Project.framework */; };
+		B1F5ABAFD7461B31CB356948 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E327FA3DB2F61B46BD6C107 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework */; };
 		C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243332874A2A2003EAE4C /* AppDelegate.m */; };
 		C2B243372874A2A2003EAE4C /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243362874A2A2003EAE4C /* SceneDelegate.m */; };
 		C2B2433A2874A2A2003EAE4C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243392874A2A2003EAE4C /* ViewController.m */; };
@@ -27,6 +26,7 @@
 		C2B2438D2878C358003EAE4C /* MusicSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2438C2878C358003EAE4C /* MusicSessionViewController.m */; };
 		C2B24390287FB821003EAE4C /* MusicSessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */; };
 		C2B24392287FE847003EAE4C /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2B24391287FE847003EAE4C /* SpotifyiOS.framework */; };
+		FA585D863BA3B9FA19CFB1A9 /* Pods_MetaU_Capstone_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,13 +47,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0813F2B286D26DBE8714ADE7 /* Pods-MetaU Capstone Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project.debug.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project.debug.xcconfig"; sourceTree = "<group>"; };
-		3FBFDC816FFBB55B1618BE7A /* Pods-MetaU Capstone ProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone ProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone ProjectTests/Pods-MetaU Capstone ProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
-		440EE6FD1487B457700B00FF /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
-		7CAA14767BB964237DA827F7 /* Pods_MetaU_Capstone_ProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_ProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		867BB3952FCAD4C9824A8344 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5879184FBCA8401A82035FC /* Pods-MetaU Capstone ProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone ProjectTests.release.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone ProjectTests/Pods-MetaU Capstone ProjectTests.release.xcconfig"; sourceTree = "<group>"; };
-		BD2D9ABA887ED8AC6F171E70 /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		08927C9A4DCA64703241E035 /* Pods-MetaU Capstone Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project.debug.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project.debug.xcconfig"; sourceTree = "<group>"; };
+		74F5B150EDB2C431717E204D /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		75CAEEB9A7C0811FCB63B16D /* Pods-MetaU Capstone ProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone ProjectTests.release.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone ProjectTests/Pods-MetaU Capstone ProjectTests.release.xcconfig"; sourceTree = "<group>"; };
+		7E5F13FC0CBEDCDE9B5C4A69 /* Pods-MetaU Capstone ProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone ProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone ProjectTests/Pods-MetaU Capstone ProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8E327FA3DB2F61B46BD6C107 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		978B6D4601BDC3D2F8D456FD /* Pods_MetaU_Capstone_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A023F2F79E0474FEBED14117 /* Pods-MetaU Capstone Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project.release.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project.release.xcconfig"; sourceTree = "<group>"; };
+		A08F39BB63D7A64BA1FDEF7B /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C2B2432F2874A2A2003EAE4C /* MetaU Capstone Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MetaU Capstone Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B243322874A2A2003EAE4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C2B243332874A2A2003EAE4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -84,8 +85,7 @@
 		C2B2438E287FB821003EAE4C /* MusicSessionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicSessionHandler.h; sourceTree = "<group>"; };
 		C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicSessionHandler.m; sourceTree = "<group>"; };
 		C2B24391287FE847003EAE4C /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
-		CDA0F372DBA36A4BB514EE78 /* Pods-MetaU Capstone Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project.release.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project.release.xcconfig"; sourceTree = "<group>"; };
-		F33591E57CBB7ACFCBF1D74E /* Pods_MetaU_Capstone_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_ProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +93,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5059F3D7797087ECD05F496D /* Pods_MetaU_Capstone_Project.framework in Frameworks */,
 				C2B24392287FE847003EAE4C /* SpotifyiOS.framework in Frameworks */,
-				8692FF44E8C37B3666035902 /* Pods_MetaU_Capstone_Project.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				593BA95860C803E0906B98AD /* Pods_MetaU_Capstone_ProjectTests.framework in Frameworks */,
+				FA585D863BA3B9FA19CFB1A9 /* Pods_MetaU_Capstone_ProjectTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EF3B3BA2DBCC7D21CB85926 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework in Frameworks */,
+				B1F5ABAFD7461B31CB356948 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,12 +120,12 @@
 		53CDFCB88E0F24F8CD870D21 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0813F2B286D26DBE8714ADE7 /* Pods-MetaU Capstone Project.debug.xcconfig */,
-				CDA0F372DBA36A4BB514EE78 /* Pods-MetaU Capstone Project.release.xcconfig */,
-				BD2D9ABA887ED8AC6F171E70 /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig */,
-				440EE6FD1487B457700B00FF /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig */,
-				3FBFDC816FFBB55B1618BE7A /* Pods-MetaU Capstone ProjectTests.debug.xcconfig */,
-				A5879184FBCA8401A82035FC /* Pods-MetaU Capstone ProjectTests.release.xcconfig */,
+				08927C9A4DCA64703241E035 /* Pods-MetaU Capstone Project.debug.xcconfig */,
+				A023F2F79E0474FEBED14117 /* Pods-MetaU Capstone Project.release.xcconfig */,
+				74F5B150EDB2C431717E204D /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig */,
+				A08F39BB63D7A64BA1FDEF7B /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig */,
+				7E5F13FC0CBEDCDE9B5C4A69 /* Pods-MetaU Capstone ProjectTests.debug.xcconfig */,
+				75CAEEB9A7C0811FCB63B16D /* Pods-MetaU Capstone ProjectTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -134,9 +134,9 @@
 			isa = PBXGroup;
 			children = (
 				C2B24391287FE847003EAE4C /* SpotifyiOS.framework */,
-				F33591E57CBB7ACFCBF1D74E /* Pods_MetaU_Capstone_Project.framework */,
-				867BB3952FCAD4C9824A8344 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework */,
-				7CAA14767BB964237DA827F7 /* Pods_MetaU_Capstone_ProjectTests.framework */,
+				978B6D4601BDC3D2F8D456FD /* Pods_MetaU_Capstone_Project.framework */,
+				8E327FA3DB2F61B46BD6C107 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework */,
+				ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,10 +174,10 @@
 				C2B243382874A2A2003EAE4C /* ViewController.h */,
 				C2B243392874A2A2003EAE4C /* ViewController.m */,
 				C2B2433B2874A2A2003EAE4C /* Main.storyboard */,
-				C2B2438E287FB821003EAE4C /* MusicSessionHandler.h */,
-				C2B243882878A9C2003EAE4C /* MusicSession.h */,
-				C2B243892878A9C2003EAE4C /* MusicSession.m */,
 				C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */,
+				C2B2438E287FB821003EAE4C /* MusicSessionHandler.h */,
+				C2B243892878A9C2003EAE4C /* MusicSession.m */,
+				C2B243882878A9C2003EAE4C /* MusicSession.h */,
 				C2B2433E2874A2A3003EAE4C /* Assets.xcassets */,
 				C2B243402874A2A3003EAE4C /* LaunchScreen.storyboard */,
 				C2B243432874A2A3003EAE4C /* Info.plist */,
@@ -225,11 +225,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2B2435E2874A2A3003EAE4C /* Build configuration list for PBXNativeTarget "MetaU Capstone Project" */;
 			buildPhases = (
-				7DC0C4DBBC380D9222C278C4 /* [CP] Check Pods Manifest.lock */,
+				6F521FF80AF203CA7C521CBF /* [CP] Check Pods Manifest.lock */,
 				C2B2432B2874A2A2003EAE4C /* Sources */,
 				C2B2432C2874A2A2003EAE4C /* Frameworks */,
 				C2B2432D2874A2A2003EAE4C /* Resources */,
-				0DDF9FB78550ADCA8C25DC2A /* [CP] Embed Pods Frameworks */,
+				DC7A3CE2014F55D0238EDC07 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -244,7 +244,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2B243612874A2A3003EAE4C /* Build configuration list for PBXNativeTarget "MetaU Capstone ProjectTests" */;
 			buildPhases = (
-				8828FC60E07CDCEB7063B345 /* [CP] Check Pods Manifest.lock */,
+				007E0179D48BAFC966117534 /* [CP] Check Pods Manifest.lock */,
 				C2B243462874A2A3003EAE4C /* Sources */,
 				C2B243472874A2A3003EAE4C /* Frameworks */,
 				C2B243482874A2A3003EAE4C /* Resources */,
@@ -263,11 +263,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2B243642874A2A3003EAE4C /* Build configuration list for PBXNativeTarget "MetaU Capstone ProjectUITests" */;
 			buildPhases = (
-				F010C54AA4B3544DD624B795 /* [CP] Check Pods Manifest.lock */,
+				1D1B027F37BF10D898C732D9 /* [CP] Check Pods Manifest.lock */,
 				C2B243502874A2A3003EAE4C /* Sources */,
 				C2B243512874A2A3003EAE4C /* Frameworks */,
 				C2B243522874A2A3003EAE4C /* Resources */,
-				C74ADFCAA2FD8080758031FC /* [CP] Embed Pods Frameworks */,
+				A4E7F394E3B135AD8C945E93 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -349,46 +349,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0DDF9FB78550ADCA8C25DC2A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7DC0C4DBBC380D9222C278C4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MetaU Capstone Project-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8828FC60E07CDCEB7063B345 /* [CP] Check Pods Manifest.lock */ = {
+		007E0179D48BAFC966117534 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -410,24 +371,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C74ADFCAA2FD8080758031FC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F010C54AA4B3544DD624B795 /* [CP] Check Pods Manifest.lock */ = {
+		1D1B027F37BF10D898C732D9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -447,6 +391,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F521FF80AF203CA7C521CBF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MetaU Capstone Project-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4E7F394E3B135AD8C945E93 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC7A3CE2014F55D0238EDC07 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -633,7 +633,7 @@
 		};
 		C2B2435F2874A2A3003EAE4C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0813F2B286D26DBE8714ADE7 /* Pods-MetaU Capstone Project.debug.xcconfig */;
+			baseConfigurationReference = 08927C9A4DCA64703241E035 /* Pods-MetaU Capstone Project.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -659,6 +659,7 @@
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
+					"-ObjC",
 					"-l\"sqlite3\"",
 					"-l\"z\"",
 					"-framework",
@@ -702,16 +703,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				"USER_HEADER_SEARCH_PATHS[arch=*]" = (
-					"${PODS_ROOT}/**",
-					"$(SRCROOT)/**",
-				);
 			};
 			name = Debug;
 		};
 		C2B243602874A2A3003EAE4C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDA0F372DBA36A4BB514EE78 /* Pods-MetaU Capstone Project.release.xcconfig */;
+			baseConfigurationReference = A023F2F79E0474FEBED14117 /* Pods-MetaU Capstone Project.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -737,6 +734,7 @@
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
+					"-ObjC",
 					"-l\"sqlite3\"",
 					"-l\"z\"",
 					"-framework",
@@ -780,16 +778,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				"USER_HEADER_SEARCH_PATHS[arch=*]" = (
-					"$(SRCROOT)/**",
-					"${PODS_ROOT}/**",
-				);
 			};
 			name = Release;
 		};
 		C2B243622874A2A3003EAE4C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FBFDC816FFBB55B1618BE7A /* Pods-MetaU Capstone ProjectTests.debug.xcconfig */;
+			baseConfigurationReference = 7E5F13FC0CBEDCDE9B5C4A69 /* Pods-MetaU Capstone ProjectTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -808,7 +802,7 @@
 		};
 		C2B243632874A2A3003EAE4C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5879184FBCA8401A82035FC /* Pods-MetaU Capstone ProjectTests.release.xcconfig */;
+			baseConfigurationReference = 75CAEEB9A7C0811FCB63B16D /* Pods-MetaU Capstone ProjectTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -827,7 +821,7 @@
 		};
 		C2B243652874A2A3003EAE4C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD2D9ABA887ED8AC6F171E70 /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig */;
+			baseConfigurationReference = 74F5B150EDB2C431717E204D /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -844,7 +838,7 @@
 		};
 		C2B243662874A2A3003EAE4C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 440EE6FD1487B457700B00FF /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig */;
+			baseConfigurationReference = A08F39BB63D7A64BA1FDEF7B /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

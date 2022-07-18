@@ -18,11 +18,6 @@
     NSLog(@"EVENT: %@", event);
     NSLog(@"EVENT TYPE: %ld", (long)event.type);
     NSLog(@"EVENT OBJECT: %@", event.object);
-    
-    //    [self.subscription addCreateHandler:^(PFQuery * query, PFObject * message) {
-    //        NSLog(@"LQ!!");
-    //    }];
-    
 }
 
 @end
