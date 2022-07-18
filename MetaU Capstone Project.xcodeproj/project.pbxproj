@@ -25,7 +25,7 @@
 		C2B2438A2878A9C2003EAE4C /* MusicSession.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243892878A9C2003EAE4C /* MusicSession.m */; };
 		C2B2438D2878C358003EAE4C /* MusicSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2438C2878C358003EAE4C /* MusicSessionViewController.m */; };
 		C2B24390287FB821003EAE4C /* MusicSessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */; };
-		C2B24392287FE847003EAE4C /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2B24391287FE847003EAE4C /* SpotifyiOS.framework */; };
+		C2BE83172885D73800F30B0E /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2BE83162885D73800F30B0E /* SpotifyiOS.framework */; };
 		FA585D863BA3B9FA19CFB1A9 /* Pods_MetaU_Capstone_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,7 +84,7 @@
 		C2B2438C2878C358003EAE4C /* MusicSessionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicSessionViewController.m; sourceTree = "<group>"; };
 		C2B2438E287FB821003EAE4C /* MusicSessionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicSessionHandler.h; sourceTree = "<group>"; };
 		C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicSessionHandler.m; sourceTree = "<group>"; };
-		C2B24391287FE847003EAE4C /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
+		C2BE83162885D73800F30B0E /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_ProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -94,7 +94,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5059F3D7797087ECD05F496D /* Pods_MetaU_Capstone_Project.framework in Frameworks */,
-				C2B24392287FE847003EAE4C /* SpotifyiOS.framework in Frameworks */,
+				C2BE83172885D73800F30B0E /* SpotifyiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,12 +133,28 @@
 		5D540B8620FD7E04434D3257 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C2B24391287FE847003EAE4C /* SpotifyiOS.framework */,
+				C2BE83162885D73800F30B0E /* SpotifyiOS.framework */,
 				978B6D4601BDC3D2F8D456FD /* Pods_MetaU_Capstone_Project.framework */,
 				8E327FA3DB2F61B46BD6C107 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework */,
 				ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C25F30DF2885CA6600C31365 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C2B243892878A9C2003EAE4C /* MusicSession.m */,
+				C2B243882878A9C2003EAE4C /* MusicSession.h */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C25F30E02885CA7700C31365 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		C2B243262874A2A2003EAE4C = {
@@ -167,21 +183,19 @@
 			isa = PBXGroup;
 			children = (
 				C2B2436A2874BA6E003EAE4C /* View Controllers */,
-				C2B243322874A2A2003EAE4C /* AppDelegate.h */,
-				C2B243332874A2A2003EAE4C /* AppDelegate.m */,
-				C2B243352874A2A2003EAE4C /* SceneDelegate.h */,
-				C2B243362874A2A2003EAE4C /* SceneDelegate.m */,
-				C2B243382874A2A2003EAE4C /* ViewController.h */,
-				C2B243392874A2A2003EAE4C /* ViewController.m */,
-				C2B2433B2874A2A2003EAE4C /* Main.storyboard */,
+				C25F30E02885CA7700C31365 /* API */,
+				C25F30DF2885CA6600C31365 /* Models */,
 				C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */,
 				C2B2438E287FB821003EAE4C /* MusicSessionHandler.h */,
-				C2B243892878A9C2003EAE4C /* MusicSession.m */,
-				C2B243882878A9C2003EAE4C /* MusicSession.h */,
-				C2B2433E2874A2A3003EAE4C /* Assets.xcassets */,
-				C2B243402874A2A3003EAE4C /* LaunchScreen.storyboard */,
-				C2B243432874A2A3003EAE4C /* Info.plist */,
+				C2B243332874A2A2003EAE4C /* AppDelegate.m */,
+				C2B243322874A2A2003EAE4C /* AppDelegate.h */,
+				C2B243362874A2A2003EAE4C /* SceneDelegate.m */,
+				C2B243352874A2A2003EAE4C /* SceneDelegate.h */,
 				C2B243442874A2A3003EAE4C /* main.m */,
+				C2B243432874A2A3003EAE4C /* Info.plist */,
+				C2B2433E2874A2A3003EAE4C /* Assets.xcassets */,
+				C2B2433B2874A2A2003EAE4C /* Main.storyboard */,
+				C2B243402874A2A3003EAE4C /* LaunchScreen.storyboard */,
 			);
 			path = "MetaU Capstone Project";
 			sourceTree = "<group>";
@@ -214,6 +228,8 @@
 				C2B2436B2874DB2A003EAE4C /* HomeViewController.h */,
 				C2B243682874BA67003EAE4C /* LoginViewController.m */,
 				C2B243672874BA67003EAE4C /* LoginViewController.h */,
+				C2B243392874A2A2003EAE4C /* ViewController.m */,
+				C2B243382874A2A2003EAE4C /* ViewController.h */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

@@ -57,7 +57,7 @@
 
         self.configuration.tokenSwapURL = tokenSwapURL;
         self.configuration.tokenRefreshURL = tokenRefreshURL;
-    
+
         // Empty Value [@""] -> Resume Playback User Last Track
         // @"spotify:track:20I6sIOMTCkB6w7ryavxtO" -> Resume Example Track
         self.configuration.playURI = @"";
@@ -67,7 +67,7 @@
         // Invoke Auth Modal
         SPTScope requestedScope = SPTAppRemoteControlScope;
         [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
-        
+    
         // Initialize App Remote
     self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelDebug];
     self.appRemote.delegate = self;

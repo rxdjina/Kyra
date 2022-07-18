@@ -70,6 +70,12 @@
   }
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (void)registerUser {
     NSArray *signUpTextFields = @[self.nameField, self.emailField, self.usernameField, self.passwordField, self.passwordRentryField];
     

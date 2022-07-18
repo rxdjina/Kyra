@@ -15,7 +15,6 @@
 
 @interface CreateSessionViewController ()
 
-@property (strong, nonatomic) IBOutlet UITextField *codeTextField;
 @property (nonatomic, strong) MusicSession *arrayMusicSession;
 
 @end
@@ -24,6 +23,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.sessionNameTextField.delegate = self;
+    self.codeTextField.delegate = self;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)getSession{

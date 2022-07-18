@@ -9,9 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CreateSessionViewController : UIViewController
+@interface CreateSessionViewController : UIViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *sessionNameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *codeTextField;
+
 
 @end
 
