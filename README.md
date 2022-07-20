@@ -18,6 +18,10 @@ Application allows users to join music sessions with friends.
 - **Habit:** Application could be used as frequently as needed, depending on the prefrences of users.
 - **Scope:** Would start with private music sessions. Could expand to inlcude additional features within each session such as karaoke modes, or games as well as music dicovery.
 
+### Ambiguos Technical Problem
+- Being able to keep all users within a session in-sync. Therefore, all content, from audio playback to music queues should update in real-time.
+- Implementing a lyrics feature that allows users to display lyrics line-by-line, while also keeping them in-sync with audio
+
 ## Product Spec
 ### 1. User Stories (Required and Optional)
 
