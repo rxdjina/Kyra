@@ -26,6 +26,7 @@
 		C2B2438D2878C358003EAE4C /* MusicSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2438C2878C358003EAE4C /* MusicSessionViewController.m */; };
 		C2B24390287FB821003EAE4C /* MusicSessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */; };
 		C2BE83172885D73800F30B0E /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2BE83162885D73800F30B0E /* SpotifyiOS.framework */; };
+		C2BE831A28874FBE00F30B0E /* SpotifyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BE831928874FBE00F30B0E /* SpotifyManager.m */; };
 		FA585D863BA3B9FA19CFB1A9 /* Pods_MetaU_Capstone_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,8 @@
 		C2B2438E287FB821003EAE4C /* MusicSessionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicSessionHandler.h; sourceTree = "<group>"; };
 		C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicSessionHandler.m; sourceTree = "<group>"; };
 		C2BE83162885D73800F30B0E /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
+		C2BE831828874FBE00F30B0E /* SpotifyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyManager.h; sourceTree = "<group>"; };
+		C2BE831928874FBE00F30B0E /* SpotifyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyManager.m; sourceTree = "<group>"; };
 		ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_ProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -153,6 +156,8 @@
 		C25F30E02885CA7700C31365 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				C2BE831928874FBE00F30B0E /* SpotifyManager.m */,
+				C2BE831828874FBE00F30B0E /* SpotifyManager.h */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 			files = (
 				C2B2438A2878A9C2003EAE4C /* MusicSession.m in Sources */,
 				C2B24390287FB821003EAE4C /* MusicSessionHandler.m in Sources */,
+				C2BE831A28874FBE00F30B0E /* SpotifyManager.m in Sources */,
 				C2B2433A2874A2A2003EAE4C /* ViewController.m in Sources */,
 				C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */,
 				C2B243872878A65B003EAE4C /* CreateSessionViewController.m in Sources */,

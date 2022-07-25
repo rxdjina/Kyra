@@ -84,15 +84,17 @@
         MusicSession *dataToPass = self.arrayMusicSession;
         
         UINavigationController *navControl = [segue destinationViewController];
-        MusicSessionViewController *destinationVC = [navControl topViewController];
+        MusicSessionViewController *destinationVC = (MusicSessionViewController *)[navControl topViewController];
         destinationVC.musicSession = dataToPass;
     } else if ([segue.identifier  isEqual: @"createSessionSegue"]) {
         MusicSession *dataToPass = self.arrayMusicSession;
         
         UINavigationController *navControl = [segue destinationViewController];
-        MusicSessionViewController *destinationVC = [navControl topViewController];
+        MusicSessionViewController *destinationVC = (MusicSessionViewController *)[navControl topViewController];
         destinationVC.musicSession = dataToPass;
     }
 }
 
+- (IBAction)playButton:(id)sender {
+}
 @end

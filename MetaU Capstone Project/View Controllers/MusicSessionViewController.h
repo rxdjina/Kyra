@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MusicSession.h"
+#import "SpotifyiOS/SpotifyAppRemote.h"
+#import "SpotifyiOS/SpotifyiOS.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

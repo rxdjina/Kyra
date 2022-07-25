@@ -20,4 +20,16 @@
     NSLog(@"EVENT OBJECT: %@", event.object);
 }
 
+- (void)liveQuery:(PFQuery<PFObject *> *)query didSubscribeInClient:(PFLiveQueryClient *)client {
+    NSLog(@"LIVE QUERY SUBSCRIBED");
+}
+
+- (void)liveQuery:(PFQuery<PFObject *> *)query didUnsubscribeInClient:(PFLiveQueryClient *)client {
+    NSLog(@"LIVE QUERY UNSUBSCRIBED");
+}
+
+- (void)liveQuery:(PFQuery<PFObject *> *)query didEncounterError:(NSError *)error inClient:(PFLiveQueryClient *)client {
+    NSLog(@"LIVE QUERY ERROR: %@", error.localizedDescription);
+}
+
 @end

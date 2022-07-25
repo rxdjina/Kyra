@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UITextField *sessionNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *codeTextField;
 
-
 @end
 
 NS_ASSUME_NONNULL_END

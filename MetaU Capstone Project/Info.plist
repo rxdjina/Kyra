@@ -23,18 +23,18 @@
 	</dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-  		<string>spotify</string>
+		<string>spotify</string>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
-  		<dict>
-    		<key>CFBundleURLName</key>
-    		<string>com.spotify.iOS-SDK-Quick-Start</string>
-    		<key>CFBundleURLSchemes</key>
-    		<array>
-      			<string>spotify-ios-quick-start</string>
-    		</array>
-  		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.codepath.MetaU-Capstone-Project</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>metau-summer-2022-capstone-project</string>
+			</array>
+		</dict>
 	</array>
 </dict>
 </plist>

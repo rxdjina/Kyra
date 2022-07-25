@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) IBOutlet UILabel *greetingLabel;
 
-
 @end
 
 NS_ASSUME_NONNULL_END
