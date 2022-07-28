@@ -15,11 +15,6 @@
 
 @interface AppDelegate ()
 
-@property (nonatomic, strong) PFLiveQueryClient *client;
-@property (nonatomic, strong) PFQuery *query;
-@property (nonatomic, strong) MusicSessionHandler *handler;
-@property (nonatomic, strong) PFLiveQuerySubscription *subscription;
-
 @end
 
 @implementation AppDelegate
@@ -35,17 +30,8 @@
 
     [Parse initializeWithConfiguration:config];
 
-    // Live Query
-    self.client = [[PFLiveQueryClient alloc] initWithServer:@"https://parseapi.back4app.com" applicationId:@"h0XnNsrye2OKPXScQlU43EYqgbjzpKHmSfstQXH3" clientKey:@"c2ervpUl9gZIkgVbx0ABEbrUkL4POF2hYA2CWH2k"];
-
-    NSString *objectID = @"C48b7Dzzlp";
-    PFQuery* query = [[PFQuery queryWithClassName:@"MusicSession"] whereKey:@"objectId" equalTo:objectID];
-
-    self.handler = [[MusicSessionHandler alloc] init];
-    self.subscription = (PFLiveQuerySubscription *)[self.client subscribeToQuery:query withHandler:self.handler];
-    
     [self authSpotify];
-
+    
     return YES;
 }
 
@@ -61,8 +47,8 @@
     NSURL *tokenRefreshURL = [NSURL URLWithString:@"https://git.heroku.com/metau-capstone.git/api/refresh_token"];
     
     // Local Server Option
-//    NSURL *tokenSwapURL = [NSURL URLWithString:@"https://localhost:8888/callback"];
-//    NSURL *tokenRefreshURL = [NSURL URLWithString:@"https://localhost:8888/callback"];
+//    NSURL *tokenSwapURL = [NSURL URLWithString:@"http://localhost:9292/api/token"];
+//    NSURL *tokenRefreshURL = [NSURL URLWithString:@"http://localhost:9292/api/refresh_token"];
 
     // Glitch Option
 //    NSURL *tokenSwapURL = [NSURL URLWithString:@"https://spotify-token-swap.glitch.me/api/token"];
@@ -76,6 +62,7 @@
     self.configuration.playURI = @"";
 
     self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
+    self.sessionManager.delegate = self;
 
     // Invoke Auth Modal
     SPTScope requestedScope = SPTAppRemoteControlScope;
@@ -84,6 +71,7 @@
     // Initialize App Remote
     self.appRemote = [[SPTAppRemote alloc] initWithConfiguration:self.configuration logLevel:SPTAppRemoteLogLevelDebug];
     self.appRemote.delegate = self;
+    [self.appRemote connect];
 }
 
 #pragma mark - UISceneSession lifecycle

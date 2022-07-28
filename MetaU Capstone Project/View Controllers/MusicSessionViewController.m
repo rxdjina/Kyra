@@ -7,20 +7,33 @@
 
 #import "MusicSessionViewController.h"
 #import "AppDelegate.h"
+#import "MusicSessionHandler.h"
 #import <SpotifyiOS/SpotifyiOS.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
+
+@import ParseLiveQuery;
 
 @interface MusicSessionViewController ()
 
 @property BOOL isPlaying;
+
 @property (nonatomic, strong) SPTAppRemote *appRemote;
 @property (nonatomic) NSInteger timestamp;
 @property (nonatomic, strong) id<SPTAppRemotePlayerState> playerState;
+
+@property (nonatomic, strong) PFLiveQueryClient *client;
+@property (nonatomic, strong) PFQuery *query;
+@property (nonatomic, strong) MusicSessionHandler *handler;
+@property (nonatomic, strong) PFLiveQuerySubscription *subscription;
 
 @end
 
 static const NSInteger MAX_SECONDS = 5;
 static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
+
+NSString * const APPLICATION_ID = @"h0XnNsrye2OKPXScQlU43EYqgbjzpKHmSfstQXH3";
+NSString * const CLIENT_KEY = @"c2ervpUl9gZIkgVbx0ABEbrUkL4POF2hYA2CWH2k";
+NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 
 @implementation MusicSessionViewController
 
@@ -29,6 +42,57 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     self.sessionNameLabel.text = self.musicSession.sessionName;
     self.sessionIDLabel.text = self.musicSession.sessionCode;
     self.isPlaying = NO;
+    
+    [self querySetup];
+}
+
+- (void)querySetup {
+    self.client = [[PFLiveQueryClient alloc] initWithServer:SERVER_URL applicationId:APPLICATION_ID clientKey:CLIENT_KEY];
+    PFQuery *query = [PFQuery queryWithClassName:@"MusicSession"];
+    self.subscription = [self.client subscribeToQuery:query];
+
+    __unsafe_unretained typeof(self) weakSelf = self;
+    
+    // Called when subscribed
+    (void)[self.subscription addSubscribeHandler:^(PFQuery<PFObject *> * _Nonnull query) {
+        NSLog(@"Subscription Handler");
+    }];
+    
+    // Called when unsubscribed
+    (void)[self.subscription addUnsubscribeHandler:^(PFQuery<PFObject *> * _Nonnull query) {
+        NSLog(@"Unsubscription Handler");
+    }];
+    
+    // Called when query changes, object existed BEFORE
+    (void)[self.subscription addUpdateHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
+        __strong typeof (self) strongSelf = weakSelf;
+        
+        MusicSession *session = (MusicSession *)object;
+        NSLog(@"Update Handler");
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            strongSelf.sessionLogLabel.text = [NSString stringWithFormat:@"%@", session.activeUsers];
+        });
+    }];
+    
+    // Called when object created, object DID NOT exist
+    (void)[self.subscription addEnterHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
+        NSLog(@"Enter Handler");
+    }];
+    
+    (void)[self.subscription addCreateHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
+        NSLog(@"Create Handler");
+    }];
+    
+    // Called when object deleted, object DID exist but now does NOT
+    (void)[self.subscription addLeaveHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
+        NSLog(@"Leave Handler");
+    }];
+    
+    // Called if error occurs
+    (void)[self.subscription addErrorHandler:^(PFQuery<PFObject *> * _Nonnull query, NSError * _Nonnull error) {
+        NSLog(@"Error Handler: %@", error.localizedDescription);
+    }];
 }
 
 - (IBAction)pressedThePlayButton:(id)sender {

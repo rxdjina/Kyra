@@ -15,7 +15,6 @@
 
 @implementation SceneDelegate
 
-
 - (void)scene:(UIScene *)scene openURLContexts:(nonnull NSSet<UIOpenURLContext *> *)URLContexts{
     NSURL *url = [[URLContexts allObjects] firstObject].URL;
 
