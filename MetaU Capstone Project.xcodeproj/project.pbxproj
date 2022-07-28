@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5059F3D7797087ECD05F496D /* Pods_MetaU_Capstone_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978B6D4601BDC3D2F8D456FD /* Pods_MetaU_Capstone_Project.framework */; };
 		B1F5ABAFD7461B31CB356948 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E327FA3DB2F61B46BD6C107 /* Pods_MetaU_Capstone_Project_MetaU_Capstone_ProjectUITests.framework */; };
+		C26506AC2892F90D00E38146 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26506AB2892F90D00E38146 /* SettingsViewController.m */; };
 		C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243332874A2A2003EAE4C /* AppDelegate.m */; };
 		C2B243372874A2A2003EAE4C /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243362874A2A2003EAE4C /* SceneDelegate.m */; };
 		C2B2433A2874A2A2003EAE4C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243392874A2A2003EAE4C /* ViewController.m */; };
@@ -56,6 +57,8 @@
 		978B6D4601BDC3D2F8D456FD /* Pods_MetaU_Capstone_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A023F2F79E0474FEBED14117 /* Pods-MetaU Capstone Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project.release.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project/Pods-MetaU Capstone Project.release.xcconfig"; sourceTree = "<group>"; };
 		A08F39BB63D7A64BA1FDEF7B /* Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests/Pods-MetaU Capstone Project-MetaU Capstone ProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C26506AA2892F90D00E38146 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		C26506AB2892F90D00E38146 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C2B2432F2874A2A2003EAE4C /* MetaU Capstone Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MetaU Capstone Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B243322874A2A2003EAE4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C2B243332874A2A2003EAE4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 			children = (
 				C2B243862878A65A003EAE4C /* CreateSessionViewController.m */,
 				C2B243852878A65A003EAE4C /* CreateSessionViewController.h */,
+				C26506AB2892F90D00E38146 /* SettingsViewController.m */,
+				C26506AA2892F90D00E38146 /* SettingsViewController.h */,
 				C2B2438C2878C358003EAE4C /* MusicSessionViewController.m */,
 				C2B2438B2878C358003EAE4C /* MusicSessionViewController.h */,
 				C2B2436C2874DB2A003EAE4C /* HomeViewController.m */,
@@ -480,6 +485,7 @@
 				C2B2438A2878A9C2003EAE4C /* MusicSession.m in Sources */,
 				C2B24390287FB821003EAE4C /* MusicSessionHandler.m in Sources */,
 				C2BE831A28874FBE00F30B0E /* SpotifyManager.m in Sources */,
+				C26506AC2892F90D00E38146 /* SettingsViewController.m in Sources */,
 				C2B2433A2874A2A2003EAE4C /* ViewController.m in Sources */,
 				C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */,
 				C2B243872878A65B003EAE4C /* CreateSessionViewController.m in Sources */,
