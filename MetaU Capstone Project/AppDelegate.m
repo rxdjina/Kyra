@@ -30,7 +30,7 @@
 
     [Parse initializeWithConfiguration:config];
 
-    [self authSpotify];
+//    [self authSpotify];
     
     return YES;
 }

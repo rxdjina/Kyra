@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) IBOutlet UIButton *updateEmailButton;
 @property (strong, nonatomic) IBOutlet UIButton *updatePasswordButton;
+@property (strong, nonatomic) IBOutlet UILabel *errorMessageLabel;
 
 @end
 

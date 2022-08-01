@@ -8,6 +8,7 @@
 #import "LoginViewController.h"
 #import "HomeViewController.h"
 #import "Parse/Parse.h"
+#import "SceneDelegate.h"
 
 @interface LoginViewController ()
 
@@ -145,6 +146,30 @@
     }];
 }
 
+- (void)resetPassword {
+    NSArray *resetPasswordTextFields = @[self.emailField];
+    
+    NSString* email = [self.emailField.text lowercaseString];
+    
+    [PFUser requestPasswordResetForEmailInBackground:email block:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"Reset instructions successfully sent to %@", email);
+            
+            [self setDefaultTextField:resetPasswordTextFields];
+            [self clearTextFields:resetPasswordTextFields];
+            self.errorMessageLabel.hidden = YES;
+            
+            [self performSegueWithIdentifier:@"sentEmailSegue" sender:self];
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+            self.errorMessageLabel.hidden = NO;
+            
+            // Sentence case capitalization
+            self.errorMessageLabel.text = [NSString stringWithFormat:@"* %@",[error.localizedDescription stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[error.localizedDescription substringToIndex:1] uppercaseString]]];
+        }
+    }];
+}
+
 - (void)errorMessageHandling:(NSString *)errorMessage{
     NSArray *loginTextFields = @[self.usernameField, self.passwordField];
     
@@ -201,6 +226,24 @@
 
 - (IBAction)signUpButton:(id)sender {
     [self registerUser];
+}
+
+- (IBAction)passwordResetButton:(id)sender {
+    [self resetPassword];
+}
+
+- (IBAction)returnToLoginButton:(id)sender {
+    SceneDelegate *appDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+
+    appDelegate.window.rootViewController = loginViewController;
+}
+
+- (IBAction)pressedResendButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
