@@ -1022,6 +1022,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RtM-Y1-0Sf">
+                                <rect key="frame" x="97" y="662" width="221" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                                <color key="tintColor" red="0.2588235438" green="0.58431375029999999" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Connect Spotify">
+                                    <color key="titleColor" red="0.4281672239" green="0.60409897570000004" blue="0.90740299219999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedConnectSpotify:" destination="J6D-ce-2UI" eventType="touchUpInside" id="LRx-Hc-tTf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UUs-Wx-lHH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1054,7 +1067,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qhp-NN-qpu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1961" y="-1254"/>
+            <point key="canvasLocation" x="1959.8130841121495" y="-1254.427645788337"/>
         </scene>
         <!--Sessions-->
         <scene sceneID="J2I-wG-pVN">
@@ -1139,6 +1152,16 @@
                                 <connections>
                                     <action selector="loginButton:" destination="7Y0-sa-KHE" eventType="touchUpInside" id="1mk-2S-SDj"/>
                                     <action selector="pressedJoinSession:" destination="jlW-IW-kVi" eventType="touchUpInside" id="VkV-mP-zpv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eu7-yt-s5X">
+                                <rect key="frame" x="121" y="285" width="57" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.43620413540000003" green="0.61154985429999997" blue="0.92155581710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="connectSpotify:" destination="yGU-2u-mu3" eventType="touchUpInside" id="4Jn-Lf-gAF"/>
+                                    <action selector="pressedRewindButton:" destination="yGU-2u-mu3" eventType="touchUpInside" id="LyZ-ZO-lE6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1259,7 +1282,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6N-iu-i2Q">
-                                <rect key="frame" x="247" y="221" width="57" height="52"/>
+                                <rect key="frame" x="276" y="410" width="57" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.43620413540000003" green="0.61154985429999997" blue="0.92155581710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -1290,7 +1313,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hln-Wi-QQe">
-                                <rect key="frame" x="152" y="221" width="57" height="52"/>
+                                <rect key="frame" x="181" y="410" width="57" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.43620413540000003" green="0.61154985429999997" blue="0.92155581710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -1302,7 +1325,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qie-kz-4p4">
-                                <rect key="frame" x="66" y="221" width="57" height="52"/>
+                                <rect key="frame" x="95" y="410" width="57" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.43620413540000003" green="0.61154985429999997" blue="0.92155581710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -1313,8 +1336,27 @@
                                     <action selector="pressedRewindButton:" destination="yGU-2u-mu3" eventType="touchUpInside" id="9Si-Dy-LGo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3t-4L-0PN">
+                                <rect key="frame" x="337" y="124" width="57" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.43620413540000003" green="0.61154985429999997" blue="0.92155581710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="xmark.app" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="regular"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedLeaveSession:" destination="yGU-2u-mu3" eventType="touchUpInside" id="eHh-do-jAC"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Test" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uk4-Sv-aTT">
+                                <rect key="frame" x="30" y="494" width="359" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Log" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4s0-co-LC4">
-                                <rect key="frame" x="35" y="451" width="359" height="317"/>
+                                <rect key="frame" x="20" y="184" width="359" height="198"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -1326,9 +1368,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="OW2-y9-aL3"/>
                     <connections>
+                        <outlet property="forwardButton" destination="Z6N-iu-i2Q" id="XhO-eB-rmS"/>
+                        <outlet property="playPauseButton" destination="Hln-Wi-QQe" id="hSF-km-ofC"/>
+                        <outlet property="rewindButton" destination="qie-kz-4p4" id="FVb-sY-jtZ"/>
                         <outlet property="sessionIDLabel" destination="kpf-IC-ff9" id="jZ7-2v-LoD"/>
                         <outlet property="sessionLogLabel" destination="4s0-co-LC4" id="MyI-Vb-DAm"/>
                         <outlet property="sessionNameLabel" destination="Dac-6z-ABc" id="Kiv-WR-41K"/>
+                        <outlet property="testLabel" destination="uk4-Sv-aTT" id="WXI-je-3Eh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LkU-3g-8Sj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1384,21 +1430,14 @@
             </objects>
             <point key="canvasLocation" x="5036" y="-1860"/>
         </scene>
-        <!--View Controller-->
+        <!--Music Session View Controller-->
         <scene sceneID="dbU-pz-M1P">
             <objects>
-                <viewController id="OOp-tK-Yce" sceneMemberID="viewController">
+                <viewController id="OOp-tK-Yce" customClass="MusicSessionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Nx-3N-32Z">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search Feature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4x-tB-8HK">
-                                <rect key="frame" x="97" y="264" width="194" height="144"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="   Artist Song or Podcast" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pFJ-CO-kVi">
                                 <rect key="frame" x="36" y="103" width="356" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1406,15 +1445,26 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4x-tB-8HK">
+                                <rect key="frame" x="36" y="185" width="356" height="641"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9Ti-Wr-05p"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="m3W-GA-pVs"/>
+                    <connections>
+                        <outlet property="resultsLabel" destination="c4x-tB-8HK" id="W38-9Y-Evv"/>
+                        <outlet property="searchTextField" destination="pFJ-CO-kVi" id="BnA-lj-yhp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghU-8Z-a6f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5036" y="-1210"/>
+            <point key="canvasLocation" x="5035.5140186915887" y="-1210.3671706263499"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dPI-Hi-kEm">
@@ -1452,6 +1502,7 @@
         <image name="square" catalog="system" width="128" height="114"/>
         <image name="text.justify" catalog="system" width="128" height="100"/>
         <image name="triangle" catalog="system" width="128" height="112"/>
+        <image name="xmark.app" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

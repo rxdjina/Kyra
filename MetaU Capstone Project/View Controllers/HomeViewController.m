@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "SceneDelegate.h"
+#import "SpotifyManager.h"
 
 @interface HomeViewController ()
 
@@ -27,9 +28,7 @@
         
         self.greetingLabel.text = [NSString stringWithFormat:@"Welcome Back, %@", [PFUser currentUser][@"firstName"]];
     }
-    
 }
-
 
 - (IBAction)pressedLogOut:(id)sender {
     SceneDelegate *appDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
@@ -46,15 +45,9 @@
     NSLog(@"User logged out sucessfully");
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)pressedConnectSpotify:(id)sender {
+    // TODO: Disable join buttons OR move spotify connection
+    [[SpotifyManager shared] authenticateSpotify];
 }
-*/
 
 @end

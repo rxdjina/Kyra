@@ -21,6 +21,8 @@
 @dynamic activeUsers;
 @dynamic log;
 @dynamic isActive;
+@dynamic isPlaying;
+@dynamic timestamp;
 
 static const NSUInteger LENGTH_ID = 6;
 
@@ -35,6 +37,8 @@ static const NSUInteger LENGTH_ID = 6;
     newSession.sessionName = sessionName;
     newSession.isActive = YES;
     newSession.host = [PFUser currentUser];
+    newSession.isPlaying = NO;
+    newSession.timestamp = @(0);
     
     // Active Users
     NSMutableArray *users = [[NSMutableArray alloc] initWithObjects:[PFUser currentUser], nil];
@@ -89,6 +93,50 @@ static const NSUInteger LENGTH_ID = 6;
             [PFObject saveAllInBackground:session];
         }
         else {
+            NSLog(@"Error getting session: %@", error.localizedDescription);
+        }
+    }];
+}
+
++ (void)removeUserFromSession:(NSString *)sessionCode user: ( PFUser * )user withCompletion: (PFBooleanResultBlock _Nullable) completion {
+    
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:sessionCode];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+        if (session.count > 0) {
+            NSMutableArray *users = [session[0] valueForKey:@"activeUsers"];
+            
+            
+            if (users.count > 1) {
+                // TODO: If user was host, assign new host
+                NSLog(@"[%lu] %@", (unsigned long)users.count, users);
+                
+                NSInteger *count = @(0);
+                
+//                for (PFUser *i in users) {
+////                    if (i.objectId == use
+//                }
+                
+                [users removeObjectIdenticalTo:user.objectId];
+                NSLog(@"[%lu] %@", (unsigned long)users.count, users);
+                [session setValue:users forKey:@"activeUsers"];
+                
+                [MusicSession updateSessionLog:sessionCode decription:@"Left session" withCompletion:^(BOOL succeeded, NSError * error) {
+                    if (error != nil) {
+                        NSLog(@"Error: %@", error.localizedDescription);
+                    } else {
+                        NSLog(@"%@ left session successfully", PFUser.currentUser.username);
+                    }
+                }];
+                
+//                [PFObject saveAllInBackground:session];
+                
+            } else if (users.count == 1) {
+                NSLog(@"One user left");
+                // TODO: Close session
+            }
+            
+        } else {
             NSLog(@"Error getting session: %@", error.localizedDescription);
         }
     }];

@@ -77,15 +77,6 @@
 
 - (IBAction)pressedJoinSession:(id)sender {
     [self getSession];
-
-    // Add user to session
-    [MusicSession addUserToSession:self.codeTextField.text withCompletion:^(BOOL succeeded, NSError * error) {
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"User added to session successfully");
-        }
-    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

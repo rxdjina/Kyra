@@ -12,7 +12,7 @@
 		C26506AC2892F90D00E38146 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26506AB2892F90D00E38146 /* SettingsViewController.m */; };
 		C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243332874A2A2003EAE4C /* AppDelegate.m */; };
 		C2B243372874A2A2003EAE4C /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243362874A2A2003EAE4C /* SceneDelegate.m */; };
-		C2B2433A2874A2A2003EAE4C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243392874A2A2003EAE4C /* ViewController.m */; };
+		C2B2433A2874A2A2003EAE4C /* QueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243392874A2A2003EAE4C /* QueueViewController.m */; };
 		C2B2433D2874A2A2003EAE4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B2433B2874A2A2003EAE4C /* Main.storyboard */; };
 		C2B2433F2874A2A3003EAE4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B2433E2874A2A3003EAE4C /* Assets.xcassets */; };
 		C2B243422874A2A3003EAE4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B243402874A2A3003EAE4C /* LaunchScreen.storyboard */; };
@@ -28,6 +28,7 @@
 		C2B24390287FB821003EAE4C /* MusicSessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */; };
 		C2BE83172885D73800F30B0E /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2BE83162885D73800F30B0E /* SpotifyiOS.framework */; };
 		C2BE831A28874FBE00F30B0E /* SpotifyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BE831928874FBE00F30B0E /* SpotifyManager.m */; };
+		C2F07ED228945A5500318F7D /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F07ED128945A5500318F7D /* Song.m */; };
 		FA585D863BA3B9FA19CFB1A9 /* Pods_MetaU_Capstone_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,8 +65,8 @@
 		C2B243332874A2A2003EAE4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C2B243352874A2A2003EAE4C /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		C2B243362874A2A2003EAE4C /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		C2B243382874A2A2003EAE4C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C2B243392874A2A2003EAE4C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C2B243382874A2A2003EAE4C /* QueueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueueViewController.h; sourceTree = "<group>"; };
+		C2B243392874A2A2003EAE4C /* QueueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueueViewController.m; sourceTree = "<group>"; };
 		C2B2433C2874A2A2003EAE4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C2B2433E2874A2A3003EAE4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2B243412874A2A3003EAE4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -91,6 +92,8 @@
 		C2BE83162885D73800F30B0E /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		C2BE831828874FBE00F30B0E /* SpotifyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyManager.h; sourceTree = "<group>"; };
 		C2BE831928874FBE00F30B0E /* SpotifyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyManager.m; sourceTree = "<group>"; };
+		C2F07ED028945A5500318F7D /* Song.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
+		C2F07ED128945A5500318F7D /* Song.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		ED0C88B1DA3180C162419C0B /* Pods_MetaU_Capstone_ProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MetaU_Capstone_ProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -152,6 +155,8 @@
 			children = (
 				C2B243892878A9C2003EAE4C /* MusicSession.m */,
 				C2B243882878A9C2003EAE4C /* MusicSession.h */,
+				C2F07ED028945A5500318F7D /* Song.h */,
+				C2F07ED128945A5500318F7D /* Song.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -238,8 +243,8 @@
 				C2B2436B2874DB2A003EAE4C /* HomeViewController.h */,
 				C2B243682874BA67003EAE4C /* LoginViewController.m */,
 				C2B243672874BA67003EAE4C /* LoginViewController.h */,
-				C2B243392874A2A2003EAE4C /* ViewController.m */,
-				C2B243382874A2A2003EAE4C /* ViewController.h */,
+				C2B243392874A2A2003EAE4C /* QueueViewController.m */,
+				C2B243382874A2A2003EAE4C /* QueueViewController.h */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -482,11 +487,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2F07ED228945A5500318F7D /* Song.m in Sources */,
 				C2B2438A2878A9C2003EAE4C /* MusicSession.m in Sources */,
 				C2B24390287FB821003EAE4C /* MusicSessionHandler.m in Sources */,
 				C2BE831A28874FBE00F30B0E /* SpotifyManager.m in Sources */,
 				C26506AC2892F90D00E38146 /* SettingsViewController.m in Sources */,
-				C2B2433A2874A2A2003EAE4C /* ViewController.m in Sources */,
+				C2B2433A2874A2A2003EAE4C /* QueueViewController.m in Sources */,
 				C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */,
 				C2B243872878A65B003EAE4C /* CreateSessionViewController.m in Sources */,
 				C2B243452874A2A3003EAE4C /* main.m in Sources */,

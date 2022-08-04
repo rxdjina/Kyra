@@ -10,6 +10,7 @@ target 'MetaU Capstone Project' do
   pod 'AFNetworking'
   pod 'ParseLiveQuery'
   pod 'ReachabilitySwift'
+  pod 'BDBOAuth1Manager'
 
   target 'MetaU Capstone ProjectTests' do
     inherit! :search_paths
