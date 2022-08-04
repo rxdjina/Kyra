@@ -17,32 +17,115 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.errorMessageLabel.hidden = YES;
+    
     self.emailTextField.delegate = self;
     self.oldPasswordTextField.delegate = self;
     self.updatedPasswordTextField.delegate = self;
     self.confirmUpdatedPasswordTextField.delegate = self;
 }
 
-- (void)changeEmail {
-    PFUser *currentUser = [PFUser currentUser];
+- (void)setDefaultTextField:(NSArray *)arrayOfTextFields {
+    for (UITextField *textField in arrayOfTextFields) {
+        [self setBorderProperties:textField color:[UIColor grayColor]];
+    }
+}
+
+- (void)setBorderProperties:(UITextField *)textField color:(UIColor *)color {
+    textField.layer.borderColor = [color CGColor];
+    textField.layer.borderWidth = 1;
+}
+
+- (void)clearTextFields: (NSArray *)arrayOfTextFields{
+    for (UITextField *textField in arrayOfTextFields) {
+        textField.text = @"";
+    }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    [self validateTextFields:textField];
+    return YES;
+}
+
+// Verify All Text Fields Filled
+- (void)validateTextFields: (UITextField *)textField {
+    BOOL allFieldsFilled = ((self.oldPasswordTextField.text.length > 0) &&
+                            (self.updatedPasswordTextField.text.length > 0) &&
+                            (self.confirmUpdatedPasswordTextField.text.length > 0));
     
+    if (allFieldsFilled) {
+    self.updatePasswordButton.enabled = YES;
+    self.updatePasswordButton.backgroundColor = [UIColor colorWithRed:0.47 green:0.61 blue:0.90 alpha:1.0];
+        
+  } else {
+    self.updatePasswordButton.backgroundColor = [UIColor lightGrayColor];
+    self.updatePasswordButton.enabled = NO;
+  }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)changeEmail {
+    NSArray *changeEmailTextFields = @[self.emailTextField];
+    PFUser *currentUser = [PFUser currentUser];
     NSString *email = self.emailTextField.text;
     
+    NSLog(@"%@", email);
     if (currentUser) {
       currentUser[@"email"] = email;
 
       [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            NSLog(@"Sucessfully updated email");
+            NSLog(@"Sucessfully updated email to %@", email);
+            [self clearTextFields:changeEmailTextFields];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            // TODO: Add success alert
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
+            self.errorMessageLabel.hidden = NO;
+            self.errorMessageLabel.text = [NSString stringWithFormat:@"%@", error.localizedDescription];
         }
       }];
     }
 }
 
 - (void)changePassword {
-     
+    NSArray *changePasswordTextFields = @[self.oldPasswordTextField, self.updatedPasswordTextField, self.confirmUpdatedPasswordTextField];
+    
+    PFUser *currentUser = [PFUser currentUser];
+    NSString *newPassword;
+
+    if ([self.updatedPasswordTextField.text isEqual:self.confirmUpdatedPasswordTextField.text]) {
+        // TODO: Verify that oldPasswordTextField matched old password
+        
+        newPassword = self.updatedPasswordTextField.text;
+        
+        if (currentUser) {
+            [currentUser setPassword:newPassword];
+
+          [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"Sucessfully updated password");
+                [self clearTextFields:changePasswordTextFields];
+                [self dismissViewControllerAnimated:YES completion:nil];
+                // TODO: Add success alert
+            } else {
+                NSLog(@"Error: %@", error.localizedDescription);
+                self.errorMessageLabel.hidden = NO;
+                self.errorMessageLabel.text = [NSString stringWithFormat:@"%@", error.localizedDescription];
+            }
+          }];
+        }
+    } else {
+        self.updatePasswordButton.enabled = NO;
+        NSLog(@"Passwords do not match");
+        self.errorMessageLabel.hidden = NO;
+        self.errorMessageLabel.text = @"* Passwords do not match";
+    }
 }
 
 - (IBAction)pressedUpdateEmail:(id)sender {
