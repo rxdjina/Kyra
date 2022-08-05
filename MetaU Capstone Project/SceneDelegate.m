@@ -8,6 +8,7 @@
 #import "SceneDelegate.h"
 #import "AppDelegate.h"
 #import "Parse/Parse.h"
+#import "SpotifyManager.h"
 
 @interface SceneDelegate ()
 
@@ -15,14 +16,12 @@
 
 @implementation SceneDelegate
 
-- (void)scene:(UIScene *)scene openURLContexts:(nonnull NSSet<UIOpenURLContext *> *)URLContexts{
+- (void)scene:(UIScene *)scene openURLContexts:(NSSet<UIOpenURLContext *> *)URLContexts {
     NSURL *url = [[URLContexts allObjects] firstObject].URL;
-
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (url != nil) {
-        [appDelegate.sessionManager application:[UIApplication sharedApplication] openURL:url options:[NSMutableDictionary dictionary]];
-
-    }
+    
+        if (url != nil) {
+            [[[SpotifyManager shared] sessionManager] application:[UIApplication sharedApplication] openURL:url options:[NSMutableDictionary dictionary]];
+        }
 }
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
@@ -37,12 +36,10 @@
 
 
 - (void)sceneDidBecomeActive:(UIScene *)scene {
-    [[[UIApplication sharedApplication] delegate] applicationDidBecomeActive: [UIApplication sharedApplication]];
 }
 
 
 - (void)sceneWillResignActive:(UIScene *)scene {
-    [[[UIApplication sharedApplication] delegate] applicationWillResignActive: [UIApplication sharedApplication]];
 }
 
 

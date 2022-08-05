@@ -12,12 +12,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MusicSessionViewController : UIViewController
+@interface MusicSessionViewController : UIViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *sessionNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *sessionIDLabel;
 @property (nonatomic, strong) MusicSession *musicSession;
 @property (strong, nonatomic) IBOutlet UILabel *sessionLogLabel;
+@property (strong, nonatomic) IBOutlet UILabel *testLabel;
+
+@property (strong, nonatomic) IBOutlet UIButton *playPauseButton;
+@property (strong, nonatomic) IBOutlet UIButton *forwardButton;
+@property (strong, nonatomic) IBOutlet UIButton *rewindButton;
+
+@property (strong, nonatomic) IBOutlet UITextField *searchTextField;
+@property (strong, nonatomic) IBOutlet UILabel *resultsLabel;
 
 @end
 

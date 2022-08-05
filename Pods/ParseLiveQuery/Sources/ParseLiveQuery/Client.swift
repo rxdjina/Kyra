@@ -23,7 +23,7 @@ open class Client: NSObject {
     let clientKey: String?
 
     var socket: WebSocket?
-    public var shouldPrintWebSocketLog = true
+    public var shouldPrintWebSocketLog = false
     public var shouldPrintWebSocketTrace = false
     public var userDisconnected = false
     var isConnecting = false

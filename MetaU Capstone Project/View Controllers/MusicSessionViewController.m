@@ -6,10 +6,11 @@
 //
 
 #import "MusicSessionViewController.h"
-#import "AppDelegate.h"
-#import "MusicSessionHandler.h"
+#import "HomeViewController.h"
+#import "MusicSession.h"
 #import <SpotifyiOS/SpotifyiOS.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
+#import "SpotifyManager.h"
 
 @import ParseLiveQuery;
 
@@ -20,11 +21,12 @@
 @property (nonatomic, strong) SPTAppRemote *appRemote;
 @property (nonatomic) NSInteger timestamp;
 @property (nonatomic, strong) id<SPTAppRemotePlayerState> playerState;
+@property (nonatomic, strong) NSString *accessToken;
 
 @property (nonatomic, strong) PFLiveQueryClient *client;
 @property (nonatomic, strong) PFQuery *query;
-@property (nonatomic, strong) MusicSessionHandler *handler;
 @property (nonatomic, strong) PFLiveQuerySubscription *subscription;
+@property (nonatomic) NSInteger testCounter;
 
 @end
 
@@ -39,19 +41,55 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.accessToken = [[SpotifyManager shared] accessToken];
     self.sessionNameLabel.text = self.musicSession.sessionName;
     self.sessionIDLabel.text = self.musicSession.sessionCode;
     self.isPlaying = NO;
     
     [self querySetup];
+    
+    [MusicSession addUserToSession:self.musicSession.sessionCode withCompletion:^(BOOL succeeded, NSError * error) {
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            NSLog(@"User added to session successfully");
+        }
+    }];
+    
+    [self getDataFrom:@"https://api.spotify.com/v1/me/player/recently-played"];
+//    NS
+}
+
+- (void)testTimer // Increments counter every second
+{
+    [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                 target:self selector:@selector(testTimestamp:) userInfo:nil repeats:YES];
+}
+
+-  (void)testTimestamp:(NSTimer *)timer {
+
+    self.testCounter++;
+    
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:self.musicSession.sessionCode];
+    
+    [query getObjectInBackgroundWithId:self.musicSession.objectId
+                                 block:^(PFObject *session, NSError *error) {
+        PFUser *host = session[@"host"];
+        
+        if ([PFUser.currentUser.objectId isEqual:host.objectId]) {
+            session[@"timestamp"] = @(self.testCounter);
+            [session saveInBackground];
+        }
+    }];
 }
 
 - (void)querySetup {
     self.client = [[PFLiveQueryClient alloc] initWithServer:SERVER_URL applicationId:APPLICATION_ID clientKey:CLIENT_KEY];
+
     PFQuery *query = [PFQuery queryWithClassName:@"MusicSession"];
     self.subscription = [self.client subscribeToQuery:query];
-
-    __unsafe_unretained typeof(self) weakSelf = self;
+    
+    __weak typeof(self) weakSelf = self;
     
     // Called when subscribed
     (void)[self.subscription addSubscribeHandler:^(PFQuery<PFObject *> * _Nonnull query) {
@@ -68,10 +106,22 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
         __strong typeof (self) strongSelf = weakSelf;
         
         MusicSession *session = (MusicSession *)object;
+        
         NSLog(@"Update Handler");
 
         dispatch_async(dispatch_get_main_queue(), ^{
+    
             strongSelf.sessionLogLabel.text = [NSString stringWithFormat:@"%@", session.activeUsers];
+            strongSelf.testLabel.text = [NSString stringWithFormat:@"%ld", (long)session.timestamp];
+            
+            UIImage *playImage = [UIImage systemImageNamed:@"play.circle.fill"];
+            UIImage *stopImage = [UIImage systemImageNamed:@"stop.circle.fill"];
+            
+            if (strongSelf.isPlaying) {
+                [strongSelf.playPauseButton setImage:stopImage forState:UIControlStateNormal];
+            } else {
+                [strongSelf.playPauseButton setImage:playImage forState:UIControlStateNormal];
+            }
         });
     }];
     
@@ -95,21 +145,35 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     }];
 }
 
+- (void)updateMusicSession {
+    // TODO: Update session view controller
+}
+
 - (IBAction)pressedThePlayButton:(id)sender {
-    UIImage *playImage = [UIImage systemImageNamed:@"play.circle.fill"];
-    UIImage *stopImage = [UIImage systemImageNamed:@"stop.circle.fill"];
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:self.musicSession.sessionCode];
     
-    [self.appRemote isConnected] ? NSLog(@"Conneted") : NSLog(@"Not Connected");
+    // if user presses play -> song plays -> update status on server -> update image based on server
+    // if the user presses stop -> song stops -> update status on seerver -> update image based on server
+    
     if (!self.isPlaying) {
-        [sender setImage:stopImage forState:UIControlStateNormal];
         self.isPlaying = YES;
         [self playMusic];
-        
+
     } else {
-        [sender setImage:playImage forState:UIControlStateNormal];
         self.isPlaying = NO;
         [self stopMusic];
     }
+    
+    [query getObjectInBackgroundWithId:self.musicSession.objectId
+                                 block:^(PFObject *session, NSError *error) {
+
+        PFUser *host = session[@"host"];
+        
+        if ([PFUser.currentUser.objectId isEqual:host.objectId]) {
+            session[@"isPlaying"] = @(self.isPlaying);
+            [session saveInBackground];
+        }
+    }];
 }
 
 - (IBAction)pressedSkipButton:(id)sender {
@@ -179,6 +243,51 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
             }
         }];
     }
+}
+
+- (IBAction)pressedLeaveSession:(id)sender {
+    PFQuery *query = [PFQuery queryWithClassName:@"MusicSession"];
+
+    [MusicSession removeUserFromSession:self.musicSession.sessionCode user:[PFUser currentUser] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            [self.client unsubscribeFromQuery:query];
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (NSString *)getInfo: (NSString *)objectId {
+    NSString *username;
+
+    PFQuery *query = [[PFUser query] whereKey:@"objectId" equalTo:objectId];
+    NSMutableArray *users = (NSMutableArray *)[query findObjects];
+    username = [users valueForKey:@"username"];
+
+    return username;
+}
+
+
+- (void)getDataFrom: (NSString *)targetUrl {
+    NSString *token = [[SpotifyManager shared] accessToken];
+    NSString *tokenType = @"Bearer";
+    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    [request setValue:header forHTTPHeaderField:@"Authorization"];
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:targetUrl]];
+
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
+      ^(NSData * _Nullable data,
+        NSURLResponse * _Nullable response,
+        NSError * _Nullable error) {
+
+          NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+          NSLog(@"Data received: %@", myString);
+    }] resume];
 }
 
 @end

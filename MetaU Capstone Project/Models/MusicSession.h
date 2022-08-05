@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *log;
 @property (nonatomic, strong) NSMutableArray *activeUsers;
 @property (nonatomic) BOOL isActive;
+@property (nonatomic) BOOL isPlaying;
+@property (nonatomic) NSInteger timestamp;
 
 // Settings?
 @property (nonatomic) BOOL *allowExplicit;
@@ -27,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (MusicSession *) createSession: ( NSString * )sessionName withCompletion: (PFBooleanResultBlock _Nullable)completion;
 + (void) joinSession: ( NSString * )sessionID withCompletion: (PFBooleanResultBlock _Nullable)completion;
 + (void) addUserToSession: ( NSString * )sessionCode withCompletion: (PFBooleanResultBlock _Nullable)completion;
++ (void)removeUserFromSession:(NSString *)sessionCode user: ( PFUser * )user withCompletion: (PFBooleanResultBlock _Nullable) completion;
 + (void)updateSessionLog: ( NSString * )sessionCode decription:( NSString * )message withCompletion: (PFBooleanResultBlock _Nullable) completion;
 @end
 
