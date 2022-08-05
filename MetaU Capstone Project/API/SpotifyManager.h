@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SpotifyManager : NSObject <SPTAppRemoteDelegate, SPTSessionManagerDelegate>
+@interface SpotifyManager : NSObject <SPTAppRemoteDelegate, SPTSessionManagerDelegate, SPTAppRemotePlayerStateDelegate>
 
 + (id)shared;
 
@@ -20,10 +20,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, weak) id<SPTAppRemotePlayerStateDelegate> delegate;
 
+@property (nonatomic) NSInteger timestamp;
+@property (nonatomic, strong) NSString *trackName;
+@property (nonatomic, weak) id<SPTAppRemoteTrack> currentTrack;
+
+
+// Authorization & Spotify Setup
 - (void)authenticateSpotify;
 - (void)applicationWillResignActive;
 - (void)applicationDidBecomeActive;
 - (void)connectSpotify;
+
+// Audio Playback Control
+- (void)startTrack;
+- (void)stopTrack;
+- (void)skipTrack;
+- (void)rewindTrack;
+
+- (id<SPTAppRemoteTrack>)getCurrentTrackInfo;
 
 @end
 

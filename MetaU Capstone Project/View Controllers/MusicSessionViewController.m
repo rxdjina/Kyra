@@ -55,9 +55,6 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
             NSLog(@"User added to session successfully");
         }
     }];
-    
-    [self getDataFrom:@"https://api.spotify.com/v1/me/player/recently-played"];
-//    NS
 }
 
 - (void)testTimer // Increments counter every second
@@ -113,6 +110,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     
             strongSelf.sessionLogLabel.text = [NSString stringWithFormat:@"%@", session.activeUsers];
             strongSelf.testLabel.text = [NSString stringWithFormat:@"%ld", (long)session.timestamp];
+            strongSelf.trackLabel.text = [[SpotifyManager shared] getCurrentTrackInfo].name;
             
             UIImage *playImage = [UIImage systemImageNamed:@"play.circle.fill"];
             UIImage *stopImage = [UIImage systemImageNamed:@"stop.circle.fill"];
@@ -185,64 +183,19 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 }
 
 - (void)playMusic {
-    NSLog(@"Play music called");
-    [[self.appRemote playerAPI] resume:^(id result, NSError * error){
-        NSLog(@"Playing current track...");
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"Played music");
-        }
-    }];
+    [[SpotifyManager shared] startTrack];
 }
 
 - (void)stopMusic {
-    NSLog(@"Pause music called");
-    [[self.appRemote playerAPI] pause:^(id result, NSError * error){
-        NSLog(@"Pausing current track...");
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"Stopped music.");
-        }
-    }];
+    [[SpotifyManager shared] stopTrack];
 }
 
 - (void)skipMusic {
-    NSLog(@"Skip music called");
-    [[self.appRemote playerAPI] skipToNext:^(id result, NSError * error){
-        NSLog(@"Skipping current track...");
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"Skipped to next track");
-        }
-    }];
+    [[SpotifyManager shared] skipTrack];
 }
 
 - (void)rewindMusic {
-    NSLog(@"Rewinding music called");
-    
-    if (self.timestamp < MAX_MILISECONDS) { // if current timestamp < x seconds, restart current song
-        NSLog(@"Restarting current track...");
-        [[self.appRemote playerAPI] seekToPosition:0 callback:^(id result, NSError * error){
-            if (error != nil) {
-                NSLog(@"Error: %@", error.localizedDescription);
-            } else {
-                NSLog(@"Restarted track");
-            }
-        }];
-        
-    } else if (self.timestamp > MAX_MILISECONDS) { // if current timestamp > x seconds, rewind to previous song
-        NSLog(@"Rewinding to previous track...");
-        [[self.appRemote playerAPI] skipToPrevious:^(id result, NSError * error){
-            if (error != nil) {
-                NSLog(@"Error: %@", error.localizedDescription);
-            } else {
-                NSLog(@"Skipped to previous track");
-            }
-        }];
-    }
+    [[SpotifyManager shared] rewindTrack];
 }
 
 - (IBAction)pressedLeaveSession:(id)sender {

@@ -21,6 +21,9 @@
     return shared;
 }
 
+static const NSInteger MAX_SECONDS = 5;
+static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
+
 - (void)connectSpotify {
     NSString *spotifyClientID = @"d45f5e4964984bc49dfb5b2280b8d28c";
     NSURL *spotifyRedirectURL = [NSURL URLWithString:@"metau-summer-2022-capstone-project://callback"];
@@ -65,7 +68,11 @@
     NSLog(@"success: %@", session);
     
     self.appRemote.connectionParameters.accessToken = session.accessToken;
-    [self.appRemote connect];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.appRemote connect];
+    });
+//    [self.appRemote connect];
     self.accessToken = session.accessToken;
 }
 
@@ -105,9 +112,75 @@
 - (void)playerStateDidChange:(nonnull id<SPTAppRemotePlayerState>)playerState {
     NSLog(@"Track name: %@", playerState.track.name);
     NSLog(@"player state changed");
+    
+    self.currentTrack = playerState.track;
 }
 
-// TODO: Add Play/Pause
-// TODO: Add Skip/Rewind
+- (id<SPTAppRemoteTrack>) getCurrentTrackInfo {
+    return self.currentTrack;
+}
+
+- (void)startTrack {
+//    NSLog(@"Play music called");
+    [[self.appRemote playerAPI] resume:^(id result, NSError * error){
+        NSLog(@"Playing current track...");
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            NSLog(@"Played music");
+        }
+    }];
+}
+
+- (void)stopTrack {
+    NSLog(@"%@", @([self.appRemote isConnected]));
+    [[self.appRemote playerAPI] pause:^(id result, NSError * error){
+        NSLog(@"Pausing current track...");
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            NSLog(@"Stopped music.");
+        }
+    }];
+}
+
+- (void)skipTrack {
+    [[self.appRemote playerAPI] skipToNext:^(id result, NSError * error){
+        NSLog(@"Skipping current track...");
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            NSLog(@"Skipped to next track");
+        }
+    }];
+    
+    [self.appRemote.playerAPI skipToNext:(nil)];
+}
+
+- (void)rewindTrack {
+    NSLog(@"Rewinding music called");
+    
+    self.timestamp = 8; // Placeholder timestamp
+    
+    if (self.timestamp < MAX_MILISECONDS) { // if current timestamp < x seconds, restart current song
+        [[self.appRemote playerAPI] seekToPosition:0 callback:^(id result, NSError * error){
+            if (error != nil) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            } else {
+                NSLog(@"Restarted track");
+            }
+        }];
+        
+    } else if (self.timestamp > MAX_MILISECONDS) { // if current timestamp > x seconds, rewind to previous song
+        [[self.appRemote playerAPI] skipToPrevious:^(id result, NSError * error){
+            if (error != nil) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            } else {
+                NSLog(@"Skipped to previous track");
+            }
+        }];
+
+    }
+}
 
 @end
