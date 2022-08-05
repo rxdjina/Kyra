@@ -112,11 +112,7 @@ static const NSUInteger LENGTH_ID = 6;
                 NSLog(@"[%lu] %@", (unsigned long)users.count, users);
                 
                 NSInteger *count = @(0);
-                
-//                for (PFUser *i in users) {
-////                    if (i.objectId == use
-//                }
-                
+
                 [users removeObjectIdenticalTo:user.objectId];
                 NSLog(@"[%lu] %@", (unsigned long)users.count, users);
                 [session setValue:users forKey:@"activeUsers"];
@@ -128,8 +124,6 @@ static const NSUInteger LENGTH_ID = 6;
                         NSLog(@"%@ left session successfully", PFUser.currentUser.username);
                     }
                 }];
-                
-//                [PFObject saveAllInBackground:session];
                 
             } else if (users.count == 1) {
                 NSLog(@"One user left");

@@ -7,13 +7,9 @@
 
 #import "MusicSessionViewController.h"
 #import "HomeViewController.h"
-#import "AppDelegate.h"
-#import "SceneDelegate.h"
 #import "MusicSession.h"
-#import "MusicSessionHandler.h"
 #import <SpotifyiOS/SpotifyiOS.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
-#import "AFNetworking.h"
 #import "SpotifyManager.h"
 
 @import ParseLiveQuery;
@@ -25,10 +21,10 @@
 @property (nonatomic, strong) SPTAppRemote *appRemote;
 @property (nonatomic) NSInteger timestamp;
 @property (nonatomic, strong) id<SPTAppRemotePlayerState> playerState;
+@property (nonatomic, strong) NSString *accessToken;
 
 @property (nonatomic, strong) PFLiveQueryClient *client;
 @property (nonatomic, strong) PFQuery *query;
-@property (nonatomic, strong) MusicSessionHandler *handler;
 @property (nonatomic, strong) PFLiveQuerySubscription *subscription;
 @property (nonatomic) NSInteger testCounter;
 
@@ -45,6 +41,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.accessToken = [[SpotifyManager shared] accessToken];
     self.sessionNameLabel.text = self.musicSession.sessionName;
     self.sessionIDLabel.text = self.musicSession.sessionCode;
     self.isPlaying = NO;
@@ -60,6 +57,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     }];
     
     [self getDataFrom:@"https://api.spotify.com/v1/me/player/recently-played"];
+//    NS
 }
 
 - (void)testTimer // Increments counter every second
@@ -87,10 +85,11 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 
 - (void)querySetup {
     self.client = [[PFLiveQueryClient alloc] initWithServer:SERVER_URL applicationId:APPLICATION_ID clientKey:CLIENT_KEY];
+
     PFQuery *query = [PFQuery queryWithClassName:@"MusicSession"];
     self.subscription = [self.client subscribeToQuery:query];
     
-    __unsafe_unretained typeof(self) weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     // Called when subscribed
     (void)[self.subscription addSubscribeHandler:^(PFQuery<PFObject *> * _Nonnull query) {
@@ -269,8 +268,15 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     return username;
 }
 
+
 - (void)getDataFrom: (NSString *)targetUrl {
+    NSString *token = [[SpotifyManager shared] accessToken];
+    NSString *tokenType = @"Bearer";
+    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    [request setValue:header forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
     [request setURL:[NSURL URLWithString:targetUrl]];
 
