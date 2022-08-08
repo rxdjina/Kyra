@@ -7,6 +7,7 @@
 
 #import "SpotifyManager.h"
 #import "SpotifyiOS/SpotifyAppRemote.h"
+#import "MusicSessionViewController.h"
 
 @implementation SpotifyManager
 
@@ -41,7 +42,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 }
 
 - (void)authenticateSpotify {
-    SPTScope requestedScope = SPTAppRemoteControlScope | SPTUserFollowReadScope | SPTPlaylistModifyPrivateScope | SPTPlaylistReadPrivateScope  | SPTUserLibraryReadScope | SPTUserTopReadScope | SPTUserReadPrivateScope | SPTUserLibraryModifyScope | SPTPlaylistReadCollaborativeScope | SPTUserReadEmailScope | SPTUserReadRecentlyPlayedScope;
+    SPTScope requestedScope = SPTAppRemoteControlScope | SPTUserFollowReadScope | SPTPlaylistModifyPrivateScope | SPTPlaylistReadPrivateScope  | SPTUserLibraryReadScope | SPTUserTopReadScope | SPTUserReadPrivateScope | SPTUserLibraryModifyScope | SPTPlaylistReadCollaborativeScope | SPTUserReadEmailScope | SPTUserReadRecentlyPlayedScope | SPTUserReadCurrentlyPlayingScope;
     
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
 }
@@ -72,7 +73,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.appRemote connect];
     });
-//    [self.appRemote connect];
+
     self.accessToken = session.accessToken;
 }
 
@@ -113,8 +114,10 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     NSLog(@"Track name: %@", playerState.track.name);
     NSLog(@"player state changed");
     
-    self.currentTrack = playerState.track;
+//    [MusicSessionViewController updateMusicSession];
+//    [MusicSessionViewController ];
 }
+
 
 - (id<SPTAppRemoteTrack>) getCurrentTrackInfo {
     return self.currentTrack;
@@ -182,5 +185,6 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 
     }
 }
+
 
 @end

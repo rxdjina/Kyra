@@ -5,8 +5,8 @@
 //  Created by Rodjina Pierre Louis on 7/29/22.
 //
 
-#import "Song.h"
+#import "Track.h"
 
-@implementation Song
+@implementation Track
 
 @end

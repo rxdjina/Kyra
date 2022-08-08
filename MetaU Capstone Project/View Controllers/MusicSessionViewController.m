@@ -11,16 +11,14 @@
 #import <SpotifyiOS/SpotifyiOS.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
 #import "SpotifyManager.h"
+#import "Track.h"
 
 @import ParseLiveQuery;
 
 @interface MusicSessionViewController ()
 
 @property BOOL isPlaying;
-
-@property (nonatomic, strong) SPTAppRemote *appRemote;
 @property (nonatomic) NSInteger timestamp;
-@property (nonatomic, strong) id<SPTAppRemotePlayerState> playerState;
 @property (nonatomic, strong) NSString *accessToken;
 
 @property (nonatomic, strong) PFLiveQueryClient *client;
@@ -46,15 +44,11 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     self.sessionIDLabel.text = self.musicSession.sessionCode;
     self.isPlaying = NO;
     
+    [self updateView];
     [self querySetup];
     
-    [MusicSession addUserToSession:self.musicSession.sessionCode withCompletion:^(BOOL succeeded, NSError * error) {
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"User added to session successfully");
-        }
-    }];
+    [MusicSession addUserToSession:self.musicSession.sessionCode withCompletion:nil];
+    
 }
 
 - (void)testTimer // Increments counter every second
@@ -110,7 +104,6 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     
             strongSelf.sessionLogLabel.text = [NSString stringWithFormat:@"%@", session.activeUsers];
             strongSelf.testLabel.text = [NSString stringWithFormat:@"%ld", (long)session.timestamp];
-            strongSelf.trackLabel.text = [[SpotifyManager shared] getCurrentTrackInfo].name;
             
             UIImage *playImage = [UIImage systemImageNamed:@"play.circle.fill"];
             UIImage *stopImage = [UIImage systemImageNamed:@"stop.circle.fill"];
@@ -143,8 +136,29 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     }];
 }
 
-- (void)updateMusicSession {
+- (void)updateView {
     // TODO: Update session view controller
+    NSLog(@"Update Called");
+    
+    [[[[SpotifyManager shared] appRemote] playerAPI] getPlayerState:^(id<SPTAppRemotePlayerState> _Nullable result, NSError * _Nullable error) {
+        
+        if (error == nil) {
+            self.trackNameLabel.text = result.track.name;
+            self.artistLabel.text = [result.track.artist name];
+            
+            [[[[SpotifyManager shared] appRemote] imageAPI] fetchImageForItem:result.track withSize:CGSizeZero callback:^(id  _Nullable result, NSError * _Nullable error) {
+                //
+                if (error != nil) {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                } else {
+                    self.coverArtImage.image = result;
+                }
+            }];
+
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
 }
 
 - (IBAction)pressedThePlayButton:(id)sender {
@@ -184,6 +198,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 
 - (void)playMusic {
     [[SpotifyManager shared] startTrack];
+
 }
 
 - (void)stopMusic {
@@ -221,26 +236,34 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     return username;
 }
 
-
-- (void)getDataFrom: (NSString *)targetUrl {
+- (NSDictionary *)getDataFrom: (NSString *)targetUrl {
     NSString *token = [[SpotifyManager shared] accessToken];
     NSString *tokenType = @"Bearer";
     NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
-    
+
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     
     [request setValue:header forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
     [request setURL:[NSURL URLWithString:targetUrl]];
 
+    __block NSDictionary *dataRecieved = [[NSDictionary alloc] init];
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
       ^(NSData * _Nullable data,
         NSURLResponse * _Nullable response,
         NSError * _Nullable error) {
 
-          NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-          NSLog(@"Data received: %@", myString);
+        NSString *strISOLatin = [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding];
+        NSData *dataUTF8 = [strISOLatin dataUsingEncoding:NSUTF8StringEncoding];
+        dataRecieved = [NSJSONSerialization JSONObjectWithData:dataUTF8 options:0 error:&error];
+        
+        if (dataRecieved != nil) {
+            NSLog(@"Data: %@", dataRecieved);
+        } else {
+            NSLog(@"Error: %@", error);
+        }
     }] resume];
-}
 
+    return dataRecieved;
+}
 @end
