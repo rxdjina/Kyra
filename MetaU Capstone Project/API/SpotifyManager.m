@@ -22,6 +22,7 @@
     return shared;
 }
 
+
 static const NSInteger MAX_SECONDS = 5;
 static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 
@@ -114,17 +115,18 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     NSLog(@"Track name: %@", playerState.track.name);
     NSLog(@"player state changed");
     
-//    [MusicSessionViewController updateMusicSession];
-//    [MusicSessionViewController ];
+    [self sendNotification];
 }
 
+- (void)sendNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerStateChangeNotification" object:self];
+}
 
 - (id<SPTAppRemoteTrack>) getCurrentTrackInfo {
     return self.currentTrack;
 }
 
 - (void)startTrack {
-//    NSLog(@"Play music called");
     [[self.appRemote playerAPI] resume:^(id result, NSError * error){
         NSLog(@"Playing current track...");
         if (error != nil) {
@@ -163,7 +165,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 - (void)rewindTrack {
     NSLog(@"Rewinding music called");
     
-    self.timestamp = 8; // Placeholder timestamp
+    self.timestamp = 3; // Placeholder timestamp
     
     if (self.timestamp < MAX_MILISECONDS) { // if current timestamp < x seconds, restart current song
         [[self.appRemote playerAPI] seekToPosition:0 callback:^(id result, NSError * error){
@@ -182,7 +184,6 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
                 NSLog(@"Skipped to previous track");
             }
         }];
-
     }
 }
 

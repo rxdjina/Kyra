@@ -39,20 +39,31 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(receiveNotification:)
+            name:@"playerStateChangeNotification"
+            object:nil];
+    
     self.accessToken = [[SpotifyManager shared] accessToken];
     self.sessionNameLabel.text = self.musicSession.sessionName;
     self.sessionIDLabel.text = self.musicSession.sessionCode;
-    self.isPlaying = NO;
+    self.isPlaying = YES;
     
-    [self updateView];
     [self querySetup];
+    [self updateView];
     
     [MusicSession addUserToSession:self.musicSession.sessionCode withCompletion:nil];
-    
 }
 
-- (void)testTimer // Increments counter every second
-{
+- (void)receiveNotification:(NSNotification *)notification {
+    if ([[notification name] isEqualToString:@"playerStateChangeNotification"]) {
+        NSLog(@"Player State Change Notification Recived");
+        [self updateView];
+    }
+}
+
+- (void)testTimer { // Increments counter every second
     [NSTimer scheduledTimerWithTimeInterval:1.0f
                                  target:self selector:@selector(testTimestamp:) userInfo:nil repeats:YES];
 }
@@ -139,19 +150,31 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 - (void)updateView {
     // TODO: Update session view controller
     NSLog(@"Update Called");
-    
+        
+    __weak typeof(self) weakSelf = self;
     [[[[SpotifyManager shared] appRemote] playerAPI] getPlayerState:^(id<SPTAppRemotePlayerState> _Nullable result, NSError * _Nullable error) {
         
+        __strong typeof (self) strongSelf = weakSelf;
+        
+        if (strongSelf == nil) {
+            NSLog(@"strongSelf NIL");
+            return;
+        }
+        
         if (error == nil) {
-            self.trackNameLabel.text = result.track.name;
-            self.artistLabel.text = [result.track.artist name];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                strongSelf.trackNameLabel.text = result.track.name;
+                strongSelf.artistLabel.text = [result.track.artist name];
+            });
             
             [[[[SpotifyManager shared] appRemote] imageAPI] fetchImageForItem:result.track withSize:CGSizeZero callback:^(id  _Nullable result, NSError * _Nullable error) {
-                //
+
                 if (error != nil) {
                     NSLog(@"Error: %@", error.localizedDescription);
                 } else {
-                    self.coverArtImage.image = result;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        strongSelf.coverArtImage.image = result;
+                    });
                 }
             }];
 
@@ -198,7 +221,6 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 
 - (void)playMusic {
     [[SpotifyManager shared] startTrack];
-
 }
 
 - (void)stopMusic {

@@ -5,7 +5,7 @@
 //  Created by Rodjina Pierre Louis on 7/5/22.
 //
 
-#import "QueueViewController.h"
+#import "SearchViewController.h"
 #import "Parse/Parse.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
