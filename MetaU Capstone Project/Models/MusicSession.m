@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 #import "MusicSession.h"
 #import "Parse/Parse.h"
+#import "SpotifyManager.h"
+#import "SpotifyiOS/SpotifyiOS.h"
 
 @implementation MusicSession
 
@@ -23,6 +25,7 @@
 @dynamic isActive;
 @dynamic isPlaying;
 @dynamic timestamp;
+@dynamic queue;
 
 static const NSUInteger LENGTH_ID = 6;
 
@@ -56,6 +59,17 @@ static const NSUInteger LENGTH_ID = 6;
 
     newSession.log = (NSMutableArray *)@[task];
 
+    // Queue
+//    [[[SpotifyManager shared] appRemote] pla]
+//    task = @{
+//        @"trackName" : track.name,
+//        @"trackArtist" : track.artist,
+//        @"trackURI" : track.URI,
+//        @"addedBy" : user
+//    };
+    
+    newSession.queue = [NSMutableArray new];
+    
     [newSession saveInBackgroundWithBlock: completion];
     
     return newSession;
@@ -167,6 +181,39 @@ static const NSUInteger LENGTH_ID = 6;
     [dateFormatter setDateFormat:@"dd-MM-yyyy hh:mm:ss a"];
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
     return dateString;
+}
+
++ (void)addToQueue: ( NSString * )sessionCode track:( NSDictionary * )trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion {
+ 
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:sessionCode];
+    PFUser *user = [PFUser currentUser];
+
+    NSDictionary *task = @{
+        @"track" : trackInfo,
+        @"addedBy" : user
+    };
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+        if (session) {
+            NSMutableArray *queue = [session[0] valueForKey:@"queue"];
+
+            [queue addObject:task];
+            [session setValue:queue forKey:@"queue"];
+            
+            NSString *logDescription = [NSString stringWithFormat:@"Added %@ by %@ to queue", trackInfo[@"name"], trackInfo[@"artist"]];
+            
+            [MusicSession updateSessionLog:sessionCode decription:logDescription withCompletion:^(BOOL succeeded, NSError * error) {
+                if (error != nil) {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                }
+            }];
+            
+            [PFObject saveAllInBackground:session];
+        }
+        else {
+            NSLog(@"Error getting session: %@", error.localizedDescription);
+        }
+    }];
 }
 
 @end

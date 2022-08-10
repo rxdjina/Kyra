@@ -6,6 +6,7 @@
 //
 
 #import "Parse/Parse.h"
+#import "SpotifyiOS/SpotifyiOS.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL isActive;
 @property (nonatomic) BOOL isPlaying;
 @property (nonatomic) NSInteger timestamp;
+@property (nonatomic, strong) NSMutableArray *queue;
 
 // Settings?
 @property (nonatomic) BOOL *allowExplicit;
@@ -31,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void) addUserToSession: ( NSString * )sessionCode withCompletion: (PFBooleanResultBlock _Nullable)completion;
 + (void)removeUserFromSession:(NSString *)sessionCode user: ( PFUser * )user withCompletion: (PFBooleanResultBlock _Nullable) completion;
 + (void)updateSessionLog: ( NSString * )sessionCode decription:( NSString * )message withCompletion: (PFBooleanResultBlock _Nullable) completion;
++ (void)addToQueue: ( NSString * )sessionCode track:( NSDictionary * )trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
 @end
 
 NS_ASSUME_NONNULL_END
