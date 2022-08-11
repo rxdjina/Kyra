@@ -13,9 +13,10 @@
 #import "TrackCell.h"
 #import "Track.h"
 
-@interface QueueTableViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface QueueTableViewController ()
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSArray *queue;
 
 @end
@@ -30,7 +31,13 @@ NSString * const GET_TRACK_URL = @"https://api.spotify.com/v1/tracks/";
     self.tableView.dataSource = self;
     self.tableView.dataSource = self;
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(loadQueue) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
     [self loadQueue];
+    
+    [self.refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,16 +45,18 @@ NSString * const GET_TRACK_URL = @"https://api.spotify.com/v1/tracks/";
 }
 
 - (void)loadQueue {
-       PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:self.session.sessionCode];
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:self.session.sessionCode];
 
-       [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
-           if (session) {
-              self.queue = [session[0] valueForKey:@"queue"];
-           }
-           else {
-               NSLog(@"Error getting session: %@", error.localizedDescription);
-           }
-       }];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+       if (session) {
+           self.queue = [session[0] valueForKey:@"queue"];
+           [self.tableView reloadData];
+       }
+       else {
+           NSLog(@"Error getting session: %@", error.localizedDescription);
+       }
+        [self.refreshControl endRefreshing];
+    }];
 }
 
 // Number of rows
@@ -79,8 +88,6 @@ NSString * const GET_TRACK_URL = @"https://api.spotify.com/v1/tracks/";
 
         imageURL = [[[dataRevieved valueForKey:@"album"] valueForKey:@"images"] valueForKey:@"url"][1];
         NSURL *albumURL = [[NSURL alloc] initWithString:imageURL];
-        
-        NSLog(@"%@", imageURL);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             cell.coverArtImage.image = nil;
