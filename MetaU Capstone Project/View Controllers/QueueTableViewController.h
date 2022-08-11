@@ -6,10 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MusicSession.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QueueTableViewController : UITableViewController
+
+@property (strong, nonatomic) MusicSession *session;
 
 @end
 

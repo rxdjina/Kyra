@@ -7,6 +7,7 @@
 
 #import "MusicSessionViewController.h"
 #import "HomeViewController.h"
+#import "QueueTableViewController.h"
 #import "MusicSession.h"
 #import <SpotifyiOS/SpotifyiOS.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
@@ -177,7 +178,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
                     });
                 }
             }];
-
+            
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
         }
@@ -288,4 +289,13 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 
     return dataRecieved;
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier  isEqual: @"queueSegue"]) {
+        MusicSession *dataToPass = self.musicSession;
+        QueueTableViewController *queueVC = [segue destinationViewController];
+        queueVC.session = dataToPass;
+    }
+}
+
 @end
