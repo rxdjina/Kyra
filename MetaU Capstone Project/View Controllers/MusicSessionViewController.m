@@ -11,16 +11,14 @@
 #import <SpotifyiOS/SpotifyiOS.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
 #import "SpotifyManager.h"
+#import "Track.h"
 
 @import ParseLiveQuery;
 
 @interface MusicSessionViewController ()
 
 @property BOOL isPlaying;
-
-@property (nonatomic, strong) SPTAppRemote *appRemote;
 @property (nonatomic) NSInteger timestamp;
-@property (nonatomic, strong) id<SPTAppRemotePlayerState> playerState;
 @property (nonatomic, strong) NSString *accessToken;
 
 @property (nonatomic, strong) PFLiveQueryClient *client;
@@ -46,18 +44,11 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     self.sessionIDLabel.text = self.musicSession.sessionCode;
     self.isPlaying = NO;
     
+    [self updateView];
     [self querySetup];
     
-    [MusicSession addUserToSession:self.musicSession.sessionCode withCompletion:^(BOOL succeeded, NSError * error) {
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"User added to session successfully");
-        }
-    }];
+    [MusicSession addUserToSession:self.musicSession.sessionCode withCompletion:nil];
     
-    [self getDataFrom:@"https://api.spotify.com/v1/me/player/recently-played"];
-//    NS
 }
 
 - (void)testTimer // Increments counter every second
@@ -145,8 +136,29 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     }];
 }
 
-- (void)updateMusicSession {
+- (void)updateView {
     // TODO: Update session view controller
+    NSLog(@"Update Called");
+    
+    [[[[SpotifyManager shared] appRemote] playerAPI] getPlayerState:^(id<SPTAppRemotePlayerState> _Nullable result, NSError * _Nullable error) {
+        
+        if (error == nil) {
+            self.trackNameLabel.text = result.track.name;
+            self.artistLabel.text = [result.track.artist name];
+            
+            [[[[SpotifyManager shared] appRemote] imageAPI] fetchImageForItem:result.track withSize:CGSizeZero callback:^(id  _Nullable result, NSError * _Nullable error) {
+                //
+                if (error != nil) {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                } else {
+                    self.coverArtImage.image = result;
+                }
+            }];
+
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
 }
 
 - (IBAction)pressedThePlayButton:(id)sender {
@@ -185,64 +197,20 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 }
 
 - (void)playMusic {
-    NSLog(@"Play music called");
-    [[self.appRemote playerAPI] resume:^(id result, NSError * error){
-        NSLog(@"Playing current track...");
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"Played music");
-        }
-    }];
+    [[SpotifyManager shared] startTrack];
+
 }
 
 - (void)stopMusic {
-    NSLog(@"Pause music called");
-    [[self.appRemote playerAPI] pause:^(id result, NSError * error){
-        NSLog(@"Pausing current track...");
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"Stopped music.");
-        }
-    }];
+    [[SpotifyManager shared] stopTrack];
 }
 
 - (void)skipMusic {
-    NSLog(@"Skip music called");
-    [[self.appRemote playerAPI] skipToNext:^(id result, NSError * error){
-        NSLog(@"Skipping current track...");
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        } else {
-            NSLog(@"Skipped to next track");
-        }
-    }];
+    [[SpotifyManager shared] skipTrack];
 }
 
 - (void)rewindMusic {
-    NSLog(@"Rewinding music called");
-    
-    if (self.timestamp < MAX_MILISECONDS) { // if current timestamp < x seconds, restart current song
-        NSLog(@"Restarting current track...");
-        [[self.appRemote playerAPI] seekToPosition:0 callback:^(id result, NSError * error){
-            if (error != nil) {
-                NSLog(@"Error: %@", error.localizedDescription);
-            } else {
-                NSLog(@"Restarted track");
-            }
-        }];
-        
-    } else if (self.timestamp > MAX_MILISECONDS) { // if current timestamp > x seconds, rewind to previous song
-        NSLog(@"Rewinding to previous track...");
-        [[self.appRemote playerAPI] skipToPrevious:^(id result, NSError * error){
-            if (error != nil) {
-                NSLog(@"Error: %@", error.localizedDescription);
-            } else {
-                NSLog(@"Skipped to previous track");
-            }
-        }];
-    }
+    [[SpotifyManager shared] rewindTrack];
 }
 
 - (IBAction)pressedLeaveSession:(id)sender {
@@ -268,26 +236,34 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     return username;
 }
 
-
-- (void)getDataFrom: (NSString *)targetUrl {
+- (NSDictionary *)getDataFrom: (NSString *)targetUrl {
     NSString *token = [[SpotifyManager shared] accessToken];
     NSString *tokenType = @"Bearer";
     NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
-    
+
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     
     [request setValue:header forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
     [request setURL:[NSURL URLWithString:targetUrl]];
 
+    __block NSDictionary *dataRecieved = [[NSDictionary alloc] init];
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
       ^(NSData * _Nullable data,
         NSURLResponse * _Nullable response,
         NSError * _Nullable error) {
 
-          NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-          NSLog(@"Data received: %@", myString);
+        NSString *strISOLatin = [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding];
+        NSData *dataUTF8 = [strISOLatin dataUsingEncoding:NSUTF8StringEncoding];
+        dataRecieved = [NSJSONSerialization JSONObjectWithData:dataUTF8 options:0 error:&error];
+        
+        if (dataRecieved != nil) {
+            NSLog(@"Data: %@", dataRecieved);
+        } else {
+            NSLog(@"Error: %@", error);
+        }
     }] resume];
-}
 
+    return dataRecieved;
+}
 @end

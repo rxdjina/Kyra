@@ -23,10 +23,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIButton *playPauseButton;
 @property (strong, nonatomic) IBOutlet UIButton *forwardButton;
 @property (strong, nonatomic) IBOutlet UIButton *rewindButton;
+@property (strong, nonatomic) IBOutlet UILabel *trackLabel;
 
 @property (strong, nonatomic) IBOutlet UITextField *searchTextField;
 @property (strong, nonatomic) IBOutlet UILabel *resultsLabel;
 
+// Track
+@property (strong, nonatomic) IBOutlet UIImageView *coverArtImage;
+@property (strong, nonatomic) IBOutlet UILabel *trackNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *artistLabel;
+
+- (void)updateView;
 @end
 
 NS_ASSUME_NONNULL_END

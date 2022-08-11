@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Song : NSObject
+@interface Track : NSObject
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *artist;
