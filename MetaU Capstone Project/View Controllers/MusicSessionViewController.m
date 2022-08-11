@@ -151,12 +151,12 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 - (void)updateView {
     // TODO: Update session view controller
     NSLog(@"Update Called");
-        
+    
     __weak typeof(self) weakSelf = self;
     [[[[SpotifyManager shared] appRemote] playerAPI] getPlayerState:^(id<SPTAppRemotePlayerState> _Nullable result, NSError * _Nullable error) {
         
         __strong typeof (self) strongSelf = weakSelf;
-        
+    
         if (strongSelf == nil) {
             NSLog(@"strongSelf NIL");
             return;
@@ -265,7 +265,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    
+
     [request setValue:header forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
     [request setURL:[NSURL URLWithString:targetUrl]];
@@ -279,7 +279,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
         NSString *strISOLatin = [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding];
         NSData *dataUTF8 = [strISOLatin dataUsingEncoding:NSUTF8StringEncoding];
         dataRecieved = [NSJSONSerialization JSONObjectWithData:dataUTF8 options:0 error:&error];
-        
+
         if (dataRecieved != nil) {
             NSLog(@"Data: %@", dataRecieved);
         } else {
