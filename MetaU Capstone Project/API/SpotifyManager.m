@@ -23,6 +23,7 @@
 }
 
 static const NSInteger MAX_SECONDS = 5;
+static const NSInteger MIN_MILISECONDS = 0;
 static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 
 - (void)connectSpotify {
@@ -113,9 +114,6 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 - (void)playerStateDidChange:(nonnull id<SPTAppRemotePlayerState>)playerState {
     NSLog(@"Track name: %@", playerState.track.name);
     NSLog(@"player state changed");
-    
-//    [MusicSessionViewController updateMusicSession];
-//    [MusicSessionViewController ];
 }
 
 
@@ -124,7 +122,6 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 }
 
 - (void)startTrack {
-//    NSLog(@"Play music called");
     [[self.appRemote playerAPI] resume:^(id result, NSError * error){
         NSLog(@"Playing current track...");
         if (error != nil) {
@@ -165,7 +162,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     
     self.timestamp = 8; // Placeholder timestamp
     
-    if (self.timestamp < MAX_MILISECONDS) { // if current timestamp < x seconds, restart current song
+    if (MIN_MILISECONDS <= self.timestamp <= MAX_MILISECONDS) { // if current timestamp < x seconds, restart current song
         [[self.appRemote playerAPI] seekToPosition:0 callback:^(id result, NSError * error){
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
@@ -174,7 +171,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
             }
         }];
         
-    } else if (self.timestamp > MAX_MILISECONDS) { // if current timestamp > x seconds, rewind to previous song
+    } else if (MIN_MILISECONDS >= self.timestamp >= MAX_MILISECONDS) { // if current timestamp > x seconds, rewind to previous song
         [[self.appRemote playerAPI] skipToPrevious:^(id result, NSError * error){
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
