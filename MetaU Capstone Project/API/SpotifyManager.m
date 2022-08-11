@@ -22,7 +22,6 @@
     return shared;
 }
 
-
 static const NSInteger MAX_SECONDS = 5;
 static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 
@@ -187,5 +186,32 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     }
 }
 
+- (void)retriveDataFrom:(NSString *)targetUrl result:(void (^)(NSDictionary *))parsingFinished {
+    NSString *tokenType = @"Bearer";
+    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, self.accessToken];
 
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    [request setValue:header forHTTPHeaderField:@"Authorization"];
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:targetUrl]];
+
+    __block NSDictionary *dataRecieved = [[NSDictionary alloc] init];
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
+      ^(NSData * _Nullable data,
+        NSURLResponse * _Nullable response,
+        NSError * _Nullable error) {
+
+        NSString *strISOLatin = [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding];
+        NSData *dataUTF8 = [strISOLatin dataUsingEncoding:NSUTF8StringEncoding];
+        dataRecieved = [NSJSONSerialization JSONObjectWithData:dataUTF8 options:0 error:&error];
+        
+        if (dataRecieved != nil) {
+            parsingFinished([dataRecieved copy]);
+        } else {
+            NSLog(@"Error: %@", error);
+            parsingFinished([[NSDictionary alloc] init]);
+        }
+    }] resume];
+}
 @end
