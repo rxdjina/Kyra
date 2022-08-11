@@ -54,7 +54,14 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     [self querySetup];
     [self updateView];
     
-    [MusicSession addUserToSession:self.musicSession.sessionCode withCompletion:nil];
+    [MusicSession addUserToSession:self.musicSession.sessionCode withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+            // TODO: Add Alert
+        } else {
+            NSLog(@"Sucessfully added user to session");
+        }
+    }];
 }
 
 - (void)receiveNotification:(NSNotification *)notification {

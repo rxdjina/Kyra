@@ -7,7 +7,6 @@
 
 #import "SpotifyManager.h"
 #import "SpotifyiOS/SpotifyAppRemote.h"
-#import "MusicSessionViewController.h"
 
 @implementation SpotifyManager
 
