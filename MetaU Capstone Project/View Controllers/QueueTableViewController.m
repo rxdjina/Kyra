@@ -59,14 +59,14 @@ NSString * const GET_TRACK_URL = @"https://api.spotify.com/v1/tracks/";
 
 // Number of rows
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.session.queue.count;
+    return self.queue.count;
 }
 
 // Cells and Cell customization
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     TrackCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TrackCell" forIndexPath:indexPath];
-    NSArray *track = [self.session.queue valueForKey:@"track"][indexPath.row];
+    NSArray *track = [self.queue valueForKey:@"track"][indexPath.row];
     
     NSString *trackURI = [track valueForKey:@"URI"];
     NSString *trackID = [trackURI substringFromIndex:14];
@@ -83,7 +83,7 @@ NSString * const GET_TRACK_URL = @"https://api.spotify.com/v1/tracks/";
         }
     }
     
-    NSDictionary *user = [self.session.queue valueForKey:@"addedBy"];
+    NSDictionary *user = [self.queue valueForKey:@"addedBy"];
 
     cell.trackNameLabel.text = [track valueForKey:@"name"];
     cell.artistLabel.text = stringOfArtists;
