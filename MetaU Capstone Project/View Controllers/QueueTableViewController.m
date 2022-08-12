@@ -15,8 +15,6 @@
 
 @interface QueueTableViewController ()
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSArray *queue;
 
 @end
