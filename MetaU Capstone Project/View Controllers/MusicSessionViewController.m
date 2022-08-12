@@ -13,6 +13,7 @@
 #import <SpotifyiOS/SpotifyAppRemote.h>
 #import "SpotifyManager.h"
 #import "Track.h"
+#import "SearchTableViewController.h"
 
 @import ParseLiveQuery;
 
@@ -156,7 +157,6 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 }
 
 - (void)updateView {
-    // TODO: Update session view controller
     NSLog(@"Update Called");
     
     __weak typeof(self) weakSelf = self;
@@ -302,6 +302,10 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
         MusicSession *dataToPass = self.musicSession;
         QueueTableViewController *queueVC = [segue destinationViewController];
         queueVC.session = dataToPass;
+    } else if ([segue.identifier  isEqual: @"searchSegue"]) {
+        MusicSession *dataToPass = self.musicSession;
+        SearchTableViewController *searchVC = [segue destinationViewController];
+        searchVC.session = dataToPass;
     }
 }
 

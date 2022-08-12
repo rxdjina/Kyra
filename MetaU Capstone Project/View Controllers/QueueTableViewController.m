@@ -70,10 +70,23 @@ NSString * const GET_TRACK_URL = @"https://api.spotify.com/v1/tracks/";
     
     NSString *trackURI = [track valueForKey:@"URI"];
     NSString *trackID = [trackURI substringFromIndex:14];
+    
+    NSMutableArray *trackArtists = [[track valueForKey:@"artists"] valueForKey:@"name"];
+    NSString *stringOfArtists = @"";
+    
+    // Array of Artists -> Formatted String
+    for (NSString *name in trackArtists) {
+        if (trackArtists.count == 1 || (trackArtists.count - 1) == [trackArtists indexOfObject:name]) {
+            stringOfArtists = [stringOfArtists stringByAppendingString:name];
+        } else {
+            stringOfArtists = [stringOfArtists stringByAppendingString:[NSString stringWithFormat:@"%@, ", name]];
+        }
+    }
+    
     NSDictionary *user = [self.session.queue valueForKey:@"addedBy"];
 
     cell.trackNameLabel.text = [track valueForKey:@"name"];
-    cell.artistLabel.text = [track valueForKey:@"artist"];
+    cell.artistLabel.text = stringOfArtists;
     
     NSString *targetURL = [NSString stringWithFormat:@"%@%@", GET_TRACK_URL, trackID];
     __block NSString *imageURL;
