@@ -42,7 +42,7 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
 
-    [self performSelector:@selector(loadSearchResults) withObject:searchText afterDelay:0.2];
+    [self performSelector:@selector(loadSearchResults) withObject:searchText afterDelay:0.5];
     [self.tableView reloadData];
 }
 
