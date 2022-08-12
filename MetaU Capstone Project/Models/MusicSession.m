@@ -216,4 +216,30 @@ static const NSUInteger LENGTH_ID = 6;
     }];
 }
 
++ (void)removeFromQueue: ( NSString * )sessionCode index:( NSInteger )trackIndex withCompletion: ( PFBooleanResultBlock _Nullable ) completion {
+ 
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:sessionCode];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+        if (session.count > 0) {
+            NSMutableArray *queue = [session[0] valueForKey:@"queue"];;
+            
+            if (queue.count > 1) {
+                [queue removeObjectAtIndex:trackIndex];
+                [session[0] setValue:queue forKey:@"queue"];
+                
+                [PFObject saveAllInBackground:session];
+                
+            } else if (queue.count == 1) {
+                NSLog(@"One song left");
+                // TODO: Add Recommendations
+            }
+            
+        } else {
+            NSLog(@"Error getting session: %@", error.localizedDescription);
+        }
+    }];
+}
+
+
 @end
