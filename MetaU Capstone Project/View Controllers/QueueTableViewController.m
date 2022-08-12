@@ -15,7 +15,7 @@
 
 @interface QueueTableViewController ()
 
-@property (strong, nonatomic) NSArray *queue;
+@property (strong, nonatomic) NSMutableArray *queue;
 
 @end
 
@@ -71,7 +71,7 @@ NSString * const GET_TRACK_URL = @"https://api.spotify.com/v1/tracks/";
     NSString *trackURI = [track valueForKey:@"URI"];
     NSString *trackID = [trackURI substringFromIndex:14];
     
-    NSMutableArray *trackArtists = [[track valueForKey:@"artists"] valueForKey:@"name"];
+    NSMutableArray *trackArtists = [track valueForKey:@"artist"];
     NSString *stringOfArtists = @"";
     
     // Array of Artists -> Formatted String
@@ -109,5 +109,41 @@ NSString * const GET_TRACK_URL = @"https://api.spotify.com/v1/tracks/";
     return cell;
 }
 
-@end
+// Swipe Gesture
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return true;
+}
 
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView leadingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    // Swipe Gestures
+    UIContextualAction *removeFromQueueAction = [UIContextualAction contextualActionWithStyle:normal title:@"remove" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+    
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MusicSession removeFromQueue:self.session.sessionCode index:indexPath.row withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                if (error != nil) {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                } else {
+                    NSLog(@"Removed from queue");
+                }
+            }];
+        });
+        
+        [self.queue removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadData];
+        completionHandler(YES);
+    }];
+    
+    removeFromQueueAction.backgroundColor = [UIColor colorWithRed: 0.87 green: 0.66 blue: 0.64 alpha: 1.00];
+    removeFromQueueAction.image = [UIImage systemImageNamed:@"minus"];
+    
+    UISwipeActionsConfiguration *swipeActions = [UISwipeActionsConfiguration configurationWithActions:@[removeFromQueueAction]];
+    
+    swipeActions.performsFirstActionWithFullSwipe = false;
+    
+    return swipeActions;
+}
+
+@end
+                       
