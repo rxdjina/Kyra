@@ -113,15 +113,12 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     NSLog(@"Track name: %@", playerState.track.name);
     NSLog(@"player state changed");
     
+    self.currentTrack = [self currentTrackInfo:playerState.track];
     [self sendNotification];
 }
 
 - (void)sendNotification {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"playerStateChangeNotification" object:self];
-}
-
-- (id<SPTAppRemoteTrack>) getCurrentTrackInfo {
-    return self.currentTrack;
 }
 
 - (void)startTrack {
@@ -263,6 +260,23 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
                 NSLog(@"%@ added to Spotify queue", trackURI);
             }
     }];
+}
+
+- (NSDictionary *)currentTrackInfo: (id<SPTAppRemoteTrack>)track {
+    
+    NSDictionary *trackDetails = @{
+            @"name" : track.name,
+            @"URI" : track.URI,
+            @"artist" : track.artist.name,
+            @"album" : track.album.name,
+            @"images" : @[]
+    };
+
+    return (NSDictionary *)trackDetails;
+}
+
+- (NSDictionary *)getCurrentTrack {
+    return self.currentTrack;
 }
 
 @end
