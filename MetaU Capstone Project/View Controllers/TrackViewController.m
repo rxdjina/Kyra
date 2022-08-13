@@ -12,6 +12,8 @@
 
 @interface TrackViewController ()
 
+@property BOOL isPlaying;
+
 @end
 
 @implementation TrackViewController
@@ -20,7 +22,26 @@
     [super viewDidLoad];
     
     self.navigationController.title = self.session.sessionName;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(receiveNotification:)
+            name:@"playerStateChangeNotification"
+            object:nil];
     
+    self.isPlaying = YES;
+    [self updateView];
+}
+
+- (void)receiveNotification:(NSNotification *)notification {
+    if ([[notification name] isEqualToString:@"playerStateChangeNotification"]) {
+        NSLog(@"Player State Change Notification Recived");
+        
+        self.track = [[SpotifyManager shared] getCurrentTrack];
+        [self updateView];
+    }
+}
+
+- (void)updateView {
     NSString *trackID = [[self.track valueForKey:@"URI"] substringFromIndex:14];
     
     
