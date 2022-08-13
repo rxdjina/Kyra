@@ -30,6 +30,7 @@
     
     self.isPlaying = YES;
     [self updateView];
+    [self updatePlayPauseView];
 }
 
 - (void)receiveNotification:(NSNotification *)notification {
@@ -43,7 +44,6 @@
 
 - (void)updateView {
     NSString *trackID = [[self.track valueForKey:@"URI"] substringFromIndex:14];
-    
     
     NSString *targetURL = [NSString stringWithFormat:@"https://api.spotify.com/v1/tracks/%@", trackID];
     
@@ -107,6 +107,54 @@
     }
 
     return finalImage;
+}
+
+- (void)updatePlayPauseView {
+    UIImage *playImage = [UIImage systemImageNamed:@"play.fill"];
+    UIImage *stopImage = [UIImage systemImageNamed:@"stop.fill"];
+    
+    if (!self.isPlaying) {
+        [self.playPauseButton setImage:stopImage forState:UIControlStateNormal];
+    } else {
+        [self.playPauseButton setImage:playImage forState:UIControlStateNormal];
+    }
+}
+
+- (IBAction)pressedThePlayButton:(id)sender {
+    if (!self.isPlaying) {
+        self.isPlaying = YES;
+        [self playMusic];
+
+    } else {
+        self.isPlaying = NO;
+        [self stopMusic];
+    }
+    
+    [self updatePlayPauseView];
+}
+
+- (IBAction)pressedSkipButton:(id)sender {
+    [self skipMusic];
+}
+
+- (IBAction)pressedRewindButton:(id)sender {
+    [self rewindMusic];
+}
+
+- (void)playMusic {
+    [[SpotifyManager shared] startTrack];
+}
+
+- (void)stopMusic {
+    [[SpotifyManager shared] stopTrack];
+}
+
+- (void)skipMusic {
+    [[SpotifyManager shared] skipTrack];
+}
+
+- (void)rewindMusic {
+    [[SpotifyManager shared] rewindTrack];
 }
 
 @end
