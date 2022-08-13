@@ -249,10 +249,20 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
         if (dataRecieved != nil) {
             parsingFinished([dataRecieved copy]);
         } else {
-            NSLog(@"Error: %@", error);
+            NSLog(@"Error: %@", error.localizedDescription);
             parsingFinished([[NSDictionary alloc] init]);
         }
     }] resume];
+}
+
+- (void)addQueueToSpotify: (NSString *)trackURI {
+    [[self.appRemote playerAPI] enqueueTrackUri:trackURI callback:^(id  _Nullable result, NSError * _Nullable error) {
+            if (error != nil) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            } else {
+                NSLog(@"%@ added to Spotify queue", trackURI);
+            }
+    }];
 }
 
 @end
