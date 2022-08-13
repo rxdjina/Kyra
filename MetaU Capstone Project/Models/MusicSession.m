@@ -26,6 +26,7 @@
 @dynamic isPlaying;
 @dynamic timestamp;
 @dynamic queue;
+@dynamic playedTracks;
 
 static const NSUInteger LENGTH_ID = 6;
 
@@ -241,5 +242,25 @@ static const NSUInteger LENGTH_ID = 6;
     }];
 }
 
++ (void)addToPlayedTracks: ( NSString * )sessionCode withCompletion: ( PFBooleanResultBlock _Nullable ) completion {
+    
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:sessionCode];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+        if (session) {
+            NSMutableArray *track = [session[0] valueForKey:@"queue"][0];
+            NSMutableArray *playedTracks = [session[0] valueForKey:@"playedTracks"];
+
+            [playedTracks addObject:track];
+            [session setValue:playedTracks forKey:@"playedTracks"];
+            [MusicSession removeFromQueue:sessionCode index:0 withCompletion:nil];
+            
+            [PFObject saveAllInBackground:session];
+        }
+        else {
+            NSLog(@"Error getting session: %@", error.localizedDescription);
+        }
+    }];
+}
 
 @end
