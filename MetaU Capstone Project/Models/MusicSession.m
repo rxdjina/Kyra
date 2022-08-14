@@ -60,15 +60,6 @@ static const NSUInteger LENGTH_ID = 6;
     };
 
     newSession.log = (NSMutableArray *)@[task];
-
-    // Queue
-//    [[[SpotifyManager shared] appRemote] pla]
-//    task = @{
-//        @"trackName" : track.name,
-//        @"trackArtist" : track.artist,
-//        @"trackURI" : track.URI,
-//        @"addedBy" : user
-//    };
     
     newSession.queue = [NSMutableArray new];
     
@@ -311,6 +302,23 @@ static const NSUInteger LENGTH_ID = 6;
             [PFObject saveAllInBackground:session];
         }
         else {
+            NSLog(@"Error getting session: %@", error.localizedDescription);
+        }
+    }];
+}
+
++ (void)updateIsPlaying: ( NSString * )sessionCode status:( BOOL )playerStatus withCompletion: ( PFBooleanResultBlock _Nullable ) completion {
+    
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:sessionCode];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+        if (session) {
+            NSMutableArray *isPlaying = [session[0] valueForKey:@"isPlaying"];
+    
+            [session[0] setValue:@(playerStatus) forKey:@"isPlaying"];
+ 
+            [PFObject saveAllInBackground:session];
+        } else {
             NSLog(@"Error getting session: %@", error.localizedDescription);
         }
     }];

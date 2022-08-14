@@ -39,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)removeFromQueue: ( NSString * )sessionCode index:( NSInteger )trackIndex withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
 + (void)addToPlayedTracks: ( NSString * )sessionCode track:(NSDictionary *)trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
 + (void)updateCurrentlyPlaying: ( NSString * )sessionCode track:( NSDictionary * )trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
++ (void)updateIsPlaying: ( NSString * )sessionCode status:( BOOL )playerStatus withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
 @end
 
 NS_ASSUME_NONNULL_END
