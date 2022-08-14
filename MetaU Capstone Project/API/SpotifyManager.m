@@ -114,6 +114,8 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     NSLog(@"player state changed");
 
     self.currentTrack = [self currentTrackInfo:playerState.track];
+    self.currentTrackContentItem = playerState.track;
+    
     [self recentlyPlayedTrack];
 
     NSLog(@"PREVIOUS TRACK: %@", self.previousTrack);
@@ -168,9 +170,9 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 - (void)rewindTrack {
     NSLog(@"Rewinding music called");
     
-    self.timestamp = 3; // Placeholder timestamp
+    self.currentTrackTimestamp = 3; // Placeholder timestamp
     
-    if (self.timestamp < MAX_MILISECONDS) { // if current timestamp < x seconds, restart current song
+    if (self.currentTrackTimestamp < MAX_MILISECONDS) { // if current timestamp < x seconds, restart current song
         [[self.appRemote playerAPI] seekToPosition:0 callback:^(id result, NSError * error){
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
@@ -179,7 +181,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
             }
         }];
         
-    } else if (self.timestamp > MAX_MILISECONDS) { // if current timestamp > x seconds, rewind to previous song
+    } else if (self.currentTrackTimestamp > MAX_MILISECONDS) { // if current timestamp > x seconds, rewind to previous song
         [[self.appRemote playerAPI] skipToPrevious:^(id result, NSError * error){
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
@@ -286,6 +288,11 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     return self.currentTrack;
 }
 
+- (id<SPTAppRemoteTrack>)getCurrentTrackAsContentItem {
+    return self.currentTrackContentItem;
+}
+
+
 - (void)recentlyPlayedTrack {
     NSString *targetURL = @"https://api.spotify.com/v1/me/player/recently-played?limit=1";
     
@@ -319,6 +326,38 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 
 - (NSDictionary *)getPreviousTrack {
     return self.previousTrack;
+}
+
+- (void)currentlyPlayingTrack {
+    NSString *targetURL = @"https://api.spotify.com/v1/me/player/currently-playing";
+    
+    [self retriveDataFrom:targetURL result:^(NSDictionary * _Nonnull dataRecieved) {
+        NSString *isPlaying = [dataRecieved valueForKey:@"true"];
+        NSInteger timestamp = (NSInteger)[dataRecieved valueForKey:@"timestamp"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([isPlaying isEqual:@"true"]) {
+                self.isTrackPlaying = YES;
+            } else {
+                self.isTrackPlaying = NO;
+            }
+            self.currentTrackTimestamp = timestamp;
+        });
+    }];
+}
+
+- (void)updateTimestamp {
+    [self currentTrack];
+}
+
+- (NSInteger)getCurrentTrackTimestamp {
+    [self updateTimestamp];
+    return self.currentTrackTimestamp;
+}
+
+- (BOOL)getPlayerStatus {
+    [self currentTrack];
+    return self.isTrackPlaying;
 }
 
 @end

@@ -20,11 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, weak) id<SPTAppRemotePlayerStateDelegate> delegate;
 
-@property (nonatomic) NSInteger timestamp;
 @property (nonatomic, strong) NSString *trackName;
 @property (nonatomic, weak) NSDictionary *currentTrack;
+@property (nonatomic, weak) id<SPTAppRemoteTrack> currentTrackContentItem;
 @property (nonatomic, strong) NSDictionary *previousTrack;
-@property (nonatomic) NSInteger countdown;
+@property (nonatomic) NSInteger currentTrackTimestamp;
+@property (nonatomic) BOOL isTrackPlaying;
 
 
 // Authorization & Spotify Setup
@@ -41,6 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSDictionary *)getCurrentTrack;
 - (NSDictionary *)getPreviousTrack;
+- (void)updateTimestamp;
+- (NSInteger)getCurrentTrackTimestamp;
+- (BOOL)getPlayerStatus;
+- (id<SPTAppRemoteTrack>)getCurrentTrackAsContentItem;
+
 - (void)retriveDataFrom:(NSString *)targetUrl result:(void (^)(NSDictionary *))parsingFinished;
 - (void)searchTrack:(NSString *)query type:(NSString *)type result:(void (^)(NSDictionary *))parsingFinished;
 - (void)addQueueToSpotify: (NSString *)trackURI;
