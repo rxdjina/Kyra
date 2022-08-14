@@ -117,18 +117,17 @@
 
 - (void)updatePlayPauseView {
     UIImage *playImage = [UIImage systemImageNamed:@"play.fill"];
-    UIImage *stopImage = [UIImage systemImageNamed:@"stop.fill"];
+    UIImage *stopImage = [UIImage systemImageNamed:@"pause.fill"];
     
     if (!self.isPlaying) {
-        [self.playPauseButton setImage:stopImage forState:UIControlStateNormal];
-    } else {
         [self.playPauseButton setImage:playImage forState:UIControlStateNormal];
+    } else {
+        [self.playPauseButton setImage:stopImage forState:UIControlStateNormal];
     }
 }
 
 - (IBAction)pressedThePlayButton:(id)sender {
     if (self.isHost) {
-        
         if (!self.isPlaying) {
             self.isPlaying = YES;
             [self playMusic];
@@ -139,6 +138,7 @@
         }
         
         [self updatePlayPauseView];
+        [MusicSession updateIsPlaying:self.session.sessionCode status:self.isPlaying withCompletion:nil];
         
     } else {
         [self sendPlayPauseNotification];
