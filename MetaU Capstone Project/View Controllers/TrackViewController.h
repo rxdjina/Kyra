@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) MusicSession *session;
 @property (nonatomic, strong) NSDictionary *track;
+@property (nonatomic) BOOL isHost;
 
 @property (strong, nonatomic) IBOutlet UIImageView *viewBGImage;
 @property (strong, nonatomic) IBOutlet UIImageView *coverArtImage;

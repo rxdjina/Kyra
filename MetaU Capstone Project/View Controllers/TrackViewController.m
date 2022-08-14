@@ -31,6 +31,12 @@
     self.isPlaying = YES;
     [self updateView];
     [self updatePlayPauseView];
+    
+    if ([[self.session.host valueForKey:@"objectId"] isEqualToString:PFUser.currentUser.objectId]) {
+        self.isHost = YES;
+    } else {
+        self.isHost = NO;
+    }
 }
 
 - (void)receiveNotification:(NSNotification *)notification {
@@ -121,24 +127,30 @@
 }
 
 - (IBAction)pressedThePlayButton:(id)sender {
-    if (!self.isPlaying) {
-        self.isPlaying = YES;
-        [self playMusic];
+    if (self.isHost) {
+        
+        if (!self.isPlaying) {
+            self.isPlaying = YES;
+            [self playMusic];
 
+        } else {
+            self.isPlaying = NO;
+            [self stopMusic];
+        }
+        
+        [self updatePlayPauseView];
+        
     } else {
-        self.isPlaying = NO;
-        [self stopMusic];
+        [self sendPlayPauseNotification];
     }
-    
-    [self updatePlayPauseView];
 }
 
 - (IBAction)pressedSkipButton:(id)sender {
-    [self skipMusic];
+    self.isHost ? [self skipMusic] : [self sendSkipNotification];
 }
 
 - (IBAction)pressedRewindButton:(id)sender {
-    [self rewindMusic];
+    self.isHost ? [self rewindMusic] : [self sendRewindNotification];
 }
 
 - (void)playMusic {
@@ -155,6 +167,18 @@
 
 - (void)rewindMusic {
     [[SpotifyManager shared] rewindTrack];
+}
+
+- (void)sendPlayPauseNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playPauseNotification" object:self];
+}
+
+- (void)sendRewindNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"rewindNotification" object:self];
+}
+
+- (void)sendSkipNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"skipNotification" object:self];
 }
 
 @end
