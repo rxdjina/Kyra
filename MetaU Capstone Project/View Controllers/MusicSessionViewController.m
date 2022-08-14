@@ -32,6 +32,7 @@
 @property (nonatomic) NSInteger testCounter;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSDictionary *currentlyPlaying;
+@property (nonatomic, strong) NSDictionary *previouslyPlaying;
 
 @end
 
@@ -73,6 +74,11 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
             selector:@selector(receiveNotification:)
             name:@"skipNotification"
             object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(receiveNotification:)
+            name:@"newTrackNotification"
+            object:nil];
 
     self.accessToken = [[SpotifyManager shared] accessToken];
     self.isPlaying = YES;
@@ -90,22 +96,6 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     }];
     
     NSMutableArray *arrayOftrackURI = [[NSMutableArray alloc] init];
-    
-    for (NSInteger i = 0; i < self.session.queue.count; i++) {
-        NSArray *track = [self.session.queue valueForKey:@"track"][i];
-        NSString *trackURI = [track valueForKey:@"URI"];
-        [arrayOftrackURI addObject:trackURI];
-    }
-    
-    for (NSString *URI in arrayOftrackURI) {
-        [[SpotifyManager shared] addQueueToSpotify:URI];
-        
-        [MusicSession addToPlayedTracks:self.session.sessionCode withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-            if (error != nil) {
-                NSLog(@"Error: %@", error.localizedDescription);
-            }
-        }];
-    }
 }
 
 - (void)receiveNotification:(NSNotification *)notification {
@@ -122,7 +112,6 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
         [self updateView];
     } else if ([[notification name] isEqualToString:@"playPauseNotification"]) {
         NSLog(@"Play Pause Notification Recived");
-        
         // TODO: Display yes/no alert
         
     } else if ([[notification name] isEqualToString:@"rewindNotification"]) {
@@ -132,6 +121,18 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     } else if ([[notification name] isEqualToString:@"skipNotification"]) {
         NSLog(@"Skip Change Notification Recived");
         // TODO: Display yes/no alert
+    } else if ([[notification name] isEqualToString:@"newTrackNotification"]) {
+        NSLog(@"New Track Notification Recived");
+        
+        self.previouslyPlaying = [[SpotifyManager shared] getPreviousTrack];
+        
+        if (self.previouslyPlaying != nil) {
+            [MusicSession addToPlayedTracks:self.session.sessionCode track:self.previouslyPlaying withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                if (error != nil){
+                    NSLog(@"Error adding to played tracks: %@", error.localizedDescription);
+                }
+            }];
+        }
     }
 }
 
@@ -179,6 +180,11 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     (void)[self.subscription addUpdateHandler:^(PFQuery<PFObject *> * _Nonnull query, PFObject * _Nonnull object) {
         __strong typeof (self) strongSelf = weakSelf;
         NSLog(@"Update Handler");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [strongSelf updateView];
+            [strongSelf loadPlayedTracks];
+            [strongSelf.tableView reloadData];
+        });
     }];
 
     // Called when object created, object DID NOT exist
@@ -205,17 +211,9 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     NSLog(@"Update Called");
     
     self.currentlyPlayingNameLabel.text = [self.currentlyPlaying valueForKey:@"name"];
-    NSLog(@"CURRENTLY PLAYING: %@", self.currentlyPlaying);
     
     NSString *trackArtists = [self.currentlyPlaying valueForKey:@"artist"];
     self.currentlyPlayingArtistLabel.text = trackArtists;
-    
-    [[SpotifyManager shared] searchTrack:[[self.currentlyPlaying valueForKey:@"URI"] substringFromIndex:14] type:@"track" result:^(NSDictionary * _Nonnull dataRecieved) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.currentlyPlayingCoverArtImage.image = [[dataRecieved valueForKey:@"tracks"] valueForKey:@""];
-        });
-    }];
 }
 
 - (NSString *)getInfo: (NSString *)objectId {
@@ -226,6 +224,19 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     username = [users valueForKey:@"username"];
 
     return username;
+}
+
+- (void)loadPlayedTracks {
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:self.session.sessionCode];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+        if (session) {
+            self.session.playedTracks = [session[0] valueForKey:@"playedTracks"];
+
+        } else {
+            NSLog(@"Error getting session: %@", error.localizedDescription);
+        }
+    }];
 }
 
 // CELL
@@ -244,6 +255,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     }
     
     NSString *CellIdentifier = isSender ? @"SenderTrackCell" : @"RecieverTrackCell";
+    
     // Displays Cells
     MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
