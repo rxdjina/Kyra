@@ -27,6 +27,7 @@
 @dynamic timestamp;
 @dynamic queue;
 @dynamic playedTracks;
+@dynamic currentlyPlaying;
 
 static const NSUInteger LENGTH_ID = 6;
 
@@ -254,6 +255,51 @@ static const NSUInteger LENGTH_ID = 6;
             [playedTracks addObject:track];
             [session setValue:playedTracks forKey:@"playedTracks"];
             [MusicSession removeFromQueue:sessionCode index:0 withCompletion:nil];
+            
+            [PFObject saveAllInBackground:session];
+        }
+        else {
+            NSLog(@"Error getting session: %@", error.localizedDescription);
+        }
+    }];
+}
+
++ (void)updateCurrentlyPlaying: ( NSString * )sessionCode track:( NSDictionary * )trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion {
+ 
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:sessionCode];
+    PFUser *user = [PFUser currentUser];
+
+    NSDictionary *task = @{
+        @"track" : trackInfo,
+        @"addedBy" : user
+    };
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+        if (session) {
+            NSMutableArray *queue = [session[0] valueForKey:@"queue"];
+            NSString *nextInQueueURI = [[queue valueForKey:@"track"] valueForKey:@"URI"][0];
+            
+            NSMutableArray *currentlyPlaying = [session[0] valueForKey:@"currentlyPlaying"];
+            NSString *currentlyPlayingURI = [[currentlyPlaying valueForKey:@"track"] valueForKey:@"URI"];
+            
+            NSMutableArray *newTrack = [[NSMutableArray alloc] init];
+
+            if ([nextInQueueURI isEqualToString:currentlyPlayingURI]) {
+                [MusicSession removeFromQueue:sessionCode index:0 withCompletion:nil];
+                [newTrack addObject:queue[0]];
+            } else {
+                [newTrack addObject:task];
+            }
+            
+            [session setValue:newTrack forKey:@"currentlyPlaying"];
+            
+            NSString *logDescription = [NSString stringWithFormat:@"New track \n Now playing %@ by %@", trackInfo[@"name"], trackInfo[@"artist"]];
+            
+            [MusicSession updateSessionLog:sessionCode decription:logDescription withCompletion:^(BOOL succeeded, NSError * error) {
+                if (error != nil) {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                }
+            }];
             
             [PFObject saveAllInBackground:session];
         }

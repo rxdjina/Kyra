@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger timestamp;
 @property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, strong) NSMutableArray *playedTracks;
+@property (nonatomic, strong) NSMutableArray *currentlyPlaying;
 
 // Settings?
 @property (nonatomic) BOOL *allowExplicit;
@@ -37,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)addToQueue: ( NSString * )sessionCode track:( NSDictionary * )trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
 + (void)removeFromQueue: ( NSString * )sessionCode index:( NSInteger )trackIndex withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
 + (void)addToPlayedTracks: ( NSString * )sessionCode withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
++ (void)updateCurrentlyPlaying: ( NSString * )sessionCode track:( NSDictionary * )trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
 @end
 
 NS_ASSUME_NONNULL_END
