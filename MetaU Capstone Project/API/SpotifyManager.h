@@ -23,7 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger timestamp;
 @property (nonatomic, strong) NSString *trackName;
 @property (nonatomic, weak) NSDictionary *currentTrack;
-@property (nonatomic, strong) NSString *previousTrack;
+@property (nonatomic, strong) NSDictionary *previousTrack;
+@property (nonatomic) NSInteger countdown;
 
 
 // Authorization & Spotify Setup
@@ -39,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)rewindTrack;
 
 - (NSDictionary *)getCurrentTrack;
+- (NSDictionary *)getPreviousTrack;
 - (void)retriveDataFrom:(NSString *)targetUrl result:(void (^)(NSDictionary *))parsingFinished;
 - (void)searchTrack:(NSString *)query type:(NSString *)type result:(void (^)(NSDictionary *))parsingFinished;
 - (void)addQueueToSpotify: (NSString *)trackURI;

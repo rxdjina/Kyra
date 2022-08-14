@@ -112,13 +112,21 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 - (void)playerStateDidChange:(nonnull id<SPTAppRemotePlayerState>)playerState {
     NSLog(@"Track name: %@", playerState.track.name);
     NSLog(@"player state changed");
-    
+
     self.currentTrack = [self currentTrackInfo:playerState.track];
+    [self recentlyPlayedTrack];
+
+    NSLog(@"PREVIOUS TRACK: %@", self.previousTrack);
+    NSLog(@"CURRENT TRACK : %@", self.currentTrack);
     [self sendNotification];
 }
 
 - (void)sendNotification {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"playerStateChangeNotification" object:self];
+}
+
+- (void)sendNewTrackNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"newTrackNotification" object:self];
 }
 
 - (void)startTrack {
@@ -263,7 +271,6 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 }
 
 - (NSDictionary *)currentTrackInfo: (id<SPTAppRemoteTrack>)track {
-    
     NSDictionary *trackDetails = @{
             @"name" : track.name,
             @"URI" : track.URI,
@@ -277,6 +284,41 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 
 - (NSDictionary *)getCurrentTrack {
     return self.currentTrack;
+}
+
+- (void)recentlyPlayedTrack {
+    NSString *targetURL = @"https://api.spotify.com/v1/me/player/recently-played?limit=1";
+    
+    [self retriveDataFrom:targetURL result:^(NSDictionary * _Nonnull dataRecieved) {
+        NSString *track = [[dataRecieved valueForKey:@"items"] valueForKey:@"track"][0];
+        
+        NSString *trackName = [track valueForKey:@"name"];
+        NSString *trackURI = [track valueForKey:@"uri"];
+
+        NSMutableArray *trackArtists = [[track valueForKey:@"artists"] valueForKey:@"name"];
+
+        NSString *trackAlbum = [[track valueForKey:@"album"] valueForKey:@"name"];
+        
+        NSArray *trackImages = [[[track valueForKey:@"album"] valueForKey:@"images"] valueForKey:@"url"];
+        
+        NSDictionary *trackDetails = @{
+                @"name" : trackName,
+                @"URI" : trackURI,
+                @"artist" : trackArtists,
+                @"album" : trackAlbum,
+                @"images" : trackImages
+        };
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.previousTrack = trackDetails;
+        });
+    }];
+    
+    [self sendNewTrackNotification];
+}
+
+- (NSDictionary *)getPreviousTrack {
+    return self.previousTrack;
 }
 
 @end
