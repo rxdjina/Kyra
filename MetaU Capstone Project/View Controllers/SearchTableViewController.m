@@ -26,6 +26,8 @@
     self.tableView.dataSource = self;
     self.searchBar.delegate = self;
     
+    self.navigationController.toolbarHidden = YES;
+    
     [self loadSearchResults];
 }
 

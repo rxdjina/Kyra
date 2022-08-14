@@ -28,6 +28,7 @@ NSString * const GET_TRACK_URL = @"https://api.spotify.com/v1/tracks/";
     
     self.tableView.dataSource = self;
     self.tableView.dataSource = self;
+    self.navigationController.toolbarHidden = YES;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadQueue) forControlEvents:UIControlEventValueChanged];

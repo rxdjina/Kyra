@@ -85,14 +85,14 @@
 
         UINavigationController *navControl = [segue destinationViewController];
         MusicSessionViewController *destinationVC = (MusicSessionViewController *)[navControl topViewController];
-        destinationVC.musicSession = dataToPass;
+        destinationVC.session = dataToPass;
         
     } else if ([segue.identifier  isEqual: @"createSessionSegue"]) {
         MusicSession *dataToPass = self.arrayMusicSession;
 
         UINavigationController *navControl = [segue destinationViewController];
         MusicSessionViewController *destinationVC = (MusicSessionViewController *)[navControl topViewController];
-        destinationVC.musicSession = dataToPass;
+        destinationVC.session = dataToPass;
     }
 }
 
