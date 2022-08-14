@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)updateSessionLog: ( NSString * )sessionCode decription:( NSString * )message withCompletion: (PFBooleanResultBlock _Nullable) completion;
 + (void)addToQueue: ( NSString * )sessionCode track:( NSDictionary * )trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
 + (void)removeFromQueue: ( NSString * )sessionCode index:( NSInteger )trackIndex withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
-+ (void)addToPlayedTracks: ( NSString * )sessionCode withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
++ (void)addToPlayedTracks: ( NSString * )sessionCode track:(NSDictionary *)trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
 + (void)updateCurrentlyPlaying: ( NSString * )sessionCode track:( NSDictionary * )trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
 @end
 

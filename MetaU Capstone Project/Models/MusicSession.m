@@ -243,22 +243,29 @@ static const NSUInteger LENGTH_ID = 6;
     }];
 }
 
-+ (void)addToPlayedTracks: ( NSString * )sessionCode withCompletion: ( PFBooleanResultBlock _Nullable ) completion {
++ (void)addToPlayedTracks: ( NSString * )sessionCode track:(NSDictionary *)trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion {
     
     PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:sessionCode];
 
+    NSDictionary *task = @{
+        @"track" : trackInfo,
+        @"addedBy" : PFUser.currentUser
+    };
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
         if (session) {
             NSMutableArray *track = [session[0] valueForKey:@"queue"][0];
             NSMutableArray *playedTracks = [session[0] valueForKey:@"playedTracks"];
 
-            [playedTracks addObject:track];
+            [playedTracks addObject:task];
             [session setValue:playedTracks forKey:@"playedTracks"];
-            [MusicSession removeFromQueue:sessionCode index:0 withCompletion:nil];
+            
+            if ([[track valueForKey:@"URI"] isEqual:[trackInfo valueForKey:@"URI"]]) {
+                [MusicSession removeFromQueue:sessionCode index:0 withCompletion:nil];
+            }
             
             [PFObject saveAllInBackground:session];
-        }
-        else {
+        } else {
             NSLog(@"Error getting session: %@", error.localizedDescription);
         }
     }];
