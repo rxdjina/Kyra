@@ -21,7 +21,7 @@
     return shared;
 }
 
-static const NSInteger MAX_SECONDS = 5;
+static const NSInteger MAX_SECONDS = 3;
 static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 
 - (void)connectSpotify {
@@ -337,16 +337,12 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     NSString *targetURL = @"https://api.spotify.com/v1/me/player/currently-playing";
     
     [self retriveDataFrom:targetURL result:^(NSDictionary * _Nonnull dataRecieved) {
-        NSString *isPlaying = [dataRecieved valueForKey:@"true"];
-        NSInteger timestamp = (NSInteger)[dataRecieved valueForKey:@"timestamp"];
+        NSString *isPlaying = [dataRecieved valueForKey:@"is_playing"];
+        NSNumber *timestamp = [dataRecieved valueForKey:@"progress_ms"];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([isPlaying isEqual:@"true"]) {
-                self.isTrackPlaying = YES;
-            } else {
-                self.isTrackPlaying = NO;
-            }
-            self.currentTrackTimestamp = timestamp;
+            self.isTrackPlaying = isPlaying;
+            self.currentTrackTimestamp = [timestamp integerValue];
         });
     }];
 }
