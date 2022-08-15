@@ -22,6 +22,7 @@
 }
 
 static const NSInteger MAX_SECONDS = 3;
+
 static const NSInteger MIN_MILISECONDS = 0;
 static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 
@@ -113,7 +114,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 - (void)playerStateDidChange:(nonnull id<SPTAppRemotePlayerState>)playerState {
     NSLog(@"Track name: %@", playerState.track.name);
     NSLog(@"player state changed");
-    
+
     @try {
         self.currentTrack = [self currentTrackInfo:playerState.track];
         self.currentTrackContentItem = playerState.track;
@@ -125,6 +126,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 
     NSLog(@"PREVIOUS TRACK: %@", self.previousTrack);
     NSLog(@"CURRENT TRACK : %@", self.currentTrack);
+
     [self sendNotification];
 }
 
