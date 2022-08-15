@@ -113,16 +113,22 @@ static const NSUInteger LENGTH_ID = 6;
         if (session.count > 0) {
             NSMutableArray *users = [session[0] valueForKey:@"activeUsers"];
             
-            
             if (users.count > 1) {
-                // TODO: If user was host, assign new host
-                NSLog(@"[%lu] %@", (unsigned long)users.count, users);
                 
-                NSInteger *count = @(0);
-
-                [users removeObjectIdenticalTo:user.objectId];
-                NSLog(@"[%lu] %@", (unsigned long)users.count, users);
-                [session setValue:users forKey:@"activeUsers"];
+                for (NSInteger i = 0; i < users.count; i++) {
+                    NSString *userObjectID = [users[i] valueForKey:@"objectId"];
+                    if ([user.objectId isEqualToString:userObjectID]) {
+                        [users removeObjectAtIndex:i];
+                    }
+                }
+                
+                NSString *host = [[session[0] valueForKey:@"activeUsers"] valueForKey:@"objectId"];
+                if ([user.objectId isEqualToString:host]) {
+                    host = users[0];
+                    [session[0] setValue:host forKey:@"host"];
+                }
+                
+                [session[0] setValue:users forKey:@"activeUsers"];
                 
                 [MusicSession updateSessionLog:sessionCode decription:@"Left session" withCompletion:^(BOOL succeeded, NSError * error) {
                     if (error != nil) {
@@ -132,6 +138,8 @@ static const NSUInteger LENGTH_ID = 6;
                     }
                 }];
                 
+                [PFObject saveAllInBackground:session];
+
             } else if (users.count == 1) {
                 NSLog(@"One user left");
                 // TODO: Close session

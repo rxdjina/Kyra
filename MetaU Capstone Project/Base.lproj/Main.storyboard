@@ -1051,7 +1051,7 @@
         <!--Home View Controller-->
         <scene sceneID="t38-Nn-ryP">
             <objects>
-                <viewController id="J6D-ce-2UI" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeViewController" id="J6D-ce-2UI" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ceU-BV-h4C">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -428,13 +428,15 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     PFQuery *query = [PFQuery queryWithClassName:@"MusicSession"];
 
     [MusicSession removeUserFromSession:self.session.sessionCode user:[PFUser currentUser] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            [self.client unsubscribeFromQuery:query];
-            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-        } else {
+        if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);
         }
     }];
+    
+    [self.client unsubscribeFromQuery:query];
+    [[[[SpotifyManager shared] appRemote] playerAPI] pause:nil];
+    [[[SpotifyManager shared] appRemote] disconnect];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -446,7 +448,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
         MusicSession *dataToPass = self.session;
         SearchTableViewController *searchVC = [segue destinationViewController];
         searchVC.session = dataToPass;
-    }  else if ([segue.identifier  isEqual: @"currentlyPlayingSegue"]) {
+    }  else if ([segue.identifier  isEqual: @"trackViewSegue"]) {
         MusicSession *sessionToPass = self.session;
         NSDictionary *trackToPass = self.currentlyPlaying;
         TrackViewController *trackVC = [segue destinationViewController];
