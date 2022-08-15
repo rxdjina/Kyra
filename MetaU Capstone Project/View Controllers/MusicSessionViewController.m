@@ -116,6 +116,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
         [MusicSession updateTimestamp:self.session.sessionCode timestamp:self.timestamp withCompletion:nil];
         
         [self testTimer];
+        [self notificationBanner:@"Your are now host"];
     } else {
         self.isPlaying = self.session.isPlaying;
         self.currentlyPlaying = (NSDictionary *)self.session.currentlyPlaying;
@@ -146,9 +147,6 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
             NSLog(@"Sucessfully added user to session");
         }
     }];
-    
-    self.updateNotificationButton.hidden = YES;
-    [self notificationBanner:@"This is a test"];
 }
 - (void)notificationBanner:(NSString *)bannerText{
     [self.updateNotificationButton setTitle:bannerText forState:UIControlStateNormal];
@@ -472,13 +470,19 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     
     cell.messageBGImage.layer.cornerRadius = 15;
     cell.messageBGImage.clipsToBounds = YES;
+
+    if ([CellIdentifier isEqualToString:@"SenderTrackCell"]) {
+        cell.userProfileImage.image = [UIImage systemImageNamed:@"j.circle.fill"];
+    } else if ([CellIdentifier isEqualToString:@"RecieverTrackCell"]){
+        cell.userProfileImage.image = [UIImage systemImageNamed:@"s.circle.fill"];
+    }
     
     return cell;
 }
 
 // Like Swipe Gesture
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView leadingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIContextualAction *likeTrackAction = [UIContextualAction contextualActionWithStyle:normal title:@"like" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+    UIContextualAction *likeTrackAction = [UIContextualAction contextualActionWithStyle:normal title:@"favorite" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         // TODO: Add to liked tracks
         completionHandler(YES);
     }];
@@ -487,6 +491,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     likeTrackAction.image = [UIImage systemImageNamed:@"heart"];
     
     UISwipeActionsConfiguration *swipeActions = [UISwipeActionsConfiguration configurationWithActions:@[likeTrackAction]];
+    [self notificationBanner:@"Track added to favorites"];
     
     swipeActions.performsFirstActionWithFullSwipe = false;
     
@@ -508,6 +513,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     UISwipeActionsConfiguration *swipeActions = [UISwipeActionsConfiguration configurationWithActions:@[dislikeTrackAction]];
     
     swipeActions.performsFirstActionWithFullSwipe = false;
+    [self notificationBanner:@"Notified host"];
     
     return swipeActions;
 }

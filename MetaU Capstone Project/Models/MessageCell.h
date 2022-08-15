@@ -16,8 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIImageView *coverArtImage;
 @property (strong, nonatomic) IBOutlet UILabel *trackNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *trackArtistLabel;
-
-
 @end
 
 NS_ASSUME_NONNULL_END
