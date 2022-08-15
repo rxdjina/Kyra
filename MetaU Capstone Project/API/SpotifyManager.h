@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<SPTAppRemotePlayerStateDelegate> delegate;
 
 @property (nonatomic, strong) NSString *trackName;
-@property (nonatomic, weak) NSDictionary *currentTrack;
+@property (nonatomic, strong) NSDictionary *currentTrack;
 @property (nonatomic, weak) id<SPTAppRemoteTrack> currentTrackContentItem;
 @property (nonatomic, strong) NSDictionary *previousTrack;
 @property (nonatomic) NSInteger currentTrackTimestamp;
@@ -50,6 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)retriveDataFrom:(NSString *)targetUrl result:(void (^)(NSDictionary *))parsingFinished;
 - (void)searchTrack:(NSString *)query type:(NSString *)type result:(void (^)(NSDictionary *))parsingFinished;
 - (void)addQueueToSpotify: (NSString *)trackURI;
+- (void)playTrackAtTimestamp:(NSString *)trackURI timestamp:(NSInteger)timestamp result:(void (^)(NSDictionary *))parsingFinished;
 
 @end
 

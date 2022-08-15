@@ -41,7 +41,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 }
 
 - (void)authenticateSpotify {
-    SPTScope requestedScope = SPTAppRemoteControlScope | SPTUserFollowReadScope | SPTPlaylistModifyPrivateScope | SPTPlaylistReadPrivateScope  | SPTUserLibraryReadScope | SPTUserTopReadScope | SPTUserReadPrivateScope | SPTUserLibraryModifyScope | SPTPlaylistReadCollaborativeScope | SPTUserReadEmailScope | SPTUserReadRecentlyPlayedScope | SPTUserReadCurrentlyPlayingScope;
+    SPTScope requestedScope = SPTAppRemoteControlScope | SPTUserFollowReadScope | SPTPlaylistModifyPrivateScope | SPTPlaylistReadPrivateScope  | SPTUserLibraryReadScope | SPTUserTopReadScope | SPTUserReadPrivateScope | SPTUserLibraryModifyScope | SPTPlaylistReadCollaborativeScope | SPTUserReadEmailScope | SPTUserReadRecentlyPlayedScope | SPTUserReadCurrentlyPlayingScope | SPTUserModifyPlaybackStateScope;
     
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
 }
@@ -113,8 +113,12 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     NSLog(@"Track name: %@", playerState.track.name);
     NSLog(@"player state changed");
 
-    self.currentTrack = [self currentTrackInfo:playerState.track];
-    self.currentTrackContentItem = playerState.track;
+    @try {
+        self.currentTrack = [self currentTrackInfo:playerState.track];
+        self.currentTrackContentItem = playerState.track;
+    } @catch (NSException *exception) {
+        NSLog(@"Error getting current track...");
+    }
     
     [self recentlyPlayedTrack];
 
@@ -276,6 +280,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     NSDictionary *trackDetails = @{
             @"name" : track.name,
             @"URI" : track.URI,
+            @"contextURI" : track.album.URI,
             @"artist" : track.artist.name,
             @"album" : track.album.name,
             @"images" : @[]
@@ -292,7 +297,6 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     return self.currentTrackContentItem;
 }
 
-
 - (void)recentlyPlayedTrack {
     NSString *targetURL = @"https://api.spotify.com/v1/me/player/recently-played?limit=1";
     
@@ -305,12 +309,13 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
         NSMutableArray *trackArtists = [[track valueForKey:@"artists"] valueForKey:@"name"];
 
         NSString *trackAlbum = [[track valueForKey:@"album"] valueForKey:@"name"];
-        
+        NSString *contextURI =  [[track valueForKey:@"album"] valueForKey:@"uri"];
         NSArray *trackImages = [[[track valueForKey:@"album"] valueForKey:@"images"] valueForKey:@"url"];
         
         NSDictionary *trackDetails = @{
                 @"name" : trackName,
                 @"URI" : trackURI,
+                @"contextURI" : contextURI,
                 @"artist" : trackArtists,
                 @"album" : trackAlbum,
                 @"images" : trackImages
@@ -347,7 +352,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 }
 
 - (void)updateTimestamp {
-    [self currentTrack];
+    [self currentlyPlayingTrack];
 }
 
 - (NSInteger)getCurrentTrackTimestamp {
@@ -356,8 +361,51 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 }
 
 - (BOOL)getPlayerStatus {
-    [self currentTrack];
+    [self currentlyPlayingTrack];
     return self.isTrackPlaying;
+}
+
+- (void)playTrackAtTimestamp:(NSString *)trackURI timestamp:(NSInteger)timestamp result:(void (^)(NSDictionary *))parsingFinished {
+    NSString *targetURL = @"https://api.spotify.com/v1/me/player/play";
+    
+    NSDictionary *requestBody = @{
+      @"context_uri": trackURI,
+      @"offset": @{
+        @"position": @5
+      },
+      @"position_ms": @(timestamp)
+    };
+    
+    NSError * err;
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:requestBody options:NSUTF8StringEncoding error:&err];
+
+    NSString *tokenType = @"Bearer";
+    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, self.accessToken];
+
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    [request setValue:header forHTTPHeaderField:@"Authorization"];
+    [request setHTTPMethod:@"PUT"];
+    [request setURL:[NSURL URLWithString:targetURL]];
+    [request setHTTPBody:requestData];
+
+    __block NSDictionary *dataRecieved = [[NSDictionary alloc] init];
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
+      ^(NSData * _Nullable data,
+        NSURLResponse * _Nullable response,
+        NSError * _Nullable error) {
+        
+        NSString *strISOLatin = [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding];
+        NSData *dataUTF8 = [strISOLatin dataUsingEncoding:NSUTF8StringEncoding];
+        dataRecieved = [NSJSONSerialization JSONObjectWithData:dataUTF8 options:0 error:&error];
+
+        if (dataRecieved != nil) {
+            parsingFinished([dataRecieved copy]);
+        } else {
+            NSLog(@"Error: %@", error);
+            parsingFinished([[NSDictionary alloc] init]);
+        }
+    }] resume];
 }
 
 @end
