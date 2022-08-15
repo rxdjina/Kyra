@@ -7,11 +7,13 @@
 
 #import "MusicSessionViewController.h"
 #import "HomeViewController.h"
+#import "QueueTableViewController.h"
 #import "MusicSession.h"
 #import <SpotifyiOS/SpotifyiOS.h>
 #import <SpotifyiOS/SpotifyAppRemote.h>
 #import "SpotifyManager.h"
 #import "Track.h"
+#import "SearchTableViewController.h"
 
 @import ParseLiveQuery;
 
@@ -39,20 +41,38 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(receiveNotification:)
+            name:@"playerStateChangeNotification"
+            object:nil];
+    
     self.accessToken = [[SpotifyManager shared] accessToken];
     self.sessionNameLabel.text = self.musicSession.sessionName;
     self.sessionIDLabel.text = self.musicSession.sessionCode;
-    self.isPlaying = NO;
+    self.isPlaying = YES;
     
-    [self updateView];
     [self querySetup];
+    [self updateView];
     
-    [MusicSession addUserToSession:self.musicSession.sessionCode withCompletion:nil];
-    
+    [MusicSession addUserToSession:self.musicSession.sessionCode withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+            // TODO: Add Alert
+        } else {
+            NSLog(@"Sucessfully added user to session");
+        }
+    }];
 }
 
-- (void)testTimer // Increments counter every second
-{
+- (void)receiveNotification:(NSNotification *)notification {
+    if ([[notification name] isEqualToString:@"playerStateChangeNotification"]) {
+        NSLog(@"Player State Change Notification Recived");
+        [self updateView];
+    }
+}
+
+- (void)testTimer { // Increments counter every second
     [NSTimer scheduledTimerWithTimeInterval:1.0f
                                  target:self selector:@selector(testTimestamp:) userInfo:nil repeats:YES];
 }
@@ -137,24 +157,35 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 }
 
 - (void)updateView {
-    // TODO: Update session view controller
     NSLog(@"Update Called");
     
+    __weak typeof(self) weakSelf = self;
     [[[[SpotifyManager shared] appRemote] playerAPI] getPlayerState:^(id<SPTAppRemotePlayerState> _Nullable result, NSError * _Nullable error) {
         
+        __strong typeof (self) strongSelf = weakSelf;
+    
+        if (strongSelf == nil) {
+            NSLog(@"strongSelf NIL");
+            return;
+        }
+        
         if (error == nil) {
-            self.trackNameLabel.text = result.track.name;
-            self.artistLabel.text = [result.track.artist name];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                strongSelf.trackNameLabel.text = result.track.name;
+                strongSelf.artistLabel.text = [result.track.artist name];
+            });
             
             [[[[SpotifyManager shared] appRemote] imageAPI] fetchImageForItem:result.track withSize:CGSizeZero callback:^(id  _Nullable result, NSError * _Nullable error) {
-                //
+
                 if (error != nil) {
                     NSLog(@"Error: %@", error.localizedDescription);
                 } else {
-                    self.coverArtImage.image = result;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        strongSelf.coverArtImage.image = result;
+                    });
                 }
             }];
-
+            
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
         }
@@ -198,7 +229,6 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 
 - (void)playMusic {
     [[SpotifyManager shared] startTrack];
-
 }
 
 - (void)stopMusic {
@@ -242,7 +272,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, token];
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    
+
     [request setValue:header forHTTPHeaderField:@"Authorization"];
     [request setHTTPMethod:@"GET"];
     [request setURL:[NSURL URLWithString:targetUrl]];
@@ -256,7 +286,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
         NSString *strISOLatin = [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding];
         NSData *dataUTF8 = [strISOLatin dataUsingEncoding:NSUTF8StringEncoding];
         dataRecieved = [NSJSONSerialization JSONObjectWithData:dataUTF8 options:0 error:&error];
-        
+
         if (dataRecieved != nil) {
             NSLog(@"Data: %@", dataRecieved);
         } else {
@@ -266,4 +296,17 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 
     return dataRecieved;
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier  isEqual: @"queueSegue"]) {
+        MusicSession *dataToPass = self.musicSession;
+        QueueTableViewController *queueVC = [segue destinationViewController];
+        queueVC.session = dataToPass;
+    } else if ([segue.identifier  isEqual: @"searchSegue"]) {
+        MusicSession *dataToPass = self.musicSession;
+        SearchTableViewController *searchVC = [segue destinationViewController];
+        searchVC.session = dataToPass;
+    }
+}
+
 @end

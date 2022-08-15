@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)rewindTrack;
 
 - (id<SPTAppRemoteTrack>)getCurrentTrackInfo;
+- (void)retriveDataFrom:(NSString *)targetUrl result:(void (^)(NSDictionary *))parsingFinished;
+- (void)searchTrack:(NSString *)query type:(NSString *)type result:(void (^)(NSDictionary *))parsingFinished;
 
 @end
 

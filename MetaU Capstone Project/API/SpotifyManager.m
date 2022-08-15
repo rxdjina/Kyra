@@ -7,7 +7,6 @@
 
 #import "SpotifyManager.h"
 #import "SpotifyiOS/SpotifyAppRemote.h"
-#import "MusicSessionViewController.h"
 
 @implementation SpotifyManager
 
@@ -114,8 +113,13 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 - (void)playerStateDidChange:(nonnull id<SPTAppRemotePlayerState>)playerState {
     NSLog(@"Track name: %@", playerState.track.name);
     NSLog(@"player state changed");
+
+    [self sendNotification];
 }
 
+- (void)sendNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerStateChangeNotification" object:self];
+}
 
 - (id<SPTAppRemoteTrack>) getCurrentTrackInfo {
     return self.currentTrack;
@@ -160,7 +164,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 - (void)rewindTrack {
     NSLog(@"Rewinding music called");
     
-    self.timestamp = 8; // Placeholder timestamp
+    self.timestamp = 3; // Placeholder timestamp
     
     if (MIN_MILISECONDS <= self.timestamp <= MAX_MILISECONDS) { // if current timestamp < x seconds, restart current song
         [[self.appRemote playerAPI] seekToPosition:0 callback:^(id result, NSError * error){
@@ -179,9 +183,77 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
                 NSLog(@"Skipped to previous track");
             }
         }];
-
     }
 }
 
+- (void)retriveDataFrom:(NSString *)targetUrl result:(void (^)(NSDictionary *))parsingFinished {
+    NSString *tokenType = @"Bearer";
+    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, self.accessToken];
+
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    [request setValue:header forHTTPHeaderField:@"Authorization"];
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:targetUrl]];
+
+    __block NSDictionary *dataRecieved = [[NSDictionary alloc] init];
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
+      ^(NSData * _Nullable data,
+        NSURLResponse * _Nullable response,
+        NSError * _Nullable error) {
+
+        NSString *strISOLatin = [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding];
+        NSData *dataUTF8 = [strISOLatin dataUsingEncoding:NSUTF8StringEncoding];
+        dataRecieved = [NSJSONSerialization JSONObjectWithData:dataUTF8 options:0 error:&error];
+        
+        if (dataRecieved != nil) {
+            parsingFinished([dataRecieved copy]);
+        } else {
+            NSLog(@"Error: %@", error);
+            parsingFinished([[NSDictionary alloc] init]);
+        }
+    }] resume];
+}
+
+- (void)searchTrack:(NSString *)query type:(NSString *)type result:(void (^)(NSDictionary *))parsingFinished {
+    
+    if (![type.lowercaseString isEqual: @"track"] || ![type.lowercaseString isEqual: @"artist"]) {
+        type = @"track";
+    }
+    
+    // "this is an example query" -> "this%20is%20an%20example%20query"
+    NSString *formattedQuery = [query stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    
+    NSString *limit = @"10";
+    NSString *baseURL = @"https://api.spotify.com/v1/search";
+    NSString *targetURL = [NSString stringWithFormat: @"%@?q=%@&type=%@&market=ES&limit=%@&offset=0", baseURL, formattedQuery, type, limit];
+    
+    NSString *tokenType = @"Bearer";
+    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, self.accessToken];
+
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    [request setValue:header forHTTPHeaderField:@"Authorization"];
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:targetURL]];
+
+    __block NSDictionary *dataRecieved = [[NSDictionary alloc] init];
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
+      ^(NSData * _Nullable data,
+        NSURLResponse * _Nullable response,
+        NSError * _Nullable error) {
+
+        NSString *strISOLatin = [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding];
+        NSData *dataUTF8 = [strISOLatin dataUsingEncoding:NSUTF8StringEncoding];
+        dataRecieved = [NSJSONSerialization JSONObjectWithData:dataUTF8 options:0 error:&error];
+        
+        if (dataRecieved != nil) {
+            parsingFinished([dataRecieved copy]);
+        } else {
+            NSLog(@"Error: %@", error);
+            parsingFinished([[NSDictionary alloc] init]);
+        }
+    }] resume];
+}
 
 @end
