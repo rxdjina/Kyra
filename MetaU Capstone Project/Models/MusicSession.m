@@ -332,4 +332,21 @@ static const NSUInteger LENGTH_ID = 6;
     }];
 }
 
++ (void)updateTimestamp: ( NSString * )sessionCode timestamp:( NSInteger )timestamp withCompletion: ( PFBooleanResultBlock _Nullable ) completion {
+    
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:sessionCode];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+        if (session) {
+            NSInteger trackTimestamp = (NSInteger)[session[0] valueForKey:@"timestamp"];
+    
+            [session[0] setValue:@(timestamp) forKey:@"timestamp"];
+ 
+            [PFObject saveAllInBackground:session];
+        } else {
+            NSLog(@"Error getting session: %@", error.localizedDescription);
+        }
+    }];
+}
+
 @end
