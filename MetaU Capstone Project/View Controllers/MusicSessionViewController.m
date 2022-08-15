@@ -110,6 +110,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
         self.timestamp = [[SpotifyManager shared] getCurrentTrackTimestamp];
         [MusicSession updateTimestamp:self.session.sessionCode timestamp:self.timestamp withCompletion:nil];
         
+        [self testTimer];
     } else {
         self.isPlaying = self.session.isPlaying;
         self.currentlyPlaying = (NSDictionary *)self.session.currentlyPlaying;
@@ -226,26 +227,23 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     }
 }
 
-- (void)testTimer { // Increments counter every second
-    [NSTimer scheduledTimerWithTimeInterval:1.0f
-                                 target:self selector:@selector(testTimestamp:) userInfo:nil repeats:YES];
+- (void)testTimer {
+    [NSTimer scheduledTimerWithTimeInterval:5.0f
+                                 target:self selector:@selector(updateServerTimestamp) userInfo:nil repeats:YES];
 }
 
--  (void)testTimestamp:(NSTimer *)timer {
-
-    self.testCounter++;
+-  (void)updateServerTimestamp {
+    self.timestamp = [[SpotifyManager shared] getCurrentTrackTimestamp];
 
     PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:self.session.sessionCode];
-
+    if (self.isHost) {
     [query getObjectInBackgroundWithId:self.session.objectId
                                  block:^(PFObject *session, NSError *error) {
-        PFUser *host = session[@"host"];
 
-        if ([PFUser.currentUser.objectId isEqual:host.objectId]) {
-            session[@"timestamp"] = @(self.testCounter);
-            [session saveInBackground];
-        }
+        session[@"timestamp"] = @(self.timestamp);
+        [session saveInBackground];
     }];
+    }
 }
 
 - (void)querySetup {
