@@ -27,6 +27,12 @@
 
     self.sessionNameTextField.delegate = self;
     self.codeTextField.delegate = self;
+    
+    self.joinButton.layer.cornerRadius = 5;
+    self.joinButton.clipsToBounds = YES;
+    
+    self.createButton.layer.cornerRadius = 5;
+    self.createButton.clipsToBounds = YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

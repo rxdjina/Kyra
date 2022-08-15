@@ -23,6 +23,11 @@
     self.oldPasswordTextField.delegate = self;
     self.updatedPasswordTextField.delegate = self;
     self.confirmUpdatedPasswordTextField.delegate = self;
+    
+    self.updateEmailButton.layer.cornerRadius = 5;
+    self.updateEmailButton.clipsToBounds = YES;
+    self.updatePasswordButton.layer.cornerRadius = 5;
+    self.updateEmailButton.clipsToBounds = YES;
 }
 
 - (void)setDefaultTextField:(NSArray *)arrayOfTextFields {

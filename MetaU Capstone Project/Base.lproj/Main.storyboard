@@ -85,7 +85,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Vra-sa-d4g"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PHv-vl-iaM">
@@ -95,7 +95,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="o20-Ph-yIP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-kY-Fqj">
@@ -105,7 +105,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="MVA-jz-ydA"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pJz-gC-njV">
@@ -115,8 +115,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="AQX-C0-vBO"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Re-enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ML4-bJ-wYP">
                                 <rect key="frame" x="29" y="619" width="370" height="60"/>
@@ -125,8 +125,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="2BI-pb-t5A"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v2l-fs-Agy"/>
@@ -265,7 +265,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="0.43620413540000003" green="0.61154985429999997" blue="0.92155581710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.65882354970000001" green="0.73725497719999999" blue="0.94509804249999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="NjP-Yx-ijf" kind="relationship" relationship="viewControllers" id="gAM-Sf-Aqq"/>
@@ -311,12 +311,12 @@
                                     <segue destination="JRy-Is-nIt" kind="show" identifier="" id="JLe-IH-GtC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KYRA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7B-Ea-lU0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KYRA." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7B-Ea-lU0">
                                 <rect key="frame" x="61" y="217" width="306" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="52d-mq-gP0"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="70"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -326,8 +326,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="hy1-yd-4Hz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Username or email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HJf-ZJ-DXB">
                                 <rect key="frame" x="33" y="393" width="362" height="60"/>
@@ -335,7 +335,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="kbs-Uu-0Bs"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tvg-6N-JQQ">
@@ -360,7 +360,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Log In">
-                                    <fontDescription key="titleFontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="loginButton:" destination="7Y0-sa-KHE" eventType="touchUpInside" id="oac-lI-2dm"/>
@@ -413,6 +413,7 @@
                     <navigationItem key="navigationItem" id="IOq-5l-ctS"/>
                     <connections>
                         <outlet property="errorMessageLabel" destination="NGB-Aj-DFd" id="ZgB-HH-dMu"/>
+                        <outlet property="loginButton" destination="NAJ-a2-SMT" id="fRv-QY-jqn"/>
                         <outlet property="passwordField" destination="Jy9-Ij-Cgz" id="eey-rN-lZ0"/>
                         <outlet property="usernameField" destination="HJf-ZJ-DXB" id="xru-5n-SPY"/>
                         <segue destination="ltS-O6-yoh" kind="presentation" identifier="loginSegue" id="kHX-Kz-zMX"/>
@@ -854,7 +855,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="dhl-F7-ciI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We'll email you a code to verify your updated email adress" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Auq-03-dzY">
@@ -969,8 +970,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Oyq-q5-W14"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="New password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qqx-Dg-N6q">
                                 <rect key="frame" x="36" y="358" width="356" height="60"/>
@@ -979,8 +980,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="uN6-v5-U4F"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Confirm new password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2CY-P9-K9T">
                                 <rect key="frame" x="36" y="446" width="356" height="60"/>
@@ -989,8 +990,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="GnT-KS-0gE"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwP-OU-abc">
                                 <rect key="frame" x="36" y="534" width="356" height="60"/>
@@ -1100,11 +1101,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwb-vx-rlk">
-                                <rect key="frame" x="20" y="84" width="388" height="34"/>
+                                <rect key="frame" x="20" y="84" width="388" height="104"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="gaB-xS-H1y"/>
+                                    <constraint firstAttribute="height" constant="104" id="gaB-xS-H1y"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1152,8 +1153,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RtM-Y1-0Sf">
-                                <rect key="frame" x="104" y="693" width="220" height="36"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                                <rect key="frame" x="104" y="693" width="220" height="42"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
                                 <color key="tintColor" red="0.2588235438" green="0.58431375029999999" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Connect Spotify">
@@ -1196,7 +1197,9 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="createButton" destination="BE4-gj-ziT" id="e4T-1w-STp"/>
                         <outlet property="greetingLabel" destination="vwb-vx-rlk" id="Feg-bZ-BWK"/>
+                        <outlet property="joinButton" destination="cKC-5j-QAs" id="DrZ-6h-VWx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qhp-NN-qpu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1317,6 +1320,7 @@
                     <navigationItem key="navigationItem" id="1FM-Pu-iEl"/>
                     <connections>
                         <outlet property="codeTextField" destination="rWT-A8-j44" id="qxM-2a-2DA"/>
+                        <outlet property="joinButton" destination="Vnn-AG-F5H" id="jol-2z-Lg7"/>
                         <segue destination="7MB-tq-P4U" kind="presentation" identifier="joinSessionSegue" id="C9r-6c-0se"/>
                     </connections>
                 </viewController>
@@ -1332,12 +1336,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQq-aJ-mVF">
-                                <rect key="frame" x="29" y="677" width="356" height="58"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQq-aJ-mVF">
+                                <rect key="frame" x="29" y="677" width="356" height="75"/>
                                 <color key="backgroundColor" red="0.65882354970000001" green="0.73725497719999999" blue="0.94509804249999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <accessibility key="accessibilityConfiguration" identifier="logIn"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="Qer-i9-WEM"/>
+                                    <constraint firstAttribute="height" constant="75" id="Qer-i9-WEM"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -1350,11 +1354,11 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Session Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CCx-Yq-mCX">
-                                <rect key="frame" x="29" y="143" width="370" height="60"/>
+                                <rect key="frame" x="29" y="143" width="370" height="75"/>
                                 <color key="backgroundColor" red="0.98039215800000001" green="0.98039215800000001" blue="0.98039215800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <accessibility key="accessibilityConfiguration" identifier="nameField"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="457-pr-eoQ"/>
+                                    <constraint firstAttribute="height" constant="75" id="457-pr-eoQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1363,16 +1367,17 @@
                         <viewLayoutGuide key="safeArea" id="36W-qd-6hR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="36W-qd-6hR" firstAttribute="bottom" secondItem="lQq-aJ-mVF" secondAttribute="bottom" constant="24" id="Gfv-Kj-mDd"/>
+                            <constraint firstItem="36W-qd-6hR" firstAttribute="bottom" secondItem="lQq-aJ-mVF" secondAttribute="bottom" constant="42" id="Gfv-Kj-mDd"/>
                             <constraint firstItem="CCx-Yq-mCX" firstAttribute="leading" secondItem="36W-qd-6hR" secondAttribute="leading" constant="29" id="T1y-0d-IGQ"/>
                             <constraint firstItem="CCx-Yq-mCX" firstAttribute="leading" secondItem="lQq-aJ-mVF" secondAttribute="leading" id="cPh-jW-dhX"/>
                             <constraint firstItem="CCx-Yq-mCX" firstAttribute="top" secondItem="36W-qd-6hR" secondAttribute="top" constant="87" id="eWl-Ce-R4C"/>
                             <constraint firstItem="CCx-Yq-mCX" firstAttribute="centerX" secondItem="YFy-86-SQV" secondAttribute="centerX" id="hOE-2V-XoD"/>
-                            <constraint firstItem="CCx-Yq-mCX" firstAttribute="trailing" secondItem="lQq-aJ-mVF" secondAttribute="trailing" id="qFj-jA-FDD"/>
+                            <constraint firstItem="CCx-Yq-mCX" firstAttribute="trailing" secondItem="lQq-aJ-mVF" secondAttribute="trailing" constant="14" id="qFj-jA-FDD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NfD-5a-f4S"/>
                     <connections>
+                        <outlet property="createButton" destination="lQq-aJ-mVF" id="d2Y-td-tFL"/>
                         <outlet property="sessionNameTextField" destination="CCx-Yq-mCX" id="wLj-EB-e2Y"/>
                         <segue destination="6PX-6G-jxg" kind="presentation" identifier="createSessionSegue" id="hWu-uP-5Ed"/>
                     </connections>
