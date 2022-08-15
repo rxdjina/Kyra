@@ -80,6 +80,11 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
             selector:@selector(receiveNotification:)
             name:@"newTrackNotification"
             object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+            selector:@selector(receiveNotification:)
+            name:@"playRequestNotification"
+            object:nil];
 
     self.accessToken = [[SpotifyManager shared] accessToken];
     
@@ -491,10 +496,12 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
         MusicSession *dataToPass = self.session;
         QueueTableViewController *queueVC = [segue destinationViewController];
         queueVC.session = dataToPass;
+        queueVC.isHost = self.isHost;
     } else if ([segue.identifier  isEqual: @"searchSegue"]) {
         MusicSession *dataToPass = self.session;
         SearchTableViewController *searchVC = [segue destinationViewController];
         searchVC.session = dataToPass;
+        searchVC.isHost = self.isHost;
     }  else if ([segue.identifier  isEqual: @"currentlyPlayingSegue"]) {
         MusicSession *sessionToPass = self.session;
         NSDictionary *trackToPass = self.currentlyPlaying;

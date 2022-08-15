@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface QueueTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) MusicSession *session;
+@property (nonatomic) BOOL isHost;
 
 @end
 

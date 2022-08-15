@@ -157,4 +157,16 @@
     return swipeActions;
 }
 
+// Tap
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *track = [self.searchResults valueForKey:@"items"][indexPath.row];
+    NSString *contextURI = [[track valueForKey:@"album"] valueForKey:@"uri"];
+    
+    if (self.isHost) {
+        [[SpotifyManager shared] playTrackAtTimestamp:contextURI timestamp:0 result:^(NSDictionary * _Nonnull request) {
+            NSLog(@"RESULTS: %@", request);
+        }];
+    }
+}
+
 @end
