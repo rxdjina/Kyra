@@ -49,7 +49,16 @@
 }
 
 - (void)updateView {
-    NSString *trackID = [[self.track valueForKey:@"URI"] substringFromIndex:14];
+    NSString *trackURI = @"";
+    
+    trackURI = [[self.track valueForKey:@"track"] valueForKey:@"URI"][0];
+    
+    if (trackURI == nil) {
+        trackURI = [self.track valueForKey:@"URI"];
+    }
+    
+    NSString *trackID = [trackURI substringFromIndex:14];
+
     
     NSString *targetURL = [NSString stringWithFormat:@"https://api.spotify.com/v1/tracks/%@", trackID];
     

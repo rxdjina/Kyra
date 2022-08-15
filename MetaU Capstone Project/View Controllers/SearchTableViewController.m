@@ -119,6 +119,7 @@
         }
     }
     NSString *trackAlbum = [[track valueForKey:@"album"] valueForKey:@"name"];
+    NSString *contextURI = [[track valueForKey:@"album"] valueForKey:@"uri"];
     NSString *imageURL = [[[track valueForKey:@"album"] valueForKey:@"images"] valueForKey:@"url"];
 
     // Swipe Gestures
@@ -127,6 +128,7 @@
         NSDictionary *trackDetails = @{
             @"name" : trackName,
             @"URI" : trackURI,
+            @"contextURI" : contextURI,
             @"artist" : trackArtists,
             @"album" : trackAlbum,
             @"images" : imageURL
