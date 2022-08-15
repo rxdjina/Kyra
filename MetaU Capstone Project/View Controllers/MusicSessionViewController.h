@@ -36,7 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *currentlyPlayingNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *currentlyPlayingArtistLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *currentlyPlayingCoverArtImage;
-@property (strong, nonatomic) IBOutlet UILabel *currentlyPlayingBGImage;
+@property (strong, nonatomic) IBOutlet UIButton *currentlyPlayingBGButton;
+
+
+@property (strong, nonatomic) IBOutlet UIButton *updateNotificationButton;
 
 - (void)updateView;
 @end

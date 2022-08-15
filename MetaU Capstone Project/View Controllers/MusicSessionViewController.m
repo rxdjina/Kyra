@@ -23,6 +23,7 @@
 @interface MusicSessionViewController ()
 
 @property BOOL isPlaying;
+@property (nonatomic) BOOL isHost;
 @property (nonatomic) NSInteger timestamp;
 @property (nonatomic, strong) NSString *accessToken;
 
@@ -81,9 +82,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
             object:nil];
 
     self.accessToken = [[SpotifyManager shared] accessToken];
-    self.isPlaying = YES;
-    self.currentlyPlaying = (NSDictionary *)self.session.currentlyPlaying;
-
+    
     [self querySetup];
 
     [MusicSession addUserToSession:self.session.sessionCode withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
@@ -95,7 +94,75 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
         }
     }];
     
-    NSMutableArray *arrayOftrackURI = [[NSMutableArray alloc] init];
+    if ([[self.session.host valueForKey:@"objectId"] isEqualToString:PFUser.currentUser.objectId]) {
+        self.isHost = YES;
+    } else {
+        self.isHost = NO;
+    }
+    
+    if (self.isHost) {
+        self.isPlaying = YES;
+        [MusicSession updateIsPlaying:self.session.sessionCode status:self.isPlaying withCompletion:nil];
+    } else {
+        
+        self.isPlaying = self.session.isPlaying;
+        self.timestamp = [[SpotifyManager shared] getCurrentTrackTimestamp];
+        self.currentlyPlaying = (NSDictionary *)self.session.currentlyPlaying;
+        id<SPTAppRemoteTrack> contentItem = [[SpotifyManager shared] getCurrentTrackAsContentItem];
+        NSLog(@"Playing %@ @ timestamp: %ld", [self.currentlyPlaying valueForKey:@"name"], (long)self.timestamp);
+    }
+    
+    [self querySetup];
+
+    [MusicSession addUserToSession:self.session.sessionCode withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+            // TODO: Add Alert
+        } else {
+            NSLog(@"Sucessfully added user to session");
+        }
+    }];
+    
+    self.updateNotificationButton.hidden = YES;
+    [self notificationBanner:@"This is a test"];
+}
+- (void)notificationBanner:(NSString *)bannerText{
+    [self.updateNotificationButton setTitle:bannerText forState:UIControlStateNormal];
+
+    [NSTimer scheduledTimerWithTimeInterval:3.0
+                                     target:self selector:@selector(bannerAnimationUp) userInfo:nil repeats:NO];
+    
+    [NSTimer scheduledTimerWithTimeInterval:5.0
+                 target:self selector:@selector(bannerAnimationDown) userInfo:nil repeats:NO];
+}
+
+- (void)bannerAnimationUp {
+    self.updateNotificationButton.hidden = NO;
+    NSInteger width = [UIScreen mainScreen].bounds.size.width;
+    NSInteger  x = width / 2;
+    
+    NSInteger buttonWidth = self.updateNotificationButton.intrinsicContentSize.width;
+
+    self.updateNotificationButton.frame = CGRectMake(x - (buttonWidth / 2), 60, buttonWidth, 31);
+    [UIView animateWithDuration:0.25 animations:^{
+        self.updateNotificationButton.frame = CGRectMake(x - (buttonWidth / 2), 80, buttonWidth, 31);
+    }];
+}
+
+- (void)bannerAnimationDown {
+    NSInteger width = [UIScreen mainScreen].bounds.size.width;
+    NSInteger  x = width / 2;
+    NSInteger buttonWidth = self.updateNotificationButton.intrinsicContentSize.width;
+
+    self.updateNotificationButton.frame = CGRectMake(x - (buttonWidth / 2), 80, buttonWidth, 31);
+
+    [UIView animateWithDuration:0.15 animations:^{
+        self.updateNotificationButton.frame = CGRectMake(x - (buttonWidth / 2), 60, buttonWidth, 31);
+    } completion:^(BOOL finished) {
+        if (finished) {
+            self.updateNotificationButton.hidden = YES;
+        }
+    }];
 }
 
 - (void)receiveNotification:(NSNotification *)notification {
@@ -124,15 +191,17 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     } else if ([[notification name] isEqualToString:@"newTrackNotification"]) {
         NSLog(@"New Track Notification Recived");
         
-        self.previouslyPlaying = [[SpotifyManager shared] getPreviousTrack];
+        if (self.isHost) {
+            self.previouslyPlaying = [[SpotifyManager shared] getPreviousTrack];
         
-        if (self.previouslyPlaying != nil) {
-            [MusicSession addToPlayedTracks:self.session.sessionCode track:self.previouslyPlaying withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-                if (error != nil){
-                    NSLog(@"Error adding to played tracks: %@", error.localizedDescription);
-                }
-            }];
-        }
+            if (self.previouslyPlaying != nil) {
+                    [MusicSession addToPlayedTracks:self.session.sessionCode track:self.previouslyPlaying withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                        if (error != nil){
+                            NSLog(@"Error adding to played tracks: %@", error.localizedDescription);
+                        }
+                    }];
+            }
+    }
     }
 }
 
@@ -183,6 +252,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
         dispatch_async(dispatch_get_main_queue(), ^{
             [strongSelf updateView];
             [strongSelf loadPlayedTracks];
+            [strongSelf updatePlayerStatus];
             [strongSelf.tableView reloadData];
         });
     }];
@@ -208,12 +278,61 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
 }
 
 - (void)updateView {
-    NSLog(@"Update Called");
+    NSString *trackName = @"";
+    NSString *stringOfArtists = @"";
+    NSString *trackURI = @"";
     
-    self.currentlyPlayingNameLabel.text = [self.currentlyPlaying valueForKey:@"name"];
+    trackName = [[self.currentlyPlaying valueForKey:@"track"] valueForKey:@"name"][0];
     
-    NSString *trackArtists = [self.currentlyPlaying valueForKey:@"artist"];
-    self.currentlyPlayingArtistLabel.text = trackArtists;
+    if ([trackName isEqual: @""]) {
+        trackName = [self.currentlyPlaying valueForKey:@"name"];
+    }
+    
+    NSMutableArray *trackArtists = [[self.currentlyPlaying valueForKey:@"track"] valueForKey:@"artist"];
+    
+    if (trackArtists.count == 0) {
+        stringOfArtists = trackName = [self.currentlyPlaying valueForKey:@"artist"];
+        // Array of Artists -> Formatted String
+        for (NSString *name in trackArtists) {
+            if (trackArtists.count == 1 || (trackArtists.count - 1) == [trackArtists indexOfObject:name]) {
+                stringOfArtists = [stringOfArtists stringByAppendingString:name];
+            } else {
+                stringOfArtists = [stringOfArtists stringByAppendingString:[NSString stringWithFormat:@"%@, ", name]];
+            }
+        }
+    } else {
+        // Array of Artists -> Formatted String
+        for (NSString *name in trackArtists) {
+            if (trackArtists.count == 1 || (trackArtists.count - 1) == [trackArtists indexOfObject:name]) {
+                stringOfArtists = [stringOfArtists stringByAppendingString:name];
+            } else {
+                stringOfArtists = [stringOfArtists stringByAppendingString:[NSString stringWithFormat:@"%@, ", name]];
+            }
+        }
+    }
+    
+    trackURI = [[self.currentlyPlaying valueForKey:@"track"] valueForKey:@"URI"][0];
+    
+    if (trackURI == nil) {
+        trackURI = [self.currentlyPlaying valueForKey:@"URI"];
+    }
+    
+    NSString *trackID = [trackURI substringFromIndex:14];
+    
+    NSString *targetURL = [NSString stringWithFormat:@"https://api.spotify.com/v1/tracks/%@", trackID];
+    __block NSString *imageURL;
+    
+    [[SpotifyManager shared] retriveDataFrom:targetURL result:^(NSDictionary * _Nonnull dataRevieved) {
+        imageURL = [[[dataRevieved valueForKey:@"album"] valueForKey:@"images"] valueForKey:@"url"][2];
+        NSURL *albumURL = [[NSURL alloc] initWithString:imageURL];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.currentlyPlayingNameLabel.text = trackName;
+            self.currentlyPlayingArtistLabel.text = stringOfArtists;
+            self.currentlyPlayingCoverArtImage.image = nil;
+            [self.currentlyPlayingCoverArtImage setImageWithURL:albumURL];
+        });
+    }];
 }
 
 - (NSString *)getInfo: (NSString *)objectId {
@@ -233,6 +352,18 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
         if (session) {
             self.session.playedTracks = [session[0] valueForKey:@"playedTracks"];
 
+        } else {
+            NSLog(@"Error getting session: %@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)updatePlayerStatus {
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:self.session.sessionCode];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+        if (session) {
+            self.session.isPlaying = [session[0] valueForKey:@"isPlaying"];
         } else {
             NSLog(@"Error getting session: %@", error.localizedDescription);
         }
@@ -315,7 +446,7 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
         MusicSession *dataToPass = self.session;
         SearchTableViewController *searchVC = [segue destinationViewController];
         searchVC.session = dataToPass;
-    }  else if ([segue.identifier  isEqual: @"trackViewSegue"]) {
+    }  else if ([segue.identifier  isEqual: @"currentlyPlayingSegue"]) {
         MusicSession *sessionToPass = self.session;
         NSDictionary *trackToPass = self.currentlyPlaying;
         TrackViewController *trackVC = [segue destinationViewController];
