@@ -476,6 +476,42 @@ NSString * const SERVER_URL = @"wss://musicsessionlog.b4a.io";
     return cell;
 }
 
+// Like Swipe Gesture
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView leadingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIContextualAction *likeTrackAction = [UIContextualAction contextualActionWithStyle:normal title:@"like" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        // TODO: Add to liked tracks
+        completionHandler(YES);
+    }];
+    
+    likeTrackAction.backgroundColor = [UIColor colorWithRed: 0.71 green: 0.87 blue: 0.64 alpha: 1.00];
+    likeTrackAction.image = [UIImage systemImageNamed:@"heart"];
+    
+    UISwipeActionsConfiguration *swipeActions = [UISwipeActionsConfiguration configurationWithActions:@[likeTrackAction]];
+    
+    swipeActions.performsFirstActionWithFullSwipe = false;
+    
+    return swipeActions;
+}
+
+// Dislike
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    // Swipe Gestures
+    UIContextualAction *dislikeTrackAction = [UIContextualAction contextualActionWithStyle:normal title:@"dislike" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        // TODO: Notify host
+        completionHandler(YES);
+    }];
+    
+    dislikeTrackAction.backgroundColor = [UIColor colorWithRed: 0.87 green: 0.66 blue: 0.64 alpha: 1.00];
+    dislikeTrackAction.image = [UIImage systemImageNamed:@"minus"];
+    
+    UISwipeActionsConfiguration *swipeActions = [UISwipeActionsConfiguration configurationWithActions:@[dislikeTrackAction]];
+    
+    swipeActions.performsFirstActionWithFullSwipe = false;
+    
+    return swipeActions;
+}
+
 - (IBAction)pressedLeaveSession:(id)sender {
     PFQuery *query = [PFQuery queryWithClassName:@"MusicSession"];
 
