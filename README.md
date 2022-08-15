@@ -1,4 +1,4 @@
-# MetaU Summer 2022 Project
+# Kyra
 
 ## Table of Contents
 1. [Overview](#Overview)
