@@ -12,11 +12,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MusicSessionViewController : UIViewController <UITextFieldDelegate>
+@interface MusicSessionViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UILabel *sessionNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *sessionIDLabel;
-@property (nonatomic, strong) MusicSession *musicSession;
+@property (nonatomic, strong) MusicSession *session;
 @property (strong, nonatomic) IBOutlet UILabel *sessionLogLabel;
 @property (strong, nonatomic) IBOutlet UILabel *testLabel;
 
@@ -32,6 +32,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIImageView *coverArtImage;
 @property (strong, nonatomic) IBOutlet UILabel *trackNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *artistLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *currentlyPlayingNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *currentlyPlayingArtistLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *currentlyPlayingCoverArtImage;
+@property (strong, nonatomic) IBOutlet UIButton *currentlyPlayingBGButton;
+
+@property (strong, nonatomic) IBOutlet UIButton *updateNotificationButton;
 
 - (void)updateView;
 @end

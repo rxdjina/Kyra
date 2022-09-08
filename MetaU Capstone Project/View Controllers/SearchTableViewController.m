@@ -26,6 +26,8 @@
     self.tableView.dataSource = self;
     self.searchBar.delegate = self;
     
+    self.navigationController.toolbarHidden = YES;
+    
     [self loadSearchResults];
 }
 
@@ -117,6 +119,7 @@
         }
     }
     NSString *trackAlbum = [[track valueForKey:@"album"] valueForKey:@"name"];
+    NSString *contextURI = [[track valueForKey:@"album"] valueForKey:@"uri"];
     NSString *imageURL = [[[track valueForKey:@"album"] valueForKey:@"images"] valueForKey:@"url"];
 
     // Swipe Gestures
@@ -125,6 +128,7 @@
         NSDictionary *trackDetails = @{
             @"name" : trackName,
             @"URI" : trackURI,
+            @"contextURI" : contextURI,
             @"artist" : trackArtists,
             @"album" : trackAlbum,
             @"images" : imageURL
@@ -151,6 +155,18 @@
     swipeActions.performsFirstActionWithFullSwipe = false;
     
     return swipeActions;
+}
+
+// Tap
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *track = [self.searchResults valueForKey:@"items"][indexPath.row];
+    NSString *contextURI = [[track valueForKey:@"album"] valueForKey:@"uri"];
+    
+    if (self.isHost) {
+        [[SpotifyManager shared] playTrackAtTimestamp:contextURI timestamp:0 result:^(NSDictionary * _Nonnull request) {
+            NSLog(@"RESULTS: %@", request);
+        }];
+    }
 }
 
 @end

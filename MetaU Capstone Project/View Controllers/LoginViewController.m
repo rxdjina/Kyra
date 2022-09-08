@@ -27,6 +27,12 @@
     self.passwordField.delegate = self;
     self.passwordRentryField.delegate = self;
     
+    self.loginButton.layer.cornerRadius = 5;
+    self.loginButton.clipsToBounds = YES;
+    
+    self.signUpButton.layer.cornerRadius = 5;
+    self.signUpButton.clipsToBounds = YES;
+    
     [self validateTextFields];
 }
 

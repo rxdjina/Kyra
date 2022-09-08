@@ -26,6 +26,8 @@
 @dynamic isPlaying;
 @dynamic timestamp;
 @dynamic queue;
+@dynamic playedTracks;
+@dynamic currentlyPlaying;
 
 static const NSUInteger LENGTH_ID = 6;
 
@@ -58,15 +60,6 @@ static const NSUInteger LENGTH_ID = 6;
     };
 
     newSession.log = (NSMutableArray *)@[task];
-
-    // Queue
-//    [[[SpotifyManager shared] appRemote] pla]
-//    task = @{
-//        @"trackName" : track.name,
-//        @"trackArtist" : track.artist,
-//        @"trackURI" : track.URI,
-//        @"addedBy" : user
-//    };
     
     newSession.queue = [NSMutableArray new];
     
@@ -120,16 +113,22 @@ static const NSUInteger LENGTH_ID = 6;
         if (session.count > 0) {
             NSMutableArray *users = [session[0] valueForKey:@"activeUsers"];
             
-            
             if (users.count > 1) {
-                // TODO: If user was host, assign new host
-                NSLog(@"[%lu] %@", (unsigned long)users.count, users);
                 
-                NSInteger *count = @(0);
-
-                [users removeObjectIdenticalTo:user.objectId];
-                NSLog(@"[%lu] %@", (unsigned long)users.count, users);
-                [session setValue:users forKey:@"activeUsers"];
+                for (NSInteger i = 0; i < users.count; i++) {
+                    NSString *userObjectID = [users[i] valueForKey:@"objectId"];
+                    if ([user.objectId isEqualToString:userObjectID]) {
+                        [users removeObjectAtIndex:i];
+                    }
+                }
+                
+                NSString *host = [[session[0] valueForKey:@"activeUsers"] valueForKey:@"objectId"];
+                if ([user.objectId isEqualToString:host]) {
+                    host = users[0];
+                    [session[0] setValue:host forKey:@"host"];
+                }
+                
+                [session[0] setValue:users forKey:@"activeUsers"];
                 
                 [MusicSession updateSessionLog:sessionCode decription:@"Left session" withCompletion:^(BOOL succeeded, NSError * error) {
                     if (error != nil) {
@@ -139,6 +138,8 @@ static const NSUInteger LENGTH_ID = 6;
                     }
                 }];
                 
+                [PFObject saveAllInBackground:session];
+
             } else if (users.count == 1) {
                 NSLog(@"One user left");
                 // TODO: Close session
@@ -241,5 +242,111 @@ static const NSUInteger LENGTH_ID = 6;
     }];
 }
 
++ (void)addToPlayedTracks: ( NSString * )sessionCode track:(NSDictionary *)trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion {
+    
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:sessionCode];
+
+    NSDictionary *task = @{
+        @"track" : trackInfo,
+        @"addedBy" : PFUser.currentUser
+    };
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+        if (session) {
+            NSMutableArray *track = [session[0] valueForKey:@"queue"][0];
+            NSMutableArray *playedTracks = [session[0] valueForKey:@"playedTracks"];
+
+            [playedTracks addObject:task];
+            [session setValue:playedTracks forKey:@"playedTracks"];
+            
+            if ([[track valueForKey:@"URI"] isEqual:[trackInfo valueForKey:@"URI"]]) {
+                [MusicSession removeFromQueue:sessionCode index:0 withCompletion:nil];
+            }
+            
+            [PFObject saveAllInBackground:session];
+        } else {
+            NSLog(@"Error getting session: %@", error.localizedDescription);
+        }
+    }];
+}
+
++ (void)updateCurrentlyPlaying: ( NSString * )sessionCode track:( NSDictionary * )trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion {
+ 
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:sessionCode];
+    PFUser *user = [PFUser currentUser];
+
+    NSDictionary *task = @{
+        @"track" : trackInfo,
+        @"addedBy" : user
+    };
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+        if (session) {
+            NSMutableArray *queue = [session[0] valueForKey:@"queue"];
+            NSString *nextInQueueURI = [[queue valueForKey:@"track"] valueForKey:@"URI"][0];
+            
+            NSMutableArray *currentlyPlaying = [session[0] valueForKey:@"currentlyPlaying"];
+            NSString *currentlyPlayingURI = [[currentlyPlaying valueForKey:@"track"] valueForKey:@"URI"];
+            
+            NSMutableArray *newTrack = [[NSMutableArray alloc] init];
+
+            if ([nextInQueueURI isEqualToString:currentlyPlayingURI]) {
+                [MusicSession removeFromQueue:sessionCode index:0 withCompletion:nil];
+                [newTrack addObject:queue[0]];
+            } else {
+                [newTrack addObject:task];
+            }
+            
+            [session setValue:newTrack forKey:@"currentlyPlaying"];
+            
+            NSString *logDescription = [NSString stringWithFormat:@"New track \n Now playing %@ by %@", trackInfo[@"name"], trackInfo[@"artist"]];
+            
+            [MusicSession updateSessionLog:sessionCode decription:logDescription withCompletion:^(BOOL succeeded, NSError * error) {
+                if (error != nil) {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                }
+            }];
+            
+            [PFObject saveAllInBackground:session];
+        }
+        else {
+            NSLog(@"Error getting session: %@", error.localizedDescription);
+        }
+    }];
+}
+
++ (void)updateIsPlaying: ( NSString * )sessionCode status:( BOOL )playerStatus withCompletion: ( PFBooleanResultBlock _Nullable ) completion {
+    
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:sessionCode];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+        if (session) {
+            NSMutableArray *isPlaying = [session[0] valueForKey:@"isPlaying"];
+    
+            [session[0] setValue:@(playerStatus) forKey:@"isPlaying"];
+ 
+            [PFObject saveAllInBackground:session];
+        } else {
+            NSLog(@"Error getting session: %@", error.localizedDescription);
+        }
+    }];
+}
+
++ (void)updateTimestamp: ( NSString * )sessionCode timestamp:( NSInteger )timestamp withCompletion: ( PFBooleanResultBlock _Nullable ) completion {
+    
+    PFQuery *query = [[MusicSession query] whereKey:@"sessionCode" equalTo:sessionCode];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable session, NSError * _Nullable error) {
+        if (session) {
+            NSInteger trackTimestamp = (NSInteger)[session[0] valueForKey:@"timestamp"];
+    
+            [session[0] setValue:@(timestamp) forKey:@"timestamp"];
+ 
+            [PFObject saveAllInBackground:session];
+        } else {
+            NSLog(@"Error getting session: %@", error.localizedDescription);
+        }
+    }];
+}
 
 @end

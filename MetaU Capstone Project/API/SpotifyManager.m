@@ -21,7 +21,8 @@
     return shared;
 }
 
-static const NSInteger MAX_SECONDS = 5;
+static const NSInteger MAX_SECONDS = 3;
+
 static const NSInteger MIN_MILISECONDS = 0;
 static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 
@@ -42,7 +43,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 }
 
 - (void)authenticateSpotify {
-    SPTScope requestedScope = SPTAppRemoteControlScope | SPTUserFollowReadScope | SPTPlaylistModifyPrivateScope | SPTPlaylistReadPrivateScope  | SPTUserLibraryReadScope | SPTUserTopReadScope | SPTUserReadPrivateScope | SPTUserLibraryModifyScope | SPTPlaylistReadCollaborativeScope | SPTUserReadEmailScope | SPTUserReadRecentlyPlayedScope | SPTUserReadCurrentlyPlayingScope;
+    SPTScope requestedScope = SPTAppRemoteControlScope | SPTUserFollowReadScope | SPTPlaylistModifyPrivateScope | SPTPlaylistReadPrivateScope  | SPTUserLibraryReadScope | SPTUserTopReadScope | SPTUserReadPrivateScope | SPTUserLibraryModifyScope | SPTPlaylistReadCollaborativeScope | SPTUserReadEmailScope | SPTUserReadRecentlyPlayedScope | SPTUserReadCurrentlyPlayingScope | SPTUserModifyPlaybackStateScope;
     
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
 }
@@ -114,6 +115,18 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     NSLog(@"Track name: %@", playerState.track.name);
     NSLog(@"player state changed");
 
+    @try {
+        self.currentTrack = [self currentTrackInfo:playerState.track];
+        self.currentTrackContentItem = playerState.track;
+    } @catch (NSException *exception) {
+        NSLog(@"Error getting current track...");
+    }
+    
+    [self recentlyPlayedTrack];
+
+    NSLog(@"PREVIOUS TRACK: %@", self.previousTrack);
+    NSLog(@"CURRENT TRACK : %@", self.currentTrack);
+
     [self sendNotification];
 }
 
@@ -121,8 +134,8 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"playerStateChangeNotification" object:self];
 }
 
-- (id<SPTAppRemoteTrack>) getCurrentTrackInfo {
-    return self.currentTrack;
+- (void)sendNewTrackNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"newTrackNotification" object:self];
 }
 
 - (void)startTrack {
@@ -164,7 +177,7 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
 - (void)rewindTrack {
     NSLog(@"Rewinding music called");
     
-    self.timestamp = 3; // Placeholder timestamp
+    self.currentTrackTimestamp = 3; // Placeholder timestamp
     
     if (MIN_MILISECONDS <= self.timestamp <= MAX_MILISECONDS) { // if current timestamp < x seconds, restart current song
         [[self.appRemote playerAPI] seekToPosition:0 callback:^(id result, NSError * error){
@@ -247,6 +260,144 @@ static const NSInteger MAX_MILISECONDS = MAX_SECONDS * 1000;
         NSData *dataUTF8 = [strISOLatin dataUsingEncoding:NSUTF8StringEncoding];
         dataRecieved = [NSJSONSerialization JSONObjectWithData:dataUTF8 options:0 error:&error];
         
+        if (dataRecieved != nil) {
+            parsingFinished([dataRecieved copy]);
+        } else {
+            NSLog(@"Error: %@", error.localizedDescription);
+            parsingFinished([[NSDictionary alloc] init]);
+        }
+    }] resume];
+}
+
+- (void)addQueueToSpotify: (NSString *)trackURI {
+    [[self.appRemote playerAPI] enqueueTrackUri:trackURI callback:^(id  _Nullable result, NSError * _Nullable error) {
+            if (error != nil) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            } else {
+                NSLog(@"%@ added to Spotify queue", trackURI);
+            }
+    }];
+}
+
+- (NSDictionary *)currentTrackInfo: (id<SPTAppRemoteTrack>)track {
+    NSDictionary *trackDetails = @{
+            @"name" : track.name,
+            @"URI" : track.URI,
+            @"contextURI" : track.album.URI,
+            @"artist" : track.artist.name,
+            @"album" : track.album.name,
+            @"images" : @[]
+    };
+
+    return (NSDictionary *)trackDetails;
+}
+
+- (NSDictionary *)getCurrentTrack {
+    return self.currentTrack;
+}
+
+- (id<SPTAppRemoteTrack>)getCurrentTrackAsContentItem {
+    return self.currentTrackContentItem;
+}
+
+- (void)recentlyPlayedTrack {
+    NSString *targetURL = @"https://api.spotify.com/v1/me/player/recently-played?limit=1";
+    
+    [self retriveDataFrom:targetURL result:^(NSDictionary * _Nonnull dataRecieved) {
+        NSString *track = [[dataRecieved valueForKey:@"items"] valueForKey:@"track"][0];
+        
+        NSString *trackName = [track valueForKey:@"name"];
+        NSString *trackURI = [track valueForKey:@"uri"];
+
+        NSMutableArray *trackArtists = [[track valueForKey:@"artists"] valueForKey:@"name"];
+
+        NSString *trackAlbum = [[track valueForKey:@"album"] valueForKey:@"name"];
+        NSString *contextURI =  [[track valueForKey:@"album"] valueForKey:@"uri"];
+        NSArray *trackImages = [[[track valueForKey:@"album"] valueForKey:@"images"] valueForKey:@"url"];
+        
+        NSDictionary *trackDetails = @{
+                @"name" : trackName,
+                @"URI" : trackURI,
+                @"contextURI" : contextURI,
+                @"artist" : trackArtists,
+                @"album" : trackAlbum,
+                @"images" : trackImages
+        };
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.previousTrack = trackDetails;
+        });
+    }];
+    
+    [self sendNewTrackNotification];
+}
+
+- (NSDictionary *)getPreviousTrack {
+    return self.previousTrack;
+}
+
+- (void)currentlyPlayingTrack {
+    NSString *targetURL = @"https://api.spotify.com/v1/me/player/currently-playing";
+    
+    [self retriveDataFrom:targetURL result:^(NSDictionary * _Nonnull dataRecieved) {
+        NSString *isPlaying = [dataRecieved valueForKey:@"is_playing"];
+        NSNumber *timestamp = [dataRecieved valueForKey:@"progress_ms"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.isTrackPlaying = isPlaying;
+            self.currentTrackTimestamp = [timestamp integerValue];
+        });
+    }];
+}
+
+- (void)updateTimestamp {
+    [self currentlyPlayingTrack];
+}
+
+- (NSInteger)getCurrentTrackTimestamp {
+    [self updateTimestamp];
+    return self.currentTrackTimestamp;
+}
+
+- (BOOL)getPlayerStatus {
+    [self currentlyPlayingTrack];
+    return self.isTrackPlaying;
+}
+
+- (void)playTrackAtTimestamp:(NSString *)trackURI timestamp:(NSInteger)timestamp result:(void (^)(NSDictionary *))parsingFinished {
+    NSString *targetURL = @"https://api.spotify.com/v1/me/player/play";
+    
+    NSDictionary *requestBody = @{
+      @"context_uri": trackURI,
+      @"offset": @{
+        @"position": @5
+      },
+      @"position_ms": @(timestamp)
+    };
+    
+    NSError * err;
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:requestBody options:NSUTF8StringEncoding error:&err];
+
+    NSString *tokenType = @"Bearer";
+    NSString *header = [NSString stringWithFormat:@"%@ %@", tokenType, self.accessToken];
+
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    [request setValue:header forHTTPHeaderField:@"Authorization"];
+    [request setHTTPMethod:@"PUT"];
+    [request setURL:[NSURL URLWithString:targetURL]];
+    [request setHTTPBody:requestData];
+
+    __block NSDictionary *dataRecieved = [[NSDictionary alloc] init];
+    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
+      ^(NSData * _Nullable data,
+        NSURLResponse * _Nullable response,
+        NSError * _Nullable error) {
+        
+        NSString *strISOLatin = [[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding];
+        NSData *dataUTF8 = [strISOLatin dataUsingEncoding:NSUTF8StringEncoding];
+        dataRecieved = [NSJSONSerialization JSONObjectWithData:dataUTF8 options:0 error:&error];
+
         if (dataRecieved != nil) {
             parsingFinished([dataRecieved copy]);
         } else {

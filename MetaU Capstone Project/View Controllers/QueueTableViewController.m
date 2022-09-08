@@ -28,6 +28,7 @@ NSString * const GET_TRACK_URL = @"https://api.spotify.com/v1/tracks/";
     
     self.tableView.dataSource = self;
     self.tableView.dataSource = self;
+    self.navigationController.toolbarHidden = YES;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadQueue) forControlEvents:UIControlEventValueChanged];
@@ -144,6 +145,19 @@ NSString * const GET_TRACK_URL = @"https://api.spotify.com/v1/tracks/";
     
     return swipeActions;
 }
+
+// Tap
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *track = [self.queue valueForKey:@"track"][indexPath.row];
+    NSString *contextURI = [track valueForKey:@"contextURI"];
+    
+    if (self.isHost) {
+        [[SpotifyManager shared] playTrackAtTimestamp:contextURI timestamp:0 result:^(NSDictionary * _Nonnull request) {
+            NSLog(@"RESULTS: %@", request);
+        }];
+    }
+}
+
 
 @end
                        

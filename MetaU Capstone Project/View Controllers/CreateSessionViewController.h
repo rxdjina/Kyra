@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) IBOutlet UITextField *sessionNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *codeTextField;
+@property (strong, nonatomic) IBOutlet UIButton *joinButton;
+@property (strong, nonatomic) IBOutlet UIButton *createButton;
 
 @end
 

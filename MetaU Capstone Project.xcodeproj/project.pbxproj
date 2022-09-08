@@ -12,6 +12,7 @@
 		C26506AC2892F90D00E38146 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26506AB2892F90D00E38146 /* SettingsViewController.m */; };
 		C26C4A9C28A0EA290073FAC5 /* QueueTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26C4A9B28A0EA290073FAC5 /* QueueTableViewController.m */; };
 		C26C4A9F28A0EB270073FAC5 /* TrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26C4A9E28A0EB270073FAC5 /* TrackCell.m */; };
+		C2A9B89E28A6EFF700A84C80 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A9B89D28A6EFF700A84C80 /* MessageCell.m */; };
 		C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243332874A2A2003EAE4C /* AppDelegate.m */; };
 		C2B243372874A2A2003EAE4C /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B243362874A2A2003EAE4C /* SceneDelegate.m */; };
 		C2B2433D2874A2A2003EAE4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B2433B2874A2A2003EAE4C /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 		C2B2438D2878C358003EAE4C /* MusicSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2438C2878C358003EAE4C /* MusicSessionViewController.m */; };
 		C2B24390287FB821003EAE4C /* MusicSessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */; };
 		C2BE666128A5B378008A4F48 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BE666028A5B378008A4F48 /* SearchTableViewController.m */; };
+		C2BE666928A63E0F008A4F48 /* TrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BE666828A63E0F008A4F48 /* TrackViewController.m */; };
 		C2BE83172885D73800F30B0E /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2BE83162885D73800F30B0E /* SpotifyiOS.framework */; };
 		C2BE831A28874FBE00F30B0E /* SpotifyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BE831928874FBE00F30B0E /* SpotifyManager.m */; };
 		C2F07ED228945A5500318F7D /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F07ED128945A5500318F7D /* Track.m */; };
@@ -66,6 +68,8 @@
 		C26C4A9B28A0EA290073FAC5 /* QueueTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QueueTableViewController.m; sourceTree = "<group>"; };
 		C26C4A9D28A0EB270073FAC5 /* TrackCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackCell.h; sourceTree = "<group>"; };
 		C26C4A9E28A0EB270073FAC5 /* TrackCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackCell.m; sourceTree = "<group>"; };
+		C2A9B89C28A6EFF700A84C80 /* MessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		C2A9B89D28A6EFF700A84C80 /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		C2B2432F2874A2A2003EAE4C /* MetaU Capstone Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MetaU Capstone Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B243322874A2A2003EAE4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C2B243332874A2A2003EAE4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -95,6 +99,8 @@
 		C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicSessionHandler.m; sourceTree = "<group>"; };
 		C2BE666028A5B378008A4F48 /* SearchTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		C2BE666228A5B37D008A4F48 /* SearchTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
+		C2BE666728A63E0F008A4F48 /* TrackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackViewController.h; sourceTree = "<group>"; };
+		C2BE666828A63E0F008A4F48 /* TrackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackViewController.m; sourceTree = "<group>"; };
 		C2BE83162885D73800F30B0E /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		C2BE831828874FBE00F30B0E /* SpotifyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyManager.h; sourceTree = "<group>"; };
 		C2BE831928874FBE00F30B0E /* SpotifyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyManager.m; sourceTree = "<group>"; };
@@ -159,6 +165,8 @@
 		C25F30DF2885CA6600C31365 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C2A9B89D28A6EFF700A84C80 /* MessageCell.m */,
+				C2A9B89C28A6EFF700A84C80 /* MessageCell.h */,
 				C2B243892878A9C2003EAE4C /* MusicSession.m */,
 				C2B243882878A9C2003EAE4C /* MusicSession.h */,
 				C2F07ED028945A5500318F7D /* Track.h */,
@@ -176,6 +184,18 @@
 				C2BE831828874FBE00F30B0E /* SpotifyManager.h */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		C2A9B89F28A78D7400A84C80 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				C2B243362874A2A2003EAE4C /* SceneDelegate.m */,
+				C2B243352874A2A2003EAE4C /* SceneDelegate.h */,
+				C2B243332874A2A2003EAE4C /* AppDelegate.m */,
+				C2B243322874A2A2003EAE4C /* AppDelegate.h */,
+			);
+			name = Delegates;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C2B243262874A2A2003EAE4C = {
@@ -206,12 +226,9 @@
 				C2B2436A2874BA6E003EAE4C /* View Controllers */,
 				C25F30E02885CA7700C31365 /* API */,
 				C25F30DF2885CA6600C31365 /* Models */,
+				C2A9B89F28A78D7400A84C80 /* Delegates */,
 				C2B2438F287FB821003EAE4C /* MusicSessionHandler.m */,
 				C2B2438E287FB821003EAE4C /* MusicSessionHandler.h */,
-				C2B243332874A2A2003EAE4C /* AppDelegate.m */,
-				C2B243322874A2A2003EAE4C /* AppDelegate.h */,
-				C2B243362874A2A2003EAE4C /* SceneDelegate.m */,
-				C2B243352874A2A2003EAE4C /* SceneDelegate.h */,
 				C2B243442874A2A3003EAE4C /* main.m */,
 				C2B243432874A2A3003EAE4C /* Info.plist */,
 				C2B2433E2874A2A3003EAE4C /* Assets.xcassets */,
@@ -255,6 +272,8 @@
 				C2BE666228A5B37D008A4F48 /* SearchTableViewController.h */,
 				C26C4A9B28A0EA290073FAC5 /* QueueTableViewController.m */,
 				C26C4A9A28A0EA290073FAC5 /* QueueTableViewController.h */,
+				C2BE666828A63E0F008A4F48 /* TrackViewController.m */,
+				C2BE666728A63E0F008A4F48 /* TrackViewController.h */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -501,6 +520,7 @@
 				C2B2438A2878A9C2003EAE4C /* MusicSession.m in Sources */,
 				C2B24390287FB821003EAE4C /* MusicSessionHandler.m in Sources */,
 				C2BE666128A5B378008A4F48 /* SearchTableViewController.m in Sources */,
+				C2BE666928A63E0F008A4F48 /* TrackViewController.m in Sources */,
 				C2BE831A28874FBE00F30B0E /* SpotifyManager.m in Sources */,
 				C26506AC2892F90D00E38146 /* SettingsViewController.m in Sources */,
 				C2B243342874A2A2003EAE4C /* AppDelegate.m in Sources */,
@@ -510,6 +530,7 @@
 				C2B243452874A2A3003EAE4C /* main.m in Sources */,
 				C2B2438D2878C358003EAE4C /* MusicSessionViewController.m in Sources */,
 				C2B243372874A2A2003EAE4C /* SceneDelegate.m in Sources */,
+				C2A9B89E28A6EFF700A84C80 /* MessageCell.m in Sources */,
 				C2B243692874BA67003EAE4C /* LoginViewController.m in Sources */,
 				C2B2436D2874DB2A003EAE4C /* HomeViewController.m in Sources */,
 			);

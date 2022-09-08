@@ -26,7 +26,13 @@
         NSLog(@"User: %@", PFUser.currentUser.username);
         NSLog(@"User: %@", [PFUser currentUser][@"firstName"]);
         
-        self.greetingLabel.text = [NSString stringWithFormat:@"Welcome Back, %@", [PFUser currentUser][@"firstName"]];
+        self.greetingLabel.text = [NSString stringWithFormat:@"Hello, %@", [PFUser currentUser][@"firstName"]];
+        
+        self.joinButton.layer.cornerRadius = 5;
+        self.joinButton.clipsToBounds = YES;
+        
+        self.createButton.layer.cornerRadius = 5;
+        self.createButton.clipsToBounds = YES;
     }
 }
 

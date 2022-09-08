@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL isPlaying;
 @property (nonatomic) NSInteger timestamp;
 @property (nonatomic, strong) NSMutableArray *queue;
+@property (nonatomic, strong) NSMutableArray *playedTracks;
+@property (nonatomic, strong) NSMutableArray *currentlyPlaying;
 
 // Settings?
 @property (nonatomic) BOOL *allowExplicit;
@@ -35,6 +37,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)updateSessionLog: ( NSString * )sessionCode decription:( NSString * )message withCompletion: (PFBooleanResultBlock _Nullable) completion;
 + (void)addToQueue: ( NSString * )sessionCode track:( NSDictionary * )trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
 + (void)removeFromQueue: ( NSString * )sessionCode index:( NSInteger )trackIndex withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
++ (void)addToPlayedTracks: ( NSString * )sessionCode track:(NSDictionary *)trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
++ (void)updateCurrentlyPlaying: ( NSString * )sessionCode track:( NSDictionary * )trackInfo withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
++ (void)updateIsPlaying: ( NSString * )sessionCode status:( BOOL )playerStatus withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
++ (void)updateTimestamp: ( NSString * )sessionCode timestamp:( NSInteger )timestamp withCompletion: ( PFBooleanResultBlock _Nullable ) completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

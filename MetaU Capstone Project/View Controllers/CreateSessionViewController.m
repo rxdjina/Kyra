@@ -17,6 +17,8 @@
 @interface CreateSessionViewController ()
 
 @property (nonatomic, strong) MusicSession *arrayMusicSession;
+@property (nonatomic) NSInteger shakes;
+@property (nonatomic) NSInteger direction;
 
 @end
 
@@ -27,6 +29,15 @@
 
     self.sessionNameTextField.delegate = self;
     self.codeTextField.delegate = self;
+    
+    self.joinButton.layer.cornerRadius = 5;
+    self.joinButton.clipsToBounds = YES;
+    
+    self.createButton.layer.cornerRadius = 5;
+    self.createButton.clipsToBounds = YES;
+    
+    self.shakes = 0;
+    self.direction = 1;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -46,6 +57,7 @@
            
        } else if (sessions.count < 1){
            NSLog(@"Unable to find session");
+           [self shake:self.codeTextField];
            
        } else {
            NSLog(@"Error getting music session: %@", error.localizedDescription);
@@ -81,19 +93,33 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier  isEqual: @"joinSessionSegue"]) {
+        self.codeTextField.text = @"";
         MusicSession *dataToPass = self.arrayMusicSession;
-
         UINavigationController *navControl = [segue destinationViewController];
         MusicSessionViewController *destinationVC = (MusicSessionViewController *)[navControl topViewController];
-        destinationVC.musicSession = dataToPass;
+        destinationVC.session = dataToPass;
         
     } else if ([segue.identifier  isEqual: @"createSessionSegue"]) {
+        self.sessionNameTextField.text = @"";
         MusicSession *dataToPass = self.arrayMusicSession;
-
         UINavigationController *navControl = [segue destinationViewController];
         MusicSessionViewController *destinationVC = (MusicSessionViewController *)[navControl topViewController];
-        destinationVC.musicSession = dataToPass;
+        destinationVC.session = dataToPass;
     }
+}
+
+- (void)shake:(UIView *)shakeObject {
+    [UIView animateWithDuration:0.03 animations:^{
+        shakeObject.transform = CGAffineTransformMakeTranslation(5 * self.direction, 0);
+    } completion:^(BOOL finished) {
+        if (self.shakes >= 10) {
+            shakeObject.transform = CGAffineTransformIdentity;
+            return;
+        }
+        self.shakes++;
+        self.direction *= -1;
+        [self shake:shakeObject];
+    }];
 }
 
 @end

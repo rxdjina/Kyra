@@ -23,6 +23,11 @@
     self.oldPasswordTextField.delegate = self;
     self.updatedPasswordTextField.delegate = self;
     self.confirmUpdatedPasswordTextField.delegate = self;
+    
+    self.updateEmailButton.layer.cornerRadius = 5;
+    self.updateEmailButton.clipsToBounds = YES;
+    self.updatePasswordButton.layer.cornerRadius = 5;
+    self.updateEmailButton.clipsToBounds = YES;
 }
 
 - (void)setDefaultTextField:(NSArray *)arrayOfTextFields {
@@ -130,10 +135,51 @@
 
 - (IBAction)pressedUpdateEmail:(id)sender {
     [self changeEmail];
+    [self notificationBanner:@"Verification email sent"];
 }
 
 - (IBAction)pressedUpdatePassword:(id)sender {
     [self changePassword];
+    [self notificationBanner:@"Password successfully reset"];
+}
+
+- (void)notificationBanner:(NSString *)bannerText{
+    [self.updateNotificationButton setTitle:bannerText forState:UIControlStateNormal];
+
+    [NSTimer scheduledTimerWithTimeInterval:3.0
+                                     target:self selector:@selector(bannerAnimationUp) userInfo:nil repeats:NO];
+    
+    [NSTimer scheduledTimerWithTimeInterval:5.0
+                 target:self selector:@selector(bannerAnimationDown) userInfo:nil repeats:NO];
+}
+
+- (void)bannerAnimationUp {
+    self.updateNotificationButton.hidden = NO;
+    NSInteger width = [UIScreen mainScreen].bounds.size.width;
+    NSInteger  x = width / 2;
+    
+    NSInteger buttonWidth = self.updateNotificationButton.intrinsicContentSize.width;
+
+    self.updateNotificationButton.frame = CGRectMake(x - (buttonWidth / 2), 60, buttonWidth, 31);
+    [UIView animateWithDuration:0.25 animations:^{
+        self.updateNotificationButton.frame = CGRectMake(x - (buttonWidth / 2), 80, buttonWidth, 31);
+    }];
+}
+
+- (void)bannerAnimationDown {
+    NSInteger width = [UIScreen mainScreen].bounds.size.width;
+    NSInteger  x = width / 2;
+    NSInteger buttonWidth = self.updateNotificationButton.intrinsicContentSize.width;
+
+    self.updateNotificationButton.frame = CGRectMake(x - (buttonWidth / 2), 80, buttonWidth, 31);
+
+    [UIView animateWithDuration:0.15 animations:^{
+        self.updateNotificationButton.frame = CGRectMake(x - (buttonWidth / 2), 60, buttonWidth, 31);
+    } completion:^(BOOL finished) {
+        if (finished) {
+            self.updateNotificationButton.hidden = YES;
+        }
+    }];
 }
 
 @end
